@@ -1,0 +1,23 @@
+{
+	"listen": {
+		"address": "0.0.0.0",
+		"port": 8008
+	},
+	"icon": {
+		"size": 16
+	},
+	"credentials": [
+		{
+			"path": "/",
+			"username": "admin",
+			"password": "123456",
+			"allow": ["copy", "move", "delete", "download"]
+		},
+		{
+			"path": "/home/guest",
+			"username": "guest",
+			"password": "guest",
+			"allow": []
+		}
+	]
+}
