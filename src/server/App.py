@@ -130,10 +130,16 @@ class HttpRequestHandler(Http.RequestHandler):
 		return {}
 
 	def do_GET(self):
+		controller = self.path.split('/')[1]
+
 		if self.path == '/index.html':
 			self.send_error(404)
 		elif self.path == '/':
 			self.session.start()
+			# to do: implement login
+			self.session.set('path', '/home')
+			self.session.set('username', 'guest')
+			self.session.set('permission', [])
 
 			f = self.send_head()
 			if f:
@@ -150,13 +156,16 @@ class HttpRequestHandler(Http.RequestHandler):
 					self.wfile.write(html)
 				finally:
 					f.close()
+		elif hasattr(Api, 'do_GET_' + controller):
+			getattr(Api, 'do_GET_' + controller)(self)
 		else:
 			Http.RequestHandler.do_GET(self)
 
 	def do_POST(self):
-		print self
-		if hasattr(Api, self.path[1:]):
-			getattr(Api, self.path[1:])(self)
+		controller = self.path.split('/')[1]
+
+		if hasattr(Api, 'do_POST_' + controller):
+			getattr(Api, 'do_POST_' + controller)(self)
 		else:
 			self.send_error(404)
 

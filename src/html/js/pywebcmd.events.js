@@ -30,6 +30,9 @@
 
 		// document keypress
 		$(document).on('keypress', _keypress);
+
+		// show directories list
+		window.pywebcmd.api.ls('/home/fffilo', _ls);
 	});
 
 	/**
@@ -65,8 +68,8 @@
 	 */
 	var _compareTableRows = function(table, column) {
 		var type = 'string';
-		if (window.pywebcmd.columns[column] !== undefined) {
-			window.pywebcmd.columns[column].type;
+		if (window.pywebcmd.columns.properties[column] !== undefined) {
+			window.pywebcmd.columns.properties[column].type;
 		}
 
 		var cols  = $(table).find('td')
@@ -84,7 +87,7 @@
 				var newColumnIndex = $(cols).index($(cols).filter('.basename'));
 
 				if (newColumnIndex !== -1) {
-					type = window.pywebcmd.columns.basename.type;
+					type = window.pywebcmd.columns.properties.basename.type;
 					objA = $(a).children('td').eq(newColumnIndex);
 					objB = $(b).children('td').eq(newColumnIndex);
 					valA = $(objA).attr('data-value');
@@ -122,7 +125,7 @@
 
 		if ($(body).length !== 0) {
 			var column = $(this).attr('class');
-			var rows   = $(body).find('tr:gt(0)').toArray().sort(_compareTableRows(body, column));
+			var rows   = $(body).find('tr:gt(1)').toArray().sort(_compareTableRows(body, column));
 
 			$(this)
 				.addClass(asc ? 'asc' : 'desc')
@@ -160,6 +163,58 @@
 			$(this)
 				.addClass('highlight');
 		}
+	}
+
+	/**
+	 * Append initial directory list to table(s)
+	 * @param  {Object} jqXHR
+	 * @param  {Object} textStatus
+	 * @return {Void}
+	 */
+	var _ls = function(jqXHR, textStatus) {
+		$(window.pywebcmd.ui.lpath).val(jqXHR.responseJSON.source);
+		$(window.pywebcmd.ui.rpath).val(jqXHR.responseJSON.source);
+
+		$(window.pywebcmd.ui.lbody).empty();
+		$(window.pywebcmd.ui.rbody).empty();
+
+		$.each(jqXHR.responseJSON.data, function(key, value) {
+			var row = $('<tr />');
+
+			$.each(window.pywebcmd.columns.list, function(i, column) {
+				var col = $('<td />')
+					.attr('class', column)
+					.appendTo(row);
+				if (column == 'icon') {
+					$(col)
+						.html('<img src="/ico/16/' + value[column] + '" alt="' + value[column] + '" />');
+				}
+				else if (column == 'size') {
+					console.log('size')
+					$(col)
+						.attr('data-value', value.isdir ? '-1' : value[column])
+						.attr('title', window.pywebcmd.file.size(value[column]))
+						.text(value.isdir ? '' : window.pywebcmd.file.size(value[column]));
+				}
+				else if (window.pywebcmd.columns.properties[column] && window.pywebcmd.columns.properties[column].type && window.pywebcmd.columns.properties[column].type == 'time') {
+					$(col)
+						.attr('data-value', value[column])
+						.attr('title', window.pywebcmd.file.time(value[column]))
+						.text(window.pywebcmd.file.time(value[column]).slice(0, -3));
+				}
+				else if (window.pywebcmd.columns.properties[column] && window.pywebcmd.columns.properties[column].type && window.pywebcmd.columns.properties[column].type == 'boolean') {
+					// to do
+				}
+				else {
+					$(col)
+						.attr('title', value[column])
+						.text(value[column]);
+				}
+			});
+
+			$(row).appendTo(window.pywebcmd.ui.lbody);
+			$(row).clone().appendTo(window.pywebcmd.ui.rbody);
+		});
 	}
 
 	/**

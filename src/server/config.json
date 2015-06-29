@@ -11,13 +11,13 @@
 			"path": "/",
 			"username": "admin",
 			"password": "123456",
-			"allow": ["copy", "move", "delete", "download"]
+			"permission": ["copy", "move", "delete", "download"]
 		},
 		{
 			"path": "/home/guest",
 			"username": "guest",
 			"password": "guest",
-			"allow": []
+			"permission": []
 		}
 	]
 }

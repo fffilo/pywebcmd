@@ -4,10 +4,29 @@
 	window.pywebcmd.api = window.pywebcmd.api || {};
 
 	var _ajax = function(url, data, callback) {
-
+		$.ajax({
+			url: url,
+			method: 'post',
+			contentType: 'application/json',
+			dataType: 'json',
+			data: JSON.stringify(data),
+			complete: function(jqXHR, textStatus) {
+				if (typeof(callback) === 'function') {
+					callback.call(this, jqXHR, textStatus);
+				}
+			}
+		});
 	}
 
-	window.pywebcmd.api.ls = function() {
+	window.pywebcmd.api.ls = function(source, callback) {
+		var data = {
+			source      : source || undefined,
+			destination : undefined,
+			properties  : '' //[ icon, basename, dirname, type, mime, owner, group, permission, size, ctime, mtime, atime ]
+		}
+
+		_ajax('/ls', data, callback);
+
 		/*
 			// list directory
 			send = {

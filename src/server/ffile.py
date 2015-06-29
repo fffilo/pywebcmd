@@ -10,6 +10,7 @@ def properties(path):
 	lstats = os.lstat(path)
 
 	result = {}
+	result['realpath'] = os.path.realpath(path)
 	result['basename'] = os.path.basename(path)
 	result['dirname'] = os.path.dirname(path)
 	result['isdir'] = os.path.isdir(path)
@@ -29,6 +30,7 @@ def properties(path):
 
 	return result
 
+'''
 def icon(name, size=16):
 	try:
 		fil = os.path.realpath(_theme.lookup_icon(name, size, 0).get_filename())
@@ -38,5 +40,17 @@ def icon(name, size=16):
 		ico.close();
 
 		return 'data:' + mim + ';base64,' + img.encode('base64').strip().replace(chr(10), '').replace(chr(13), '');
+	except Exception, e:
+		return None
+'''
+
+def icon(name, size=16):
+	try:
+		path = os.path.realpath(_theme.lookup_icon(name, size, 0).get_filename())
+		icon = open(path, 'r')
+		result = icon.read()
+		icon.close();
+
+		return result
 	except Exception, e:
 		return None

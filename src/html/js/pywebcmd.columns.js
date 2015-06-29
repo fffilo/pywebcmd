@@ -8,9 +8,12 @@
 
 	/**
 	 * Frontend column list
-	 * @type {Array}
+	 * @type {Object}
 	 */
-	window.pywebcmd.columns = [];
+	window.pywebcmd.columns = {
+		list: [],
+		properties: {}
+	};
 
 	// bind events on document ready
 	$(document).ready(function(event) {
@@ -18,11 +21,12 @@
 			.add(window.pywebcmd.ui.lhead)
 			.add(window.pywebcmd.ui.rhead)
 				.find('td,th')
-					.each(function() {
-						var column = _columns(this);
+					.each(function(key, value) {
+						var column = _columns(value);
 
-						if (window.pywebcmd.columns[column.name] === undefined) {
-							window.pywebcmd.columns[column.name] = column;
+						if (window.pywebcmd.columns.properties[column.name] === undefined) {
+							window.pywebcmd.columns.properties[column.name] = column;
+							window.pywebcmd.columns.list.push(column.name);
 						}
 					});
 	});
@@ -54,9 +58,9 @@
 		if ($(obj).hasClass('group'))      { result.name = 'group';      result.type = 'string';  };
 		if ($(obj).hasClass('permission')) { result.name = 'permission'; result.type = 'string';  };
 		if ($(obj).hasClass('size'))       { result.name = 'size';       result.type = 'numeric'; };
-		if ($(obj).hasClass('ctime'))      { result.name = 'ctime';      result.type = 'numeric'; };
-		if ($(obj).hasClass('mtime'))      { result.name = 'mtime';      result.type = 'numeric'; };
-		if ($(obj).hasClass('atime'))      { result.name = 'atime';      result.type = 'numeric'; };
+		if ($(obj).hasClass('ctime'))      { result.name = 'ctime';      result.type = 'time';    };
+		if ($(obj).hasClass('mtime'))      { result.name = 'mtime';      result.type = 'time';    };
+		if ($(obj).hasClass('atime'))      { result.name = 'atime';      result.type = 'time';    };
 
 		result.display = $(obj).is(':visible');
 		result.visible = $(obj).css('visibility') != 'hidden';
