@@ -26,13 +26,16 @@
 				.on('click', 'tr', _selectRow);
 
 		// open row (file/directory)
-		$(window.pywebcmd.ui.tbody).on('click', 'tr', _openRow);
+		$(false)
+			.add(window.pywebcmd.ui.lbody)
+			.add(window.pywebcmd.ui.rbody)
+				.on('dblclick', 'tr', _openRow);
 
 		// document keypress
 		$(document).on('keypress', _keypress);
 
 		// show directories list
-		window.pywebcmd.api.ls('/home/fffilo', _ls);
+		window.pywebcmd.api.ls('/home/fffilo', _initList);
 	});
 
 	/**
@@ -166,20 +169,18 @@
 	}
 
 	/**
-	 * Append initial directory list to table(s)
-	 * @param  {Object} jqXHR
-	 * @param  {Object} textStatus
-	 * @return {Void}
+	 * Parse data from jqXHR and convert it to row (tr tag)
+	 * @param  {Object} data
+	 * @return {Object}
 	 */
-	var _ls = function(jqXHR, textStatus) {
-		$(window.pywebcmd.ui.lpath).val(jqXHR.responseJSON.source);
-		$(window.pywebcmd.ui.rpath).val(jqXHR.responseJSON.source);
+	var _lsParse = function(data) {
+		var result = $(false);
 
-		$(window.pywebcmd.ui.lbody).empty();
-		$(window.pywebcmd.ui.rbody).empty();
-
-		$.each(jqXHR.responseJSON.data, function(key, value) {
+		$.each(data, function(key, value) {
 			var row = $('<tr />');
+			if (value.isdir)  $(row).addClass('dir');
+			if (value.isfile) $(row).addClass('file');
+			if (value.islink) $(row).addClass('link');
 
 			$.each(window.pywebcmd.columns.list, function(i, column) {
 				var col = $('<td />')
@@ -211,9 +212,30 @@
 				}
 			});
 
-			$(row).appendTo(window.pywebcmd.ui.lbody);
-			$(row).clone().appendTo(window.pywebcmd.ui.rbody);
+			result = $(result).add(row);
 		});
+
+		return result;
+	}
+
+	/**
+	 * Append initial directory list to table(s)
+	 * @param  {Object} jqXHR
+	 * @param  {Object} textStatus
+	 * @return {Void}
+	 */
+	var _initList = function(jqXHR, textStatus) {
+		// if error return
+
+		$(window.pywebcmd.ui.lpath).val(jqXHR.responseJSON.source);
+		$(window.pywebcmd.ui.rpath).val(jqXHR.responseJSON.source);
+
+		$(window.pywebcmd.ui.lbody).empty();
+		$(window.pywebcmd.ui.rbody).empty();
+
+		var row = _lsParse(jqXHR.responseJSON.data);
+		$(row).appendTo(window.pywebcmd.ui.lbody);
+		$(row).clone().appendTo(window.pywebcmd.ui.rbody);
 	}
 
 	/**
@@ -222,7 +244,27 @@
 	 * @return {Void}
 	 */
 	var _openRow = function(event) {
+		if ( ! $(this).hasClass('dir')) {
+			return;
+		}
 
+		var table    = $(this).closest('table');
+		var basename = $(this).find('td.basename').text();
+		var input;
+		if ($(table).is(window.pywebcmd.ui.lbody)) input = window.pywebcmd.ui.lpath;
+		if ($(table).is(window.pywebcmd.ui.rbody)) input = window.pywebcmd.ui.rpath;
+
+		if (input) {
+			window.pywebcmd.api.ls($(input).val() + '/' + basename, function(jqXHR, textStatus) {
+				// if error return
+
+				$(input).val(jqXHR.responseJSON.source);
+				$(table).empty();
+
+				var row = _lsParse(jqXHR.responseJSON.data);
+				$(row).appendTo(table);
+			});
+		}
 	}
 
 	/**

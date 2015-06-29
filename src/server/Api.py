@@ -93,6 +93,8 @@ def do_POST_ls(RequestHandler):
 		result['status'] = 500
 		result['message'] = 'Source is not directory.'
 		return result
+	else:
+		result['source'] = os.path.realpath(result['source'])
 
 	'''
 	result['data'] = {
