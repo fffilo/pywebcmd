@@ -50,7 +50,7 @@ body > div.cmd > section > main > section > main > table .size { text-align: rig
 body > div.cmd > section > main > section > main > table .mtime { text-align: center; }
 body > div.cmd > section > main > section > main > table td { cursor: default; }
 body > div.cmd > section > main > section > main > table tr:hover { background: #eee; }
-body > div.cmd > section > main > section > main.selected > table tr.highlight { background: #ccf; }
+body > div.cmd > section > main.selected > section > main > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
 body > div.cmd > section > nav { float: left; width: 64px; height: 100%; }
 body > div.cmd > pre { display: none; }
 body > div.cmd > footer { line-height: 16px; font-size: 10px; text-align: center; color: #aaa; }
