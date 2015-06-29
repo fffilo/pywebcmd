@@ -263,6 +263,8 @@
 
 				var row = _lsParse(jqXHR.responseJSON.data);
 				$(row).appendTo(table);
+
+				// sort
 			});
 		}
 	}

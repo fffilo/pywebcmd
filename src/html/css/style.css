@@ -45,11 +45,12 @@ body > div.cmd > section > main > section > header > table .basename { text-inde
 body > div.cmd > section > main > section > header > table .mtime { border-right: 0 none; }
 body > div.cmd > section > main > section > main { height: calc(100% - 27px); overflow: hidden; overflow-y: scroll; }
 body > div.cmd > section > main > section > main > table {}
-body > div.cmd > section > main > section > main > table .icon { width: 16px; padding: 4px; border-right: 0 none; text-indent: -999px; overflow: hidden; }
+body > div.cmd > section > main > section > main > table .icon { width: 16px; padding: 4px; }
 body > div.cmd > section > main > section > main > table .icon img { display: block; width: 16px; height: 16px; }
+body > div.cmd > section > main > section > main > table .link .icon::after { position: absolute; display: block; left: 0; top: 0; right: 0; bottom: 0; content: " "; background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwWDC4PQFStygAAADFJREFUOMtjYBgFo4CBgZFE9f/R9TNRaiEThS4gyYD/FHgdbsB/SgL8PzVi7T/V0wEA6SYHBDM+gVwAAAAASUVORK5CYII=") center center no-repeat; }
 body > div.cmd > section > main > section > main > table .size { text-align: right; }
 body > div.cmd > section > main > section > main > table .mtime { text-align: center; }
-body > div.cmd > section > main > section > main > table td { cursor: default; }
+body > div.cmd > section > main > section > main > table td { position: relative; cursor: default; }
 body > div.cmd > section > main > section > main > table tr:hover { background: #eee; }
 body > div.cmd > section > main.selected > section > main > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
 body > div.cmd > section > nav { float: left; width: 64px; height: 100%; }
