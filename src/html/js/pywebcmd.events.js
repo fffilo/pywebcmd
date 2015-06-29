@@ -67,11 +67,6 @@
 	 * @return {function}
 	 */
 	var _compareTableRows = function(table, column) {
-		var type = 'string';
-		if (window.pywebcmd.columns.properties[column] !== undefined) {
-			window.pywebcmd.columns.properties[column].type;
-		}
-
 		var cols  = $(table).find('td')
 		var index = $(cols).index($(cols).filter('.' + column));
 
@@ -82,6 +77,11 @@
 			var valB  = $(objB).attr('data-value');
 			if (valA === undefined) valA = $(objA).text();
 			if (valB === undefined) valB = $(objB).text();
+
+			var type = 'string';
+			if (window.pywebcmd.columns.properties[column] !== undefined) {
+				type = window.pywebcmd.columns.properties[column].type;
+			}
 
 			if (valA == valB) {
 				var newColumnIndex = $(cols).index($(cols).filter('.basename'));
@@ -97,7 +97,7 @@
 				}
 			}
 
-			return type == 'numeric' && $.isNumeric(valA) && $.isNumeric(valB) ? valA * 1 - valB * 1 : valA.localeCompare(valB);
+			return (type == 'numeric' || type == 'time') && $.isNumeric(valA) && $.isNumeric(valB) ? valA * 1 - valB * 1 : valA.localeCompare(valB);
 		}
 	}
 
@@ -190,7 +190,6 @@
 						.html('<img src="/ico/16/' + value[column] + '" alt="' + value[column] + '" />');
 				}
 				else if (column == 'size') {
-					console.log('size')
 					$(col)
 						.attr('data-value', value.isdir ? '-1' : value[column])
 						.attr('title', window.pywebcmd.file.size(value[column]))
