@@ -1,14 +1,122 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate repellat, vel! Mollitia error, tempore modi laudantium ex, ipsum quis rerum quo, ratione rem recusandae aliquid molestiae iure nesciunt voluptates provident?</p>
-	<p>Fuga consectetur neque facere nam dolores ipsum, deserunt adipisci maxime odit qui repellat nemo obcaecati assumenda dolore, id esse commodi quod debitis aspernatur iusto distinctio excepturi vitae, at aliquid. Facere.</p>
-	<p>Eius similique hic deserunt libero, ipsum, asperiores, expedita obcaecati earum provident consectetur omnis non. Libero sint, aut assumenda rerum aperiam ducimus temporibus maxime recusandae! Modi alias est, placeat ut itaque.</p>
-	<p>Voluptas id quae laboriosam perferendis sit incidunt sunt maiores tenetur voluptates tempora, praesentium magni iste veniam inventore in aliquam deserunt neque itaque officiis nulla. Earum repellendus unde a quo odio.</p>
-	<p>Quae rerum officiis, dolorem dolor aliquid deserunt hic ut nobis odit cum nostrum, doloremque necessitatibus repellendus vitae! Corrupti aperiam placeat, modi repellendus ipsum dolore expedita iusto dolor, porro, inventore non.</p>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="robots" content="noindex, nofollow" />
+		<link rel="shortcut icon" href="img/favicon.png" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<title>{service}</title>
+	</head>
+	<body>
+		<div class="cmd">
+			<header>
+				<h1 title="{appname}">{appname}</h1>
+			</header>
+			<section>
+				<main class="lblock">
+					<header title="Path">
+						<input class="lpath" type="text" readonly="readonly" value="/" />
+					</header>
+					<section>
+						<header>
+							<table class="lhead">
+								<tr>
+									<th class="icon">Icon</th>
+									<!-- <th class="dirname">Directory</th> -->
+									<th class="basename">Name</th>
+									<th class="type">Type</th>
+									<!-- <th class="mime">MIME</th> -->
+									<!-- <th class="owner">Owner</th> -->
+									<!-- <th class="group">Group</th> -->
+									<!-- <th class="permission">Permission</th> -->
+									<th class="size">Size</th>
+									<!-- <th class="ctime">Created</th> -->
+									<th class="mtime">Modified</th>
+									<!-- <th class="atime">Accessed</th> -->
+								</tr>
+							</table>
+						</header>
+						<main>
+							<table class="lbody">
+							</table>
+						</main>
+					</section>
+				</main>
+				<nav class="nav">
+				</nav>
+				<main clas="rblock">
+					<header title="Path">
+						<input class="rpath" type="text" readonly="readonly" value="/" />
+					</header>
+					<section>
+						<header>
+							<table class="rhead">
+								<tr>
+									<th class="icon">Icon</th>
+									<!-- <th class="dirname">Directory</th> -->
+									<th class="basename">Name</th>
+									<th class="type">Type</th>
+									<!-- <th class="mime">MIME</th> -->
+									<!-- <th class="owner">Owner</th> -->
+									<!-- <th class="group">Group</th> -->
+									<!-- <th class="permission">Permission</th> -->
+									<th class="size">Size</th>
+									<!-- <th class="ctime">Created</th> -->
+									<th class="mtime">Modified</th>
+									<!-- <th class="atime">Accessed</th> -->
+								</tr>
+							</table>
+						</header>
+						<main>
+							<table class="rbody">
+								<tr>
+									<td class="icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEISURBVDiNrZGxSgNREEXPCw/S7EZIZWelYqFlvsDKQhC0ssoPmCIfYG1hoWCXP7C3Si+ksBJEtBHE2JhgdgvNm5lnIQYkuLAbb3/vnHvHxRjpdbYugX1+62qpaXsHx7dTCuRixPU6m7a2voFzNQBijAxfnsnzLAA2Z4JYr/v+4cnNrru+2DlrrG4fNZdXig7NafT6xOShf+6DWjtJEj7eh6UCkiThTa3tg2gaPvNSZgCVKUE09aKGSSgdACBq+CCKVgwIongRw6TwU38TyA+BLkAQRCtvMKtQdYNZhaobfBPoAgRq/7CBig3G41GrkaalzJMsQ8UGPljs3t0/nkZolQlwMKBW634BV/GiU2qcKJgAAAAASUVORK5CYII=" alt="[PARENTDIR]"></td>
+									<td class="basename">..</td>
+									<td class="type">inode/directory</td>
+									<td class="size"></td>
+									<td class="mtime"></td>
+								</tr>
+								<tr>
+									<td class="icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEISURBVDiNrZGxSgNREEXPCw/S7EZIZWelYqFlvsDKQhC0ssoPmCIfYG1hoWCXP7C3Si+ksBJEtBHE2JhgdgvNm5lnIQYkuLAbb3/vnHvHxRjpdbYugX1+62qpaXsHx7dTCuRixPU6m7a2voFzNQBijAxfnsnzLAA2Z4JYr/v+4cnNrru+2DlrrG4fNZdXig7NafT6xOShf+6DWjtJEj7eh6UCkiThTa3tg2gaPvNSZgCVKUE09aKGSSgdACBq+CCKVgwIongRw6TwU38TyA+BLkAQRCtvMKtQdYNZhaobfBPoAgRq/7CBig3G41GrkaalzJMsQ8UGPljs3t0/nkZolQlwMKBW634BV/GiU2qcKJgAAAAASUVORK5CYII=" alt="[DIR]"></td>
+									<td class="basename">colorpicker/</td>
+									<td class="type">inode/directory</td>
+									<td class="size"></td>
+									<td class="mtime">2015-05-27 11:33</td>
+								</tr>
+								<tr>
+									<td class="icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEISURBVDiNrZGxSgNREEXPCw/S7EZIZWelYqFlvsDKQhC0ssoPmCIfYG1hoWCXP7C3Si+ksBJEtBHE2JhgdgvNm5lnIQYkuLAbb3/vnHvHxRjpdbYugX1+62qpaXsHx7dTCuRixPU6m7a2voFzNQBijAxfnsnzLAA2Z4JYr/v+4cnNrru+2DlrrG4fNZdXig7NafT6xOShf+6DWjtJEj7eh6UCkiThTa3tg2gaPvNSZgCVKUE09aKGSSgdACBq+CCKVgwIongRw6TwU38TyA+BLkAQRCtvMKtQdYNZhaobfBPoAgRq/7CBig3G41GrkaalzJMsQ8UGPljs3t0/nkZolQlwMKBW634BV/GiU2qcKJgAAAAASUVORK5CYII=" alt="[DIR]"></td>
+									<td class="basename">graphi/</td>
+									<td class="type">inode/directory</td>
+									<td class="size"></td>
+									<td class="mtime">2015-05-27 11:33</td>
+								</tr>
+								<tr>
+									<td class="icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEISURBVDiNrZGxSgNREEXPCw/S7EZIZWelYqFlvsDKQhC0ssoPmCIfYG1hoWCXP7C3Si+ksBJEtBHE2JhgdgvNm5lnIQYkuLAbb3/vnHvHxRjpdbYugX1+62qpaXsHx7dTCuRixPU6m7a2voFzNQBijAxfnsnzLAA2Z4JYr/v+4cnNrru+2DlrrG4fNZdXig7NafT6xOShf+6DWjtJEj7eh6UCkiThTa3tg2gaPvNSZgCVKUE09aKGSSgdACBq+CCKVgwIongRw6TwU38TyA+BLkAQRCtvMKtQdYNZhaobfBPoAgRq/7CBig3G41GrkaalzJMsQ8UGPljs3t0/nkZolQlwMKBW634BV/GiU2qcKJgAAAAASUVORK5CYII=" alt="[DIR]"></td>
+									<td class="basename">influendo.com/</td>
+									<td class="type">inode/directory</td>
+									<td class="size"></td>
+									<td class="mtime">2015-05-27 11:33</td>
+								</tr>
+								<tr>
+									<td class="icon"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAEISURBVDiNrZGxSgNREEXPCw/S7EZIZWelYqFlvsDKQhC0ssoPmCIfYG1hoWCXP7C3Si+ksBJEtBHE2JhgdgvNm5lnIQYkuLAbb3/vnHvHxRjpdbYugX1+62qpaXsHx7dTCuRixPU6m7a2voFzNQBijAxfnsnzLAA2Z4JYr/v+4cnNrru+2DlrrG4fNZdXig7NafT6xOShf+6DWjtJEj7eh6UCkiThTa3tg2gaPvNSZgCVKUE09aKGSSgdACBq+CCKVgwIongRw6TwU38TyA+BLkAQRCtvMKtQdYNZhaobfBPoAgRq/7CBig3G41GrkaalzJMsQ8UGPljs3t0/nkZolQlwMKBW634BV/GiU2qcKJgAAAAASUVORK5CYII=" alt="[DIR]"></td>
+									<td class="basename">optimizepress/</td>
+									<td class="type">inode/directory</td>
+									<td class="size">200.00K</td>
+									<td class="mtime">2015-05-27 11:33</td>
+								</tr>
+							</table>
+						</main>
+					</section>
+				</main>
+			</section>
+			<pre class="log" title="Log">
+				log
+			</pre>
+			<footer>
+				<div>{description}</div>
+				<div>created by {author}</div>
+			</footer>
+		</div>
+	</body>
 </html>

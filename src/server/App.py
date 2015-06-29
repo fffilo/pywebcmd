@@ -130,7 +130,28 @@ class HttpRequestHandler(Http.RequestHandler):
 		return {}
 
 	def do_GET(self):
-		Http.RequestHandler.do_GET(self)
+		if self.path == '/index.html':
+			self.send_error(404)
+		elif self.path == '/':
+			self.session.start()
+
+			f = self.send_head()
+			if f:
+				try:
+					html = f.read()
+					html = html.replace('{version}', str(Api.__version__))
+					html = html.replace('{service}', str(Api.__service__))
+					html = html.replace('{service}', str(Api.__service__))
+					html = html.replace('{appname}', str(Api.__appname__))
+					html = html.replace('{description}', str(Api.__description__))
+					html = html.replace('{author}', str(Api.__author__))
+					html = html.replace('{email}', str(Api.__email__))
+
+					self.wfile.write(html)
+				finally:
+					f.close()
+		else:
+			Http.RequestHandler.do_GET(self)
 
 	def do_POST(self):
 		print self
