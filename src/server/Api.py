@@ -107,29 +107,6 @@ def do_POST_ls(RequestHandler):
 
 	result['source'] = os.path.realpath(result['source'])
 
-	'''
-	result['data'] = {
-		'icon': {},
-		'glob': []
-	}
-
-	for f in glob.glob(result['source'] + '/*'):
-		item = ffile.properties(f)
-		result['data']['glob'].append(item)
-
-		if ICONSIZE and not item['icon'] in result['data']['icon']:
-			result['data']['icon'][item['icon']] = ffile.icon(item['icon'], ICONSIZE)
-	'''
-
-	glob = os.listdir(result['source'])
-	glob.insert(0, '..')
-	glob.insert(0, '.')
-	glob = sorted(glob)
-
-	result['data'] = []
-	for f in glob:
-		result['data'].append(ffile.properties(result['source'] + '/' + f))
-	'''
 	try:
 		glob = os.listdir(result['source'])
 		glob.insert(0, '..')
@@ -142,6 +119,5 @@ def do_POST_ls(RequestHandler):
 	except Exception, e:
 		result['status'] = 500
 		result['message'] = str(e)
-	'''
 
 	response(RequestHandler, result)

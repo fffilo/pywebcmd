@@ -3,6 +3,7 @@
 	// bind events on document ready
 	$(document).ready(function(event) {
 		// show directories list
+		window.pywebcmd.log('command', 'Initial directory list')
 		window.pywebcmd.api.ls('/home/fffilo', _initList);
 
 		// sort table
@@ -226,7 +227,12 @@
 	 * @return {Void}
 	 */
 	var _initList = function(jqXHR, textStatus) {
-		// if error return
+		if (jqXHR.status != 200) {
+			window.pywebcmd.log('error', jqXHR.responseJSON.message);
+			return;
+		}
+
+		window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) (' + jqXHR.responseJSON.message + ')');
 
 		$(window.pywebcmd.ui.lpath).val(jqXHR.responseJSON.source);
 		$(window.pywebcmd.ui.rpath).val(jqXHR.responseJSON.source);
@@ -257,11 +263,17 @@
 
 		if (input) {
 			var path = $(input).val();
-			path += path.toString().length > 1 && path.substr(-1) == '/' ? '' : '/';
+			path += path.toString().length >= 1 && path.substr(-1) == '/' ? '' : '/';
 			path += basename;
 
+			window.pywebcmd.log('command', 'Directory list ' + path)
 			window.pywebcmd.api.ls(path, function(jqXHR, textStatus) {
-				// if error return
+				if (jqXHR.status != 200) {
+					window.pywebcmd.log('error', jqXHR.responseJSON.message);
+					return;
+				}
+
+				window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) (' + jqXHR.responseJSON.message + ')');
 
 				$(input).val(jqXHR.responseJSON.source);
 				$(table).empty();
