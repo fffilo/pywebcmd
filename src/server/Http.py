@@ -239,10 +239,10 @@ class RequestHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 		if os.path.isdir(path):
 			for f in INDEX:
 				if os.path.exists(path + '/' + f):
-					return path + '/' + f
+					return os.path.realpath(path + '/' + f)
 
 		# result
-		return path
+		return os.path.realpath(path)
 
 
 

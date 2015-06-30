@@ -141,21 +141,28 @@ class HttpRequestHandler(Http.RequestHandler):
 			self.session.set('username', 'guest')
 			self.session.set('permission', [])
 
-			f = self.send_head()
-			if f:
-				try:
-					html = f.read()
-					html = html.replace('{version}', str(Api.__version__))
-					html = html.replace('{service}', str(Api.__service__))
-					html = html.replace('{service}', str(Api.__service__))
-					html = html.replace('{appname}', str(Api.__appname__))
-					html = html.replace('{description}', str(Api.__description__))
-					html = html.replace('{author}', str(Api.__author__))
-					html = html.replace('{email}', str(Api.__email__))
+			path = self.translate_path(self.path)
+			ctype = self.guess_type(path)
 
-					self.wfile.write(html)
-				finally:
-					f.close()
+			f = open(path, 'rb')
+			fs = os.fstat(f.fileno())
+			html = f.read()
+
+			html = html.replace('{version}', str(Api.__version__))
+			html = html.replace('{service}', str(Api.__service__))
+			html = html.replace('{service}', str(Api.__service__))
+			html = html.replace('{appname}', str(Api.__appname__))
+			html = html.replace('{description}', str(Api.__description__))
+			html = html.replace('{author}', str(Api.__author__))
+			html = html.replace('{email}', str(Api.__email__))
+
+			self.send_response(200)
+			self.send_header('Content-type', ctype)
+			self.send_header('Content-Length', str(len(html)))
+			self.send_header('Last-Modified', self.date_time_string(fs.st_mtime))
+			self.end_headers()
+			self.wfile.write(html)
+			f.close()
 		elif hasattr(Api, 'do_GET_' + controller):
 			getattr(Api, 'do_GET_' + controller)(self)
 		else:
