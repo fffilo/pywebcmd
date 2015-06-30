@@ -2,11 +2,8 @@
 
 	// bind events on document ready
 	$(document).ready(function(event) {
-		// select block
-		$(false)
-			.add(window.pywebcmd.ui.lblock)
-			.add(window.pywebcmd.ui.rblock)
-				.on('click', _selectBlock);
+		// show directories list
+		window.pywebcmd.api.ls('/home/fffilo', _initList);
 
 		// sort table
 		$(false)
@@ -16,8 +13,14 @@
 					.find('th,td')
 						.filter('.basename')
 							.click();
-		$(window.pywebcmd.ui.lblock)
-			.click();
+
+		// select block
+		$(false)
+			.add(window.pywebcmd.ui.lblock)
+			.add(window.pywebcmd.ui.rblock)
+				.on('click', _selectBlock)
+				.filter(window.pywebcmd.ui.lblock)
+					.click();
 
 		// select/deselect row
 		$(false)
@@ -33,9 +36,6 @@
 
 		// document keypress
 		$(document).on('keypress', _keypress);
-
-		// show directories list
-		window.pywebcmd.api.ls('/home/fffilo', _initList);
 	});
 
 	/**
@@ -110,13 +110,15 @@
 	 * @return {Void}
 	 */
 	var _sortTable = function(event) {
-		$(this).blur();
-
 		_setSelection(this);
 
-		var head   = $(this).closest('table');
-		var body   = $(false);
-		var asc    = ! $(this).hasClass('asc');
+		if ($(this).hasClass('icon')) {
+			return;
+		}
+
+		var head = $(this).closest('table');
+		var body = $(false);
+		var asc  = ! $(this).hasClass('asc');
 
 		$(head)
 			.find('td,th')
@@ -140,8 +142,6 @@
 				$(body).append(rows[i]);
 			}
 		}
-
-		return false;
 	}
 
 	/**
@@ -203,7 +203,8 @@
 						.text(window.pywebcmd.file.time(value[column]).slice(0, -3));
 				}
 				else if (window.pywebcmd.columns.properties[column] && window.pywebcmd.columns.properties[column].type && window.pywebcmd.columns.properties[column].type == 'boolean') {
-					// to do
+					$(col)
+						.html('<input type="checkbox" value="" readonly="readonly"' + (value[column] ? ' checked="checked"' : '') + ' />');
 				}
 				else {
 					$(col)
