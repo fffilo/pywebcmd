@@ -255,7 +255,11 @@
 		if ($(table).is(window.pywebcmd.ui.rbody)) input = window.pywebcmd.ui.rpath;
 
 		if (input) {
-			window.pywebcmd.api.ls($(input).val() + '/' + basename, function(jqXHR, textStatus) {
+			var path = $(input).val();
+			path += path.toString().length > 1 && path.substr(-1) == '/' ? '' : '/';
+			path += basename;
+
+			window.pywebcmd.api.ls(path, function(jqXHR, textStatus) {
 				// if error return
 
 				$(input).val(jqXHR.responseJSON.source);
