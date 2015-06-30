@@ -43,7 +43,7 @@ body > div.cmd > section > main { float: left; width: calc(50% - 32px); height: 
 body > div.cmd > section > main > header { margin: 0 0 6px 0; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
 body > div.cmd > section > main > header > input { display: block; width: calc(100% - 18px); margin: 8px; color: #666; background: #fff; border: 0 none; }
 body > div.cmd > section > main > section { display: block; height: calc(100% - 45px); background: #fff; overflow: hidden; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > section > main > section table { font-weight: normal; text-align: left; color: #333; }
+body > div.cmd > section > main > section table { font-weight: normal; text-align: left; color: #333; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 body > div.cmd > section > main > section table .icon { width: 24px; }
 body > div.cmd > section > main > section table .type { width: 132px; }
 body > div.cmd > section > main > section table .size { width: 92px; }
