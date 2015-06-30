@@ -35,7 +35,7 @@
 				.on('dblclick', 'tr', _openRow);
 
 		// document keypress
-		$(document).on('keypress', _keypress);
+		$(document).on('keydown', _keydown);
 	});
 
 	/**
@@ -275,14 +275,14 @@
 	}
 
 	/**
-	 * Document keypress event (select/deselect all, arrow move)
+	 * Document keydown event (select/deselect all, arrow move)
 	 * @param  {Object} event
 	 * @return {Void}
 	 */
-	var _keypress = function(event) {
+	var _keydown = function(event) {
 		// to do: move selction with arrows
 
-		if (event.key.toLowerCase() == 'a' && event.ctrlKey) {
+		if ((event.which == 97 || event.which == 65) && (event.ctrlKey)) {
 			var table;
 			if ($(window.pywebcmd.ui.lblock).hasClass('selected')) table = window.pywebcmd.ui.lbody;
 			if ($(window.pywebcmd.ui.rblock).hasClass('selected')) table = window.pywebcmd.ui.rbody;
