@@ -1,5 +1,18 @@
 /* fonts */
-@import url(../font/UbuntuRegular.css);
+@font-face {
+	font-family: 'UbuntuRegular';
+	src: url('../font/ubuntu-regular-webfont.eot');
+	src: url('../font/ubuntu-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-regular-webfont.woff2') format('woff2'), url('../font/ubuntu-regular-webfont.woff') format('woff'), url('../font/ubuntu-regular-webfont.ttf') format('truetype'), url('../font/ubuntu-regular-webfont.svg#ubunturegular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'UbuntuMonoRegular';
+	src: url('../font/ubuntumono-regular-webfont.eot');
+	src: url('../font/ubuntumono-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntumono-regular-webfont.woff2') format('woff2'), url('../font/ubuntumono-regular-webfont.woff') format('woff'), url('../font/ubuntumono-regular-webfont.ttf') format('truetype'), url('../font/ubuntumono-regular-webfont.svg#ubuntu_monoregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
 /* reset */
 body, h1, h2, h3, h4, h5, h6, pre, nav, ul, li, table { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; }
@@ -54,7 +67,7 @@ body > div.cmd > section > main > section > main > table td { position: relative
 body > div.cmd > section > main > section > main > table tr:hover { background: #eee; }
 body > div.cmd > section > main.selected > section > main > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
 body > div.cmd > section > nav { float: left; width: 64px; height: 100%; }
-body > div.cmd > pre { display: none; }
+body > div.cmd > pre { display: none; font-family: 'UbuntuMonoRegular'; }
 body > div.cmd > footer { line-height: 16px; font-size: 10px; text-align: center; color: #aaa; }
 
 /* responsive */
