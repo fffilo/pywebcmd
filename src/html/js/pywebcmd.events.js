@@ -228,8 +228,7 @@
 	 */
 	var _initList = function(jqXHR, textStatus) {
 		if (jqXHR.status != 200) {
-			window.pywebcmd.log('error', jqXHR.responseJSON.message);
-			return;
+			return _error(jqXHR);
 		}
 
 		window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
@@ -243,6 +242,23 @@
 		var row = _lsParse(jqXHR.responseJSON.data);
 		$(row).appendTo(window.pywebcmd.ui.lbody);
 		$(row).clone().appendTo(window.pywebcmd.ui.rbody);
+	}
+
+	/**
+	 * Append error message to log
+	 * @param  {Object} jqXHR
+	 * @return {Void}
+	 */
+	var _error = function(jqXHR) {
+		if (jqXHR.status == 0) {
+			window.pywebcmd.log('error', 'Server not responding');
+		}
+		else if (jqXHR.status == 500) {
+			window.pywebcmd.log('error', jqXHR.responseJSON.message);
+		}
+		else {
+			window.pywebcmd.log('error', 'Unknown error');
+		}
 	}
 
 	/**
@@ -272,8 +288,7 @@
 			window.pywebcmd.log('command', 'Directory list \'' + path + '\'');
 			window.pywebcmd.api.ls(path, function(jqXHR, textStatus) {
 				if (jqXHR.status != 200) {
-					window.pywebcmd.log('error', jqXHR.responseJSON.message);
-					return;
+					return _error(jqXHR);
 				}
 
 				window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
