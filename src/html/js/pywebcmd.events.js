@@ -340,9 +340,13 @@
 	 * @return {Void}
 	 */
 	var _keydown = function(event) {
+		if ($(':focus').length != 0) {
+			return;
+		}
+
 		// to do: move selction with arrows
 
-		if ((event.which == 97 || event.which == 65) && (event.ctrlKey)) {
+		if (((event.which == 97 || event.which == 65) && (event.ctrlKey)) || (event.which == 27)) {
 			var table;
 			if ($(window.pywebcmd.ui.lblock).hasClass('selected')) table = window.pywebcmd.ui.lbody;
 			if ($(window.pywebcmd.ui.rblock).hasClass('selected')) table = window.pywebcmd.ui.rbody;
@@ -351,7 +355,7 @@
 				var row = $(table).find('tr')
 					.removeClass('highlight');
 
-				if ( ! event.shiftKey) {
+				if (event.which != 27 && ! event.shiftKey) {
 					$(row)
 						.addClass('highlight');
 				}
