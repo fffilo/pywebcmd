@@ -15,7 +15,7 @@
 }
 
 /* reset */
-body, h1, h2, h3, h4, h5, h6, pre, nav, ul, li, table { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; }
+body, div, pre, ul, li, table, nav, main, header, section, footer, h1, h2, h3, h4, h5, h6 { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; }
 img, a { outline: 0 none; border: 0 none; }
 h1 { font-size: 28px; }
 h2 { font-size: 24px; }
@@ -54,8 +54,8 @@ body > div.wrapper > section > main > section table .mtime { width: 132px; }
 body > div.wrapper > section > main > section > header { padding-right: 13px; border-bottom: 1px solid #cecece; background: #fefefe; background: -moz-linear-gradient(top,  #fefefe 0%, #fafafa 50%, #fcfcfc 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(50%,#fafafa), color-stop(100%,#fcfcfc)); background: -webkit-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: -o-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: -ms-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: linear-gradient(to bottom,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#fcfcfc',GradientType=0 ); }
 body > div.wrapper > section > main > section > header > table { }
 body > div.wrapper > section > main > section > header > table th { line-height: 26px; text-indent: 12px; border-right: 1px solid #cecece; cursor: pointer; }
-body > div.wrapper > section > main > section > header > table th.asc { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiAfWrqJDQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAB2SURBVEjH7dO7DUIxDEbhj2QECiTGYA1moWAWOiajpLpLcB80LigQlyhIND6S5eJI/hNHIUmSzYqvX8yYPsnSeKBt6w1aAva4Rv9ZQImqOOMRvb647h0vOOKAO3YYcQu39DxyiZVc3rgTBsy9AWvM+RmT5M88ATU/Dh6BrPbbAAAAAElFTkSuQmCC) right center no-repeat; }
-body > div.wrapper > section > main > section > header > table th.desc { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiA2GAgRYQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAACCSURBVEjH7dM/CsJQDMfxT33iBdyEDi7eztN4CUe3nsIrOHbTxcGp6vKGIqV9UsElXwiB/PKHBEIQBNWEvijo8RwTlwUNNjgMxPdop4pTwYZ3PLDFBSsccc45rzknSNka3LDLvulps0g9q3HKPpUOqL484RrXj1j3ywFDdPGMQfBn3sF1D+nRubTHAAAAAElFTkSuQmCC) right center no-repeat; }
+body > div.wrapper > section > main > section > header > table th.asc { background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiAfWrqJDQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAB2SURBVEjH7dO7DUIxDEbhj2QECiTGYA1moWAWOiajpLpLcB80LigQlyhIND6S5eJI/hNHIUmSzYqvX8yYPsnSeKBt6w1aAva4Rv9ZQImqOOMRvb647h0vOOKAO3YYcQu39DxyiZVc3rgTBsy9AWvM+RmT5M88ATU/Dh6BrPbbAAAAAElFTkSuQmCC") right center no-repeat; }
+body > div.wrapper > section > main > section > header > table th.desc { background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiA2GAgRYQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAACCSURBVEjH7dM/CsJQDMfxT33iBdyEDi7eztN4CUe3nsIrOHbTxcGp6vKGIqV9UsElXwiB/PKHBEIQBNWEvijo8RwTlwUNNjgMxPdop4pTwYZ3PLDFBSsccc45rzknSNka3LDLvulps0g9q3HKPpUOqL484RrXj1j3ywFDdPGMQfBn3sF1D+nRubTHAAAAAElFTkSuQmCC") right center no-repeat; }
 body > div.wrapper > section > main > section > header > table .icon { border-right: 0 none; text-indent: -999px; overflow: hidden; cursor: default; }
 body > div.wrapper > section > main > section > header > table .basename { text-indent: 0; }
 body > div.wrapper > section > main > section > header > table .mtime { border-right: 0 none; }

@@ -37,8 +37,15 @@
 			.add(window.pywebcmd.ui.rbody)
 				.on('dblclick', 'tr', _openRow);
 
+		// change path
+		$(false)
+			.add(window.pywebcmd.ui.lpath)
+			.add(window.pywebcmd.ui.rpath)
+				.on('keydown', _pathKeydown)
+				.on('blur', _pathBlur);
+
 		// document keypress
-		$(document).on('keydown', _keydown);
+		$(document).on('keydown', _documentKeydown);
 	});
 
 	/**
@@ -178,10 +185,34 @@
 	 * @return {Void}
 	 */
 	var _preloader = function(block, status) {
+		var input;
+		if ($(block).is(window.pywebcmd.ui.lblock)) input = window.pywebcmd.ui.lpath;
+		if ($(block).is(window.pywebcmd.ui.rblock)) input = window.pywebcmd.ui.rpath;
+
 		$(block)
 			.removeClass('loading')
 			.addClass(status ? 'loading' : 'temp')
 			.removeClass('temp');
+
+		$(input)
+			.prop('readonly', status);
+	}
+
+	/**
+	 * Append error message to log
+	 * @param  {Object} jqXHR
+	 * @return {Void}
+	 */
+	var _error = function(jqXHR) {
+		if (jqXHR.status == 0) {
+			window.pywebcmd.log('error', 'Server not responding');
+		}
+		else if (jqXHR.status == 500) {
+			window.pywebcmd.log('error', jqXHR.responseJSON.message);
+		}
+		else {
+			window.pywebcmd.log('error', 'Unknown error');
+		}
 	}
 
 	/**
@@ -251,8 +282,8 @@
 
 		window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
 
-		$(window.pywebcmd.ui.lpath).val(jqXHR.responseJSON.source);
-		$(window.pywebcmd.ui.rpath).val(jqXHR.responseJSON.source);
+		$(window.pywebcmd.ui.lpath).attr('placeholder', jqXHR.responseJSON.source).val(jqXHR.responseJSON.source);
+		$(window.pywebcmd.ui.rpath).attr('placeholder', jqXHR.responseJSON.source).val(jqXHR.responseJSON.source);
 
 		$(window.pywebcmd.ui.lbody).empty();
 		$(window.pywebcmd.ui.rbody).empty();
@@ -263,24 +294,7 @@
 	}
 
 	/**
-	 * Append error message to log
-	 * @param  {Object} jqXHR
-	 * @return {Void}
-	 */
-	var _error = function(jqXHR) {
-		if (jqXHR.status == 0) {
-			window.pywebcmd.log('error', 'Server not responding');
-		}
-		else if (jqXHR.status == 500) {
-			window.pywebcmd.log('error', jqXHR.responseJSON.message);
-		}
-		else {
-			window.pywebcmd.log('error', 'Unknown error');
-		}
-	}
-
-	/**
-	 * Table row dblclick event (enter directory, download file)
+	 * Table row dblclick event
 	 * @param  {Object} event
 	 * @return {Void}
 	 */
@@ -289,49 +303,61 @@
 			return;
 		}
 
-		var block, head, body, input;
 		var basename = $(this).find('td.basename').text();
+		var block    = $(this).closest('.lblock,.rblock');
+		var input    = $(block).find('.lpath,.rpath');
+		var dirname  = $(input).attr('placeholder');
 
-		body = $(this).closest('table');
-		if ($(body).is(window.pywebcmd.ui.lbody)) block = window.pywebcmd.ui.lblock;
-		if ($(body).is(window.pywebcmd.ui.rbody)) block = window.pywebcmd.ui.rblock;
-		if ($(body).is(window.pywebcmd.ui.lbody)) head  = window.pywebcmd.ui.lhead;
-		if ($(body).is(window.pywebcmd.ui.rbody)) head  = window.pywebcmd.ui.rhead;
-		if ($(body).is(window.pywebcmd.ui.lbody)) input = window.pywebcmd.ui.lpath;
-		if ($(body).is(window.pywebcmd.ui.rbody)) input = window.pywebcmd.ui.rpath;
+		_openDir(block, dirname.replace(/\/+$/, '') + '/' + basename);
+	}
 
+	/**
+	 * Append new directory list to block
+	 * @param  {Object} block
+	 * @param  {String} path
+	 * @return {Void}
+	 */
+	var _openDir = function(block, path) {
 		_preloader(block, true);
 
-		if (input) {
-			var path = $(input).val();
-			path += path.toString().length >= 1 && path.substr(-1) == '/' ? '' : '/';
-			path += basename;
+		var head, body, input;
+		if ($(block).is(window.pywebcmd.ui.lblock)) head  = window.pywebcmd.ui.lhead;
+		if ($(block).is(window.pywebcmd.ui.rblock)) head  = window.pywebcmd.ui.rhead;
+		if ($(block).is(window.pywebcmd.ui.lblock)) body  = window.pywebcmd.ui.lbody;
+		if ($(block).is(window.pywebcmd.ui.rblock)) body  = window.pywebcmd.ui.rbody;
+		if ($(block).is(window.pywebcmd.ui.lblock)) input = window.pywebcmd.ui.lpath;
+		if ($(block).is(window.pywebcmd.ui.rblock)) input = window.pywebcmd.ui.rpath;
 
-			window.pywebcmd.log('command', 'Directory list \'' + path + '\'');
-			window.pywebcmd.api.ls(path, function(jqXHR, textStatus) {
-				_preloader(block, false);
+		window.pywebcmd.log('command', 'Directory list \'' + path + '\'');
+		window.pywebcmd.api.ls(path, function(jqXHR, textStatus) {
+			_preloader(block, false);
 
-				if (jqXHR.status != 200) {
-					return _error(jqXHR);
-				}
+			if (jqXHR.status != 200) {
+				$(input)
+					.val($(input).attr('placeholder'));
 
-				window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
+				return _error(jqXHR);
+			}
 
-				$(input).val(jqXHR.responseJSON.source);
-				$(body).empty();
+			window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
 
-				var row = _lsParse(jqXHR.responseJSON.data);
-				$(row).appendTo(body);
+			$(input)
+				.attr('placeholder', jqXHR.responseJSON.source)
+				.val(jqXHR.responseJSON.source);
+			$(body)
+				.empty();
 
-				var sort = $(head).find('td,th').filter('.asc,.desc').first();
-				var asc  = !! $(sort).hasClass('asc');
-				$(sort)
-					.removeClass('asc')
-					.removeClass('desc')
-					.addClass(asc ? 'desc' : 'asc')
-					.click();
-			});
-		}
+			var row = _lsParse(jqXHR.responseJSON.data);
+			$(row).appendTo(body);
+
+			var sort = $(head).find('td,th').filter('.asc,.desc').first();
+			var asc  = !! $(sort).hasClass('asc');
+			$(sort)
+				.removeClass('asc')
+				.removeClass('desc')
+				.addClass(asc ? 'desc' : 'asc')
+				.click();
+		});
 	}
 
 	/**
@@ -339,7 +365,7 @@
 	 * @param  {Object} event
 	 * @return {Void}
 	 */
-	var _keydown = function(event) {
+	var _documentKeydown = function(event) {
 		if ($(':focus').length != 0) {
 			return;
 		}
@@ -363,6 +389,22 @@
 
 			return false;
 		}
+	}
+
+	var _pathKeydown = function(event) {
+		if (event.which == 27) {
+			$(this)
+				.blur()
+				.focus()
+				.select();
+		}
+		else if (event.which == 13) {
+			_openDir($(this).closest('.lblock,.rblock'), $(this).val());
+		}
+	}
+
+	var _pathBlur = function(event) {
+		$(this).val($(this).attr('placeholder'));
 	}
 
 })(jQuery);
