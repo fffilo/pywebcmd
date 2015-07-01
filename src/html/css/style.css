@@ -34,74 +34,74 @@ th,td { padding: 0; font-weight: normal; overflow: hidden; white-space: nowrap; 
 
 /* layout */
 body { color: #666; background: #fafafa; font-family: 'UbuntuRegular'; box-sizing: border-box; }
-body > div.cmd { position: relative; margin: 24px; height: 100%; }
-body > div.cmd > header { margin: 0 0 24px 0; padding: 2px 24px 4px 24px; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > header > h1 { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-body > div.cmd > section { position: relative; height: calc(100vh - 240px); margin: 0 0 24px 0; }
-body > div.cmd > section::after { display: block; height: 0; visibility: hidden; font-size: 0; content: " "; clear: both; }
-body > div.cmd > section > main { float: left; width: calc(50% - 32px); height: 100%; overflow: hidden; }
-body > div.cmd > section > main > header { position: relative; margin: 0 0 6px 0; background: #fff no-repeat right center; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > section > main > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: transparent; border: 0 none; }
-body > div.cmd > section > main > header > img { position: absolute; display: none; right: 0; top: 50%; transform: translate(-6px, -50%); }
-body > div.cmd > section > main.loading > header > input { width: calc(100% - 36px); }
-body > div.cmd > section > main.loading > header > img { display: inline-block; }
-body > div.cmd > section > main > section { display: block; height: calc(100% - 46px); background: #fff; overflow: hidden; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > section > main > section table { font-weight: normal; text-align: left; color: #333; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
-body > div.cmd > section > main > section table .icon { width: 24px; }
-body > div.cmd > section > main > section table .type { width: 132px; }
-body > div.cmd > section > main > section table .size { width: 92px; }
-body > div.cmd > section > main > section table .mtime { width: 132px; }
-body > div.cmd > section > main > section > header { padding-right: 13px; border-bottom: 1px solid #cecece; background: #fefefe; background: -moz-linear-gradient(top,  #fefefe 0%, #fafafa 50%, #fcfcfc 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(50%,#fafafa), color-stop(100%,#fcfcfc)); background: -webkit-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: -o-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: -ms-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: linear-gradient(to bottom,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#fcfcfc',GradientType=0 ); }
-body > div.cmd > section > main > section > header > table { }
-body > div.cmd > section > main > section > header > table th { line-height: 26px; text-indent: 12px; border-right: 1px solid #cecece; cursor: pointer; }
-body > div.cmd > section > main > section > header > table th.asc { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiAfWrqJDQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAB2SURBVEjH7dO7DUIxDEbhj2QECiTGYA1moWAWOiajpLpLcB80LigQlyhIND6S5eJI/hNHIUmSzYqvX8yYPsnSeKBt6w1aAva4Rv9ZQImqOOMRvb647h0vOOKAO3YYcQu39DxyiZVc3rgTBsy9AWvM+RmT5M88ATU/Dh6BrPbbAAAAAElFTkSuQmCC) right center no-repeat; }
-body > div.cmd > section > main > section > header > table th.desc { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiA2GAgRYQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAACCSURBVEjH7dM/CsJQDMfxT33iBdyEDi7eztN4CUe3nsIrOHbTxcGp6vKGIqV9UsElXwiB/PKHBEIQBNWEvijo8RwTlwUNNjgMxPdop4pTwYZ3PLDFBSsccc45rzknSNka3LDLvulps0g9q3HKPpUOqL484RrXj1j3ywFDdPGMQfBn3sF1D+nRubTHAAAAAElFTkSuQmCC) right center no-repeat; }
-body > div.cmd > section > main > section > header > table .icon { border-right: 0 none; text-indent: -999px; overflow: hidden; cursor: default; }
-body > div.cmd > section > main > section > header > table .basename { text-indent: 0; }
-body > div.cmd > section > main > section > header > table .mtime { border-right: 0 none; }
-body > div.cmd > section > main > section > main { height: calc(100% - 27px); overflow: hidden; overflow-y: scroll; }
-body > div.cmd > section > main > section > main > table {}
-body > div.cmd > section > main > section > main > table .icon { width: 16px; padding: 4px; }
-body > div.cmd > section > main > section > main > table .icon img { display: block; width: 16px; height: 16px; }
-body > div.cmd > section > main > section > main > table .link .icon::after { position: absolute; display: block; left: 0; top: 0; right: 0; bottom: 0; content: " "; background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwWDC4PQFStygAAADFJREFUOMtjYBgFo4CBgZFE9f/R9TNRaiEThS4gyYD/FHgdbsB/SgL8PzVi7T/V0wEA6SYHBDM+gVwAAAAASUVORK5CYII=") center center no-repeat; }
-body > div.cmd > section > main > section > main > table .size { text-align: right; }
-body > div.cmd > section > main > section > main > table .mtime { text-align: center; }
-body > div.cmd > section > main > section > main > table td { position: relative; cursor: default; }
-body > div.cmd > section > main > section > main > table tr:hover { background: #eee; }
-body > div.cmd > section > main.selected > section > main > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
-body > div.cmd > section > nav { float: left; width: 64px; height: 100%; }
-body > div.cmd > div { margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > div > div { height: 28px; overflow: hidden; }
-body > div.cmd > div > div > p { margin: 0; line-height: 1.4; font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-body > div.cmd > div > div > p.command { color: #200080; }
-body > div.cmd > div > div > p.success { color: #008000; }
-body > div.cmd > div > div > p.error { color: #ff2020; }
-body > div.cmd > footer { line-height: 16px; font-size: 10px; text-align: center; color: #aaa; }
+body > div.wrapper { position: relative; margin: 24px; height: 100%; }
+body > div.wrapper > header { margin: 0 0 24px 0; padding: 2px 24px 4px 24px; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > header > h1 { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+body > div.wrapper > section { position: relative; height: calc(100vh - 240px); margin: 0 0 24px 0; }
+body > div.wrapper > section::after { display: block; height: 0; visibility: hidden; font-size: 0; content: " "; clear: both; }
+body > div.wrapper > section > main { float: left; width: calc(50% - 32px); height: 100%; overflow: hidden; }
+body > div.wrapper > section > main > header { position: relative; margin: 0 0 6px 0; background: #fff no-repeat right center; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > section > main > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: transparent; border: 0 none; }
+body > div.wrapper > section > main > header > img { position: absolute; display: none; right: 0; top: 50%; transform: translate(-6px, -50%); }
+body > div.wrapper > section > main.loading > header > input { width: calc(100% - 36px); }
+body > div.wrapper > section > main.loading > header > img { display: inline-block; }
+body > div.wrapper > section > main > section { display: block; height: calc(100% - 46px); background: #fff; overflow: hidden; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > section > main > section table { font-weight: normal; text-align: left; color: #333; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+body > div.wrapper > section > main > section table .icon { width: 24px; }
+body > div.wrapper > section > main > section table .type { width: 132px; }
+body > div.wrapper > section > main > section table .size { width: 92px; }
+body > div.wrapper > section > main > section table .mtime { width: 132px; }
+body > div.wrapper > section > main > section > header { padding-right: 13px; border-bottom: 1px solid #cecece; background: #fefefe; background: -moz-linear-gradient(top,  #fefefe 0%, #fafafa 50%, #fcfcfc 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(50%,#fafafa), color-stop(100%,#fcfcfc)); background: -webkit-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: -o-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: -ms-linear-gradient(top,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); background: linear-gradient(to bottom,  #fefefe 0%,#fafafa 50%,#fcfcfc 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#fcfcfc',GradientType=0 ); }
+body > div.wrapper > section > main > section > header > table { }
+body > div.wrapper > section > main > section > header > table th { line-height: 26px; text-indent: 12px; border-right: 1px solid #cecece; cursor: pointer; }
+body > div.wrapper > section > main > section > header > table th.asc { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiAfWrqJDQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAB2SURBVEjH7dO7DUIxDEbhj2QECiTGYA1moWAWOiajpLpLcB80LigQlyhIND6S5eJI/hNHIUmSzYqvX8yYPsnSeKBt6w1aAva4Rv9ZQImqOOMRvb647h0vOOKAO3YYcQu39DxyiZVc3rgTBsy9AWvM+RmT5M88ATU/Dh6BrPbbAAAAAElFTkSuQmCC) right center no-repeat; }
+body > div.wrapper > section > main > section > header > table th.desc { background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwSEiA2GAgRYQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAACCSURBVEjH7dM/CsJQDMfxT33iBdyEDi7eztN4CUe3nsIrOHbTxcGp6vKGIqV9UsElXwiB/PKHBEIQBNWEvijo8RwTlwUNNjgMxPdop4pTwYZ3PLDFBSsccc45rzknSNka3LDLvulps0g9q3HKPpUOqL484RrXj1j3ywFDdPGMQfBn3sF1D+nRubTHAAAAAElFTkSuQmCC) right center no-repeat; }
+body > div.wrapper > section > main > section > header > table .icon { border-right: 0 none; text-indent: -999px; overflow: hidden; cursor: default; }
+body > div.wrapper > section > main > section > header > table .basename { text-indent: 0; }
+body > div.wrapper > section > main > section > header > table .mtime { border-right: 0 none; }
+body > div.wrapper > section > main > section > main { height: calc(100% - 27px); overflow: hidden; overflow-y: scroll; }
+body > div.wrapper > section > main > section > main > table {}
+body > div.wrapper > section > main > section > main > table .icon { width: 16px; padding: 4px; }
+body > div.wrapper > section > main > section > main > table .icon img { display: block; width: 16px; height: 16px; }
+body > div.wrapper > section > main > section > main > table .link .icon::after { position: absolute; display: block; left: 0; top: 0; right: 0; bottom: 0; content: " "; background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3QwWDC4PQFStygAAADFJREFUOMtjYBgFo4CBgZFE9f/R9TNRaiEThS4gyYD/FHgdbsB/SgL8PzVi7T/V0wEA6SYHBDM+gVwAAAAASUVORK5CYII=") center center no-repeat; }
+body > div.wrapper > section > main > section > main > table .size { text-align: right; }
+body > div.wrapper > section > main > section > main > table .mtime { text-align: center; }
+body > div.wrapper > section > main > section > main > table td { position: relative; cursor: default; }
+body > div.wrapper > section > main > section > main > table tr:hover { background: #eee; }
+body > div.wrapper > section > main.selected > section > main > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
+body > div.wrapper > section > nav { float: left; width: 64px; height: 100%; }
+body > div.wrapper > div { margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > div > div { height: 28px; overflow: hidden; }
+body > div.wrapper > div > div > p { margin: 0; line-height: 1.4; font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+body > div.wrapper > div > div > p.command { color: #200080; }
+body > div.wrapper > div > div > p.success { color: #008000; }
+body > div.wrapper > div > div > p.error { color: #ff2020; }
+body > div.wrapper > footer { line-height: 16px; font-size: 10px; text-align: center; color: #aaa; }
 
 /* responsive */
 @media screen and (max-width: 1280px) {
-	body > div.cmd > section > main > section table .type { display: none; }
+	body > div.wrapper > section > main > section table .type { display: none; }
 }
 @media screen and (max-width: 1024px) {
-	body > div.cmd > section > main > section > header > table .size { border-right: 0 none; }
-	body > div.cmd > section > main > section > main > table .size { padding-right: 8px; width: 84px; }
-	body > div.cmd > section > main > section table .mtime { display: none; }
+	body > div.wrapper > section > main > section > header > table .size { border-right: 0 none; }
+	body > div.wrapper > section > main > section > main > table .size { padding-right: 8px; width: 84px; }
+	body > div.wrapper > section > main > section table .mtime { display: none; }
 }
 @media screen and (max-width: 600px) {
-	body > div.cmd > section > main > section > header > table .basename { border-right: 0 none; }
-	body > div.cmd > section > main > section table .size { display: none; }
+	body > div.wrapper > section > main > section > header > table .basename { border-right: 0 none; }
+	body > div.wrapper > section > main > section table .size { display: none; }
 }
 @media screen and (max-width: 480px) {
-	body > div.cmd { margin: 8px; }
-	body > div.cmd > header { margin-bottom: 8px; }
-	body > div.cmd > section { height: calc(100vh - 160px); margin-bottom: 8px; }
-	body > div.cmd > div { margin-bottom: 8px; }
+	body > div.wrapper { margin: 8px; }
+	body > div.wrapper > header { margin-bottom: 8px; }
+	body > div.wrapper > section { height: calc(100vh - 160px); margin-bottom: 8px; }
+	body > div.wrapper > div { margin-bottom: 8px; }
 }
 @media screen and (max-height: 400px) {
-	body > div.cmd > section { height: calc(100vh - 122px); }
-	body > div.cmd > div { display: none; }
-	body > div.cmd > footer { display: none; }
+	body > div.wrapper > section { height: calc(100vh - 122px); }
+	body > div.wrapper > div { display: none; }
+	body > div.wrapper > footer { display: none; }
 }
 @media screen and (max-width: 480px) and (max-height: 400px) {
-	body > div.cmd > section { height: calc(100vh - 74px); }
+	body > div.wrapper > section { height: calc(100vh - 74px); }
 }
