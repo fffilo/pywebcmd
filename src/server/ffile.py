@@ -31,6 +31,20 @@ def properties(path):
 		result['mime'] = magic.from_file(path, mime=True)
 		result['encoding'] = magic.Magic(mime_encoding=True).from_file(path)
 
+	# broken owner
+	result['owner'] = stats.st_uid
+	try:
+		result['owner'] = pwd.getpwuid(result['owner'])[0]
+	except Exception, e:
+		pass
+
+	# broken group
+	result['group'] = stats.st_gid
+	try:
+		result['group'] = grp.getgrgid(result['group'])[0]
+	except Exception, e:
+		pass
+
 	result['realpath'] = os.path.realpath(path)
 	result['dirname'] = os.path.dirname(path)
 	result['basename'] = os.path.basename(path)
@@ -41,8 +55,6 @@ def properties(path):
 	result['ctime'] = stats.st_ctime
 	result['mtime'] = stats.st_mtime
 	result['atime'] = stats.st_atime
-	result['owner'] = pwd.getpwuid(stats.st_uid)[0]
-	result['group'] = grp.getgrgid(stats.st_gid)[0]
 	result['permission'] = oct(stat.S_IMODE(lstats.st_mode)) if result['islink'] else oct(stat.S_IMODE(stats.st_mode))
 	result['icon'] = gio.File(path).query_info('standard::icon').get_icon().get_names()[0]
 
