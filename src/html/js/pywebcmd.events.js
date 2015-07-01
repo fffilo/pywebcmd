@@ -232,7 +232,7 @@
 			return;
 		}
 
-		window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) (' + jqXHR.responseJSON.message + ')');
+		window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
 
 		$(window.pywebcmd.ui.lpath).val(jqXHR.responseJSON.source);
 		$(window.pywebcmd.ui.rpath).val(jqXHR.responseJSON.source);
@@ -255,11 +255,14 @@
 			return;
 		}
 
-		var table    = $(this).closest('table');
+		var head, body, input;
 		var basename = $(this).find('td.basename').text();
-		var input;
-		if ($(table).is(window.pywebcmd.ui.lbody)) input = window.pywebcmd.ui.lpath;
-		if ($(table).is(window.pywebcmd.ui.rbody)) input = window.pywebcmd.ui.rpath;
+
+		body = $(this).closest('table');
+		if ($(body).is(window.pywebcmd.ui.lbody)) head  = window.pywebcmd.ui.lhead;
+		if ($(body).is(window.pywebcmd.ui.rbody)) head  = window.pywebcmd.ui.rhead;
+		if ($(body).is(window.pywebcmd.ui.lbody)) input = window.pywebcmd.ui.lpath;
+		if ($(body).is(window.pywebcmd.ui.rbody)) input = window.pywebcmd.ui.rpath;
 
 		if (input) {
 			var path = $(input).val();
@@ -273,15 +276,21 @@
 					return;
 				}
 
-				window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) (' + jqXHR.responseJSON.message + ')');
+				window.pywebcmd.log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
 
 				$(input).val(jqXHR.responseJSON.source);
-				$(table).empty();
+				$(body).empty();
 
 				var row = _lsParse(jqXHR.responseJSON.data);
-				$(row).appendTo(table);
+				$(row).appendTo(body);
 
-				// sort
+				var sort = $(head).find('td,th').filter('.asc,.desc').first();
+				var asc  = !! $(sort).hasClass('asc');
+				$(sort)
+					.removeClass('asc')
+					.removeClass('desc')
+					.addClass(asc ? 'desc' : 'asc')
+					.click();
 			});
 		}
 	}
