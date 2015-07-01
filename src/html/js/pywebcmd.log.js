@@ -7,6 +7,12 @@
 	window.pywebcmd = window.pywebcmd || {};
 
 	/**
+	 * Number of log messages to keep
+	 * @type {Number}
+	 */
+	var _cacheSize = 10;
+
+	/**
 	 * Append log
 	 * @param  {String} type
 	 * @param  {String} text
@@ -20,15 +26,15 @@
 
 		$('<p />')
 			.attr('class', type)
+			.attr('title', text)
 			.html(html)
 			.append(text)
 			.appendTo(window.pywebcmd.ui.log);
 
 		var log = $(window.pywebcmd.ui.log).children('p');
 		var len = log.length;
-		var max = 10;
-		if (len > max) {
-			$(log).filter(':lt(' + (len - max) + ')').remove();
+		if (len > _cacheSize) {
+			$(log).filter(':lt(' + (len - _cacheSize) + ')').remove();
 		}
 
 		var scroll = $(window.pywebcmd.ui.log).prop('scrollHeight');

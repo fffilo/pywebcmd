@@ -32,8 +32,8 @@ def properties(path):
 		result['encoding'] = magic.Magic(mime_encoding=True).from_file(path)
 
 	result['realpath'] = os.path.realpath(path)
-	result['basename'] = os.path.basename(path)
 	result['dirname'] = os.path.dirname(path)
+	result['basename'] = os.path.basename(path)
 	result['isdir'] = os.path.isdir(path)
 	result['isfile'] = os.path.isfile(path)
 	result['islink'] = os.path.islink(path)

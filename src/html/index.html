@@ -13,21 +13,27 @@
 			<header>
 				<h1 title="{appname}">{appname}</h1>
 			</header>
-			<section>
-				<main class="lblock">
+			<main>
+				<section class="lblock">
 					<header title="Path">
-						<input class="lpath" type="text" value="~" placeholder="/path" />
+						<h3><label>Path</label></h3>
+						<input class="lpath" type="text" value="" placeholder="/path" />
 						<img src="/img/loadinfo.gif" alt="..." />
 					</header>
-					<section>
+					<div>
 						<header>
 							<table class="lhead">
 								<tr>
 									<th class="icon">Icon</th>
+									<!-- <th class="realpath">Full path</th> -->
 									<!-- <th class="dirname">Directory</th> -->
 									<th class="basename">Name</th>
+									<!-- <th class="isdir">Directory</th> -->
+									<!-- <th class="isfile">File</th> -->
+									<!-- <th class="islink">Link</th> -->
 									<th class="type">Type</th>
 									<!-- <th class="mime">MIME</th> -->
+									<!-- <th class="encoding">Encoding</th> -->
 									<!-- <th class="owner">Owner</th> -->
 									<!-- <th class="group">Group</th> -->
 									<!-- <th class="permission">Permission</th> -->
@@ -38,28 +44,34 @@
 								</tr>
 							</table>
 						</header>
-						<main tabIndex="-1">
+						<div>
 							<table class="lbody">
 							</table>
-						</main>
-					</section>
-				</main>
+						</div>
+					</div>
+				</section>
 				<nav class="nav">
 				</nav>
-				<main class="rblock">
+				<section class="rblock">
 					<header title="Path">
-						<input class="rpath" type="text" value="~" placeholder="/path" />
+						<h3><label>Path</label></h3>
+						<input class="rpath" type="text" value="" placeholder="/path" />
 						<img src="/img/loadinfo.gif" alt="..." />
 					</header>
-					<section>
+					<div>
 						<header>
 							<table class="rhead">
 								<tr>
 									<th class="icon">Icon</th>
+									<!-- <th class="realpath">Full path</th> -->
 									<!-- <th class="dirname">Directory</th> -->
 									<th class="basename">Name</th>
+									<!-- <th class="isdir">Directory</th> -->
+									<!-- <th class="isfile">File</th> -->
+									<!-- <th class="islink">Link</th> -->
 									<th class="type">Type</th>
 									<!-- <th class="mime">MIME</th> -->
+									<!-- <th class="encoding">Encoding</th> -->
 									<!-- <th class="owner">Owner</th> -->
 									<!-- <th class="group">Group</th> -->
 									<!-- <th class="permission">Permission</th> -->
@@ -70,13 +82,13 @@
 								</tr>
 							</table>
 						</header>
-						<main tabIndex="-1">
+						<div>
 							<table class="rbody">
 							</table>
-						</main>
-					</section>
-				</main>
-			</section>
+						</div>
+					</div>
+				</section>
+			</main>
 			<div title="Log">
 				<div class="log"></div>
 			</div>
