@@ -77,7 +77,9 @@ body > div.wrapper > div > div > p { margin: 0; line-height: 1.4; font-size: 10p
 body > div.wrapper > div > div > p.command { color: #200080; }
 body > div.wrapper > div > div > p.success { color: #008000; }
 body > div.wrapper > div > div > p.error { color: #ff2020; }
-body > div.wrapper > footer { line-height: 16px; font-size: 10px; text-align: center; color: #aaa; }
+body > div.wrapper > footer { text-align: center; color: #aaa; }
+body > div.wrapper > footer > p { margin: 0; line-height: 16px; font-size: 10px; }
+body > div.wrapper > footer > p a { color: #aaa; text-decoration: none; }
 
 /* responsive table columns */
 @media screen and (max-width: 1280px) {

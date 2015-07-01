@@ -154,7 +154,7 @@ class HttpRequestHandler(Http.RequestHandler):
 			html = html.replace('{appname}', str(Api.__appname__))
 			html = html.replace('{description}', str(Api.__description__))
 			html = html.replace('{author}', str(Api.__author__))
-			html = html.replace('{email}', str(Api.__email__))
+			html = html.replace('{email}', str(Api.__email__).replace('@', 'AT'))
 
 			self.send_response(200)
 			self.send_header('Content-type', ctype)
