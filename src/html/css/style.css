@@ -37,12 +37,12 @@ body { color: #666; background: #fafafa; font-family: 'UbuntuRegular'; box-sizin
 body > div.cmd { position: relative; margin: 24px; height: 100%; }
 body > div.cmd > header { margin: 0 0 24px 0; padding: 2px 24px 4px 24px; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
 body > div.cmd > header > h1 { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-body > div.cmd > section { position: relative; height: calc(100vh - 237px); margin: 0 0 24px 0; }
+body > div.cmd > section { position: relative; height: calc(100vh - 240px); margin: 0 0 24px 0; }
 body > div.cmd > section::after { display: block; height: 0; visibility: hidden; font-size: 0; content: " "; clear: both; }
 body > div.cmd > section > main { float: left; width: calc(50% - 32px); height: 100%; overflow: hidden; }
 body > div.cmd > section > main > header { margin: 0 0 6px 0; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > section > main > header > input { display: block; width: calc(100% - 18px); margin: 8px; color: #666; background: #fff; border: 0 none; }
-body > div.cmd > section > main > section { display: block; height: calc(100% - 45px); background: #fff; overflow: hidden; border: 1px solid #cecece; border-radius: 4px; }
+body > div.cmd > section > main > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: #fff; border: 0 none; }
+body > div.cmd > section > main > section { display: block; height: calc(100% - 46px); background: #fff; overflow: hidden; border: 1px solid #cecece; border-radius: 4px; }
 body > div.cmd > section > main > section table { font-weight: normal; text-align: left; color: #333; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 body > div.cmd > section > main > section table .icon { width: 24px; }
 body > div.cmd > section > main > section table .type { width: 132px; }
@@ -67,11 +67,12 @@ body > div.cmd > section > main > section > main > table td { position: relative
 body > div.cmd > section > main > section > main > table tr:hover { background: #eee; }
 body > div.cmd > section > main.selected > section > main > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
 body > div.cmd > section > nav { float: left; width: 64px; height: 100%; }
-body > div.cmd > div { height: 25px; margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; overflow: hidden; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > div > p { margin: 0; font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-body > div.cmd > div > p.command { color: #200080; }
-body > div.cmd > div > p.success { color: #008000; }
-body > div.cmd > div > p.error { color: #ff2020; }
+body > div.cmd > div { margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
+body > div.cmd > div > div { height: 28px; overflow: hidden; }
+body > div.cmd > div > div > p { margin: 0; line-height: 1.4; font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+body > div.cmd > div > div > p.command { color: #200080; }
+body > div.cmd > div > div > p.success { color: #008000; }
+body > div.cmd > div > div > p.error { color: #ff2020; }
 body > div.cmd > footer { line-height: 16px; font-size: 10px; text-align: center; color: #aaa; }
 
 /* responsive */
@@ -90,7 +91,7 @@ body > div.cmd > footer { line-height: 16px; font-size: 10px; text-align: center
 @media screen and (max-width: 480px) {
 	body > div.cmd { margin: 8px; }
 	body > div.cmd > header { margin-bottom: 8px; }
-	body > div.cmd > section { height: calc(100vh - 157px); margin-bottom: 8px; }
+	body > div.cmd > section { height: calc(100vh - 160px); margin-bottom: 8px; }
 	body > div.cmd > div { margin-bottom: 8px; }
 }
 @media screen and (max-height: 400px) {
