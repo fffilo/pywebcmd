@@ -1,15 +1,15 @@
 /* fonts */
 @font-face {
 	font-family: 'UbuntuRegular';
-	src: url('../font/ubuntu-regular-webfont.eot');
-	src: url('../font/ubuntu-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntu-regular-webfont.woff2') format('woff2'), url('../font/ubuntu-regular-webfont.woff') format('woff'), url('../font/ubuntu-regular-webfont.ttf') format('truetype'), url('../font/ubuntu-regular-webfont.svg#ubunturegular') format('svg');
+	src: url('/font/ubuntu-regular-webfont.eot');
+	src: url('/font/ubuntu-regular-webfont.eot?#iefix') format('embedded-opentype'), url('/font/ubuntu-regular-webfont.woff2') format('woff2'), url('/font/ubuntu-regular-webfont.woff') format('woff'), url('/font/ubuntu-regular-webfont.ttf') format('truetype'), url('/font/ubuntu-regular-webfont.svg#ubunturegular') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family: 'UbuntuMonoRegular';
-	src: url('../font/ubuntumono-regular-webfont.eot');
-	src: url('../font/ubuntumono-regular-webfont.eot?#iefix') format('embedded-opentype'), url('../font/ubuntumono-regular-webfont.woff2') format('woff2'), url('../font/ubuntumono-regular-webfont.woff') format('woff'), url('../font/ubuntumono-regular-webfont.ttf') format('truetype'), url('../font/ubuntumono-regular-webfont.svg#ubuntu_monoregular') format('svg');
+	src: url('/font/ubuntumono-regular-webfont.eot');
+	src: url('/font/ubuntumono-regular-webfont.eot?#iefix') format('embedded-opentype'), url('/font/ubuntumono-regular-webfont.woff2') format('woff2'), url('/font/ubuntumono-regular-webfont.woff') format('woff'), url('/font/ubuntumono-regular-webfont.ttf') format('truetype'), url('/font/ubuntumono-regular-webfont.svg#ubuntu_monoregular') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -69,7 +69,7 @@ body > div.wrapper > main > section > div > div > table .size { text-align: righ
 body > div.wrapper > main > section > div > div > table .mtime { text-align: center; }
 body > div.wrapper > main > section > div > div > table td { position: relative; cursor: default; }
 body > div.wrapper > main > section > div > div > table tr:hover { background: #eee; }
-body > div.wrapper > main > section.selected > section > div > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
+body > div.wrapper > main > section.selected > div > div > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
 body > div.wrapper > main > nav { float: left; width: 64px; height: 100%; }
 body > div.wrapper > div { display: block; margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
 body > div.wrapper > div > div { height: 28px; overflow: hidden; }

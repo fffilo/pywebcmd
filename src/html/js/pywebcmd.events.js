@@ -393,10 +393,16 @@
 
 	var _pathKeydown = function(event) {
 		if (event.which == 27) {
-			$(this)
-				.blur()
-				.focus()
-				.select();
+			if ($(this).get(0).selectionStart == 0 && $(this).get(0).selectionEnd == $(this).val().length) {
+				$(this)
+					.blur();
+			}
+			else {
+				$(this)
+					.blur()
+					.focus()
+					.select();
+			}
 		}
 		else if (event.which == 13) {
 			_openDir($(this).closest('.lblock,.rblock'), $(this).val());
