@@ -60,7 +60,7 @@ body > div.wrapper > main > section > div > header > table th.desc { background:
 body > div.wrapper > main > section > div > header > table .icon { border-right: 0 none; text-indent: -999px; overflow: hidden; cursor: default; }
 body > div.wrapper > main > section > div > header > table .basename { text-indent: 0; }
 body > div.wrapper > main > section > div > header > table .mtime { border-right: 0 none; }
-body > div.wrapper > main > section > div > div { height: calc(100% - 27px); overflow: hidden; overflow-y: scroll; }
+body > div.wrapper > main > section > div > div { height: calc(100% - 27px); overflow: hidden; overflow-y: scroll; outline: 0 none; }
 body > div.wrapper > main > section > div > div > table {}
 body > div.wrapper > main > section > div > div > table .icon { width: 16px; padding: 4px; }
 body > div.wrapper > main > section > div > div > table .icon img { display: block; width: 16px; height: 16px; }
@@ -78,7 +78,7 @@ body > div.wrapper > div > div > p.command { color: #200080; }
 body > div.wrapper > div > div > p.success { color: #008000; }
 body > div.wrapper > div > div > p.error { color: #ff2020; }
 body > div.wrapper > footer { text-align: center; color: #aaa; }
-body > div.wrapper > footer > p { margin: 0; line-height: 16px; font-size: 10px; }
+body > div.wrapper > footer > p { margin: 0; font-size: 10px; }
 body > div.wrapper > footer > p a { color: #aaa; text-decoration: none; }
 
 /* responsive table columns */
