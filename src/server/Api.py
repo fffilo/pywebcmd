@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import os, json, ffile
+import os, json, exceptions, ffile
 
 __version__ = None
 __service__ = None
@@ -108,6 +108,9 @@ def do_POST_ls(RequestHandler):
 	result['source'] = os.path.realpath(result['source'])
 
 	try:
+		if result['source'] == '/proc' or result['source'] == '/proc/' or result['source'][:6] == '/proc/':
+			raise exceptions.OSError(13, 'Permission denied', '/proc')
+
 		glob = os.listdir(result['source'])
 		glob.insert(0, '..')
 		glob.insert(0, '.')

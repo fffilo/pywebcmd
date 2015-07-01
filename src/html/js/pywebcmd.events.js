@@ -266,7 +266,7 @@
 			path += path.toString().length >= 1 && path.substr(-1) == '/' ? '' : '/';
 			path += basename;
 
-			window.pywebcmd.log('command', 'Directory list ' + path)
+			window.pywebcmd.log('command', 'Directory list \'' + path + '\'');
 			window.pywebcmd.api.ls(path, function(jqXHR, textStatus) {
 				if (jqXHR.status != 200) {
 					window.pywebcmd.log('error', jqXHR.responseJSON.message);
