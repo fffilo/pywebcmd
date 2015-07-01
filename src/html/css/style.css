@@ -37,7 +37,7 @@ body { color: #666; background: #fafafa; font-family: 'UbuntuRegular'; box-sizin
 body > div.wrapper { position: relative; margin: 24px; height: 100%; }
 body > div.wrapper > header { margin: 0 0 24px 0; padding: 2px 24px 4px 24px; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
 body > div.wrapper > header > h1 { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-body > div.wrapper > main { position: relative; height: calc(100vh - 240px); margin: 0 0 24px 0; }
+body > div.wrapper > main { position: relative; height: calc(100vh - 322px); margin: 0 0 24px 0; }
 body > div.wrapper > main::after { display: block; height: 0; visibility: hidden; font-size: 0; content: " "; clear: both; }
 body > div.wrapper > main > section { float: left; width: calc(50% - 32px); height: 100%; overflow: hidden; }
 body > div.wrapper > main > section > header { position: relative; margin: 0 0 6px 0; background: #fff no-repeat right center; border: 1px solid #cecece; border-radius: 4px; }
@@ -72,14 +72,14 @@ body > div.wrapper > main > section > div > div > table tr:hover { background: #
 body > div.wrapper > main > section.selected > div > div > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
 body > div.wrapper > main > nav { float: left; width: 64px; height: 100%; }
 body > div.wrapper > div { display: block; margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
-body > div.wrapper > div > div { height: 28px; overflow: hidden; }
+body > div.wrapper > div > div { height: 112px; overflow: hidden; }
 body > div.wrapper > div > div > p { margin: 0; line-height: 1.4; font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 body > div.wrapper > div > div > p.command { color: #200080; }
 body > div.wrapper > div > div > p.success { color: #008000; }
 body > div.wrapper > div > div > p.error { color: #ff2020; }
 body > div.wrapper > footer { line-height: 16px; font-size: 10px; text-align: center; color: #aaa; }
 
-/* responsive */
+/* responsive table columns */
 @media screen and (max-width: 1280px) {
 	body > div.wrapper > main > section > div table .type { display: none; }
 }
@@ -92,16 +92,49 @@ body > div.wrapper > footer { line-height: 16px; font-size: 10px; text-align: ce
 	body > div.wrapper > main > section > div > header > table .basename { border-right: 0 none; }
 	body > div.wrapper > main > section > div table .size { display: none; }
 }
-@media screen and (max-width: 480px) {
-	body > div.wrapper { margin: 8px; }
-	body > div.wrapper > header { margin-bottom: 8px; }
-	body > div.wrapper > main { height: calc(100vh - 160px); margin-bottom: 8px; }
-	body > div.wrapper > div { margin-bottom: 8px; }
+
+/* responsive log and footer */
+@media screen and (max-height: 720px) {
+	body > div.wrapper > main { height: calc(100vh - 294px); }
+	body > div.wrapper > div > div { height: 84px; }
+}
+@media screen and (max-height: 640px) {
+	body > div.wrapper > main { height: calc(100vh - 266px); }
+	body > div.wrapper > div > div { height: 56px; }
+}
+@media screen and (max-height: 560px) {
+	body > div.wrapper > main { height: calc(100vh - 238px); }
+	body > div.wrapper > div > div { height: 28px; }
+}
+@media screen and (max-height: 480px) {
+	body > div.wrapper > main { height: calc(100vh - 176px); }
+	body > div.wrapper > div { display: none; }
 }
 @media screen and (max-height: 400px) {
 	body > div.wrapper > main { height: calc(100vh - 122px); }
-	body > div.wrapper > div { display: none; }
 	body > div.wrapper > footer { display: none; }
+}
+
+/* responsive narrow screen */
+@media screen and (max-width: 480px) {
+	body > div.wrapper { margin: 8px; }
+	body > div.wrapper > header { margin-bottom: 8px; }
+	body > div.wrapper > main { height: calc(100vh - 242px); margin-bottom: 8px; }
+	body > div.wrapper > div { margin-bottom: 8px; }
+}
+
+/* responsive log and footer on narrow screen */
+@media screen and (max-width: 480px) and (max-height: 720px) {
+	body > div.wrapper > main { height: calc(100vh - 214px); }
+}
+@media screen and (max-width: 480px) and (max-height: 640px) {
+	body > div.wrapper > main { height: calc(100vh - 186px); }
+}
+@media screen and (max-width: 480px) and (max-height: 560px) {
+	body > div.wrapper > main { height: calc(100vh - 158px); }
+}
+@media screen and (max-width: 480px) and (max-height: 480px) {
+	body > div.wrapper > main { height: calc(100vh - 112px); }
 }
 @media screen and (max-width: 480px) and (max-height: 400px) {
 	body > div.wrapper > main { height: calc(100vh - 74px); }
