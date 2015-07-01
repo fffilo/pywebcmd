@@ -40,8 +40,11 @@ body > div.cmd > header > h1 { overflow: hidden; white-space: nowrap; text-overf
 body > div.cmd > section { position: relative; height: calc(100vh - 240px); margin: 0 0 24px 0; }
 body > div.cmd > section::after { display: block; height: 0; visibility: hidden; font-size: 0; content: " "; clear: both; }
 body > div.cmd > section > main { float: left; width: calc(50% - 32px); height: 100%; overflow: hidden; }
-body > div.cmd > section > main > header { margin: 0 0 6px 0; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
-body > div.cmd > section > main > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: #fff; border: 0 none; }
+body > div.cmd > section > main > header { position: relative; margin: 0 0 6px 0; background: #fff no-repeat right center; border: 1px solid #cecece; border-radius: 4px; }
+body > div.cmd > section > main > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: transparent; border: 0 none; }
+body > div.cmd > section > main > header > img { position: absolute; display: none; right: 0; top: 50%; transform: translate(-6px, -50%); }
+body > div.cmd > section > main.loading > header > input { width: calc(100% - 36px); }
+body > div.cmd > section > main.loading > header > img { display: inline-block; }
 body > div.cmd > section > main > section { display: block; height: calc(100% - 46px); background: #fff; overflow: hidden; border: 1px solid #cecece; border-radius: 4px; }
 body > div.cmd > section > main > section table { font-weight: normal; text-align: left; color: #333; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 body > div.cmd > section > main > section table .icon { width: 24px; }

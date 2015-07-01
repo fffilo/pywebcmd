@@ -3,6 +3,8 @@
 	// bind events on document ready
 	$(document).ready(function(event) {
 		// show directories list
+		_preloader(window.pywebcmd.ui.lblock, true);
+		_preloader(window.pywebcmd.ui.rblock, true);
 		window.pywebcmd.log('command', 'Initial directory list')
 		window.pywebcmd.api.ls('/home/fffilo', _initList);
 
@@ -170,6 +172,19 @@
 	}
 
 	/**
+	 * Show/hide preloader gif on block
+	 * @param  {Object}  block
+	 * @param  {Boolean} status
+	 * @return {Void}
+	 */
+	var _preloader = function(block, status) {
+		$(block)
+			.removeClass('loading')
+			.addClass(status ? 'loading' : 'temp')
+			.removeClass('temp');
+	}
+
+	/**
 	 * Parse data from jqXHR and convert it to row (tr tag)
 	 * @param  {Object} data
 	 * @return {Object}
@@ -227,6 +242,9 @@
 	 * @return {Void}
 	 */
 	var _initList = function(jqXHR, textStatus) {
+		_preloader(window.pywebcmd.ui.lblock, false);
+		_preloader(window.pywebcmd.ui.rblock, false);
+
 		if (jqXHR.status != 200) {
 			return _error(jqXHR);
 		}
@@ -271,14 +289,18 @@
 			return;
 		}
 
-		var head, body, input;
+		var block, head, body, input;
 		var basename = $(this).find('td.basename').text();
 
 		body = $(this).closest('table');
+		if ($(body).is(window.pywebcmd.ui.lbody)) block = window.pywebcmd.ui.lblock;
+		if ($(body).is(window.pywebcmd.ui.rbody)) block = window.pywebcmd.ui.rblock;
 		if ($(body).is(window.pywebcmd.ui.lbody)) head  = window.pywebcmd.ui.lhead;
 		if ($(body).is(window.pywebcmd.ui.rbody)) head  = window.pywebcmd.ui.rhead;
 		if ($(body).is(window.pywebcmd.ui.lbody)) input = window.pywebcmd.ui.lpath;
 		if ($(body).is(window.pywebcmd.ui.rbody)) input = window.pywebcmd.ui.rpath;
+
+		_preloader(block, true);
 
 		if (input) {
 			var path = $(input).val();
@@ -287,6 +309,8 @@
 
 			window.pywebcmd.log('command', 'Directory list \'' + path + '\'');
 			window.pywebcmd.api.ls(path, function(jqXHR, textStatus) {
+				_preloader(block, false);
+
 				if (jqXHR.status != 200) {
 					return _error(jqXHR);
 				}
