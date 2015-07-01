@@ -150,8 +150,8 @@ class HttpRequestHandler(Http.RequestHandler):
 
 			html = html.replace('{version}', str(Api.__version__))
 			html = html.replace('{service}', str(Api.__service__))
-			html = html.replace('{service}', str(Api.__service__))
 			html = html.replace('{appname}', str(Api.__appname__))
+			html = html.replace('{appweb}', str(Api.__appweb__))
 			html = html.replace('{description}', str(Api.__description__))
 			html = html.replace('{author}', str(Api.__author__))
 			html = html.replace('{email}', str(Api.__email__).replace('@', 'AT'))
