@@ -46,7 +46,7 @@
 
 		// navigation
 		$(window.pywebcmd.ui.nav)
-			.on('click', 'a', _navigation);
+			.on('click', 'a', _navclick);
 
 		// document keypress
 		$(document)
@@ -67,6 +67,8 @@
 		$(obj)
 			.closest('.lblock,.rblock')
 				.addClass('selected');
+
+		_navenable();
 	}
 
 	/**
@@ -171,7 +173,6 @@
 			$(this)
 				.toggleClass('highlight');
 
-			return false;
 		}
 		else {
 			$(this)
@@ -181,6 +182,8 @@
 			$(this)
 				.addClass('highlight');
 		}
+
+		_navenable();
 	}
 
 	/**
@@ -201,6 +204,8 @@
 
 		$(input)
 			.prop('readonly', status);
+
+		_navenable();
 	}
 
 	/**
@@ -341,6 +346,8 @@
 					$(row)
 						.addClass('highlight');
 				}
+
+				_navenable();
 			}
 
 			return false;
@@ -384,21 +391,63 @@
 	 * @param  {Object} event
 	 * @return {Void}
 	 */
-	var _navigation = function(event) {
-		var parent = $(this).parent();
-
-		if ( ! $(parent).hasClass('disabled')) {
-			if ($(parent).hasClass('copy'))       _cp('', '');
-			if ($(parent).hasClass('move'))       _mv('', '');
-			if ($(parent).hasClass('rename'))     _mv('', '');
-			if ($(parent).hasClass('delete'))     _rm('');
-			if ($(parent).hasClass('newfile'))    _nf('', '');
-			if ($(parent).hasClass('newdir'))     _nd('', '');
-			if ($(parent).hasClass('download'))   _dl('');
-			if ($(parent).hasClass('properties')) _pr('');
+	var _navclick = function(event) {
+		if ( ! $(this).parent().hasClass('disabled')) {
+			if ($(this).is(window.pywebcmd.ui.copy))       _cp('', '');
+			if ($(this).is(window.pywebcmd.ui.move))       _mv('', '');
+			if ($(this).is(window.pywebcmd.ui.rename))     _mv('', '');
+			if ($(this).is(window.pywebcmd.ui.delete))     _rm('');
+			if ($(this).is(window.pywebcmd.ui.newfile))    _nf('', '');
+			if ($(this).is(window.pywebcmd.ui.newdir))     _nd('', '');
+			if ($(this).is(window.pywebcmd.ui.download))   _dl('');
+			if ($(this).is(window.pywebcmd.ui.properties)) _pr('');
 		}
 
 		return false;
+	}
+
+	var _navenable = function() {
+		var block = $(false)
+			.add(window.pywebcmd.ui.lblock)
+			.add(window.pywebcmd.ui.rblock);
+		var block1 = $(block).filter('.selected').first();
+		var block2 = $(block).not(block1).first();
+		var rows   = $(block1).find('tr.highlight');
+
+		var path1, path2;
+		if ($(block1).is(window.pywebcmd.ui.lblock)) { path1 = window.pywebcmd.ui.lpath; path2 = window.pywebcmd.ui.rpath; }
+		if ($(block1).is(window.pywebcmd.ui.rblock)) { path1 = window.pywebcmd.ui.rpath; path2 = window.pywebcmd.ui.lpath; }
+
+		var cancopy = true
+			&& ($(rows).length > 0)
+			&& ($(rows).first().find('td.basename').text() != '.')
+			&& ($(rows).first().find('td.basename').text() != '..')
+			&& ($(path1).val() != $(path2).val());
+		var canmove = cancopy
+			&& ($(path2).val().toString().indexOf($(path1).val().toString()) != 0);
+		var canrename = true
+			&& $(rows).length == 1
+			&& ($(rows).first().find('td.basename').text() != '.')
+			&& ($(rows).first().find('td.basename').text() != '..');
+		var candelete = true
+			&& ($(rows).length > 0)
+			&& ($(rows).first().find('td.basename').text() != '.')
+			&& ($(rows).first().find('td.basename').text() != '..');
+		var cannewfile = true;
+		var cannewdir = true;
+		var candownload = candelete
+			|| ($(rows).length == 1 && $(rows).first().find('td.basename').text() == '.');
+		var canproperties = candownload
+			|| ($(rows).length == 1 && $(rows).first().find('td.basename').text() == '..');
+
+		$(window.pywebcmd.ui.copy).parent().removeClass('disabled').addClass(cancopy ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.move).parent().removeClass('disabled').addClass(canmove ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.rename).parent().removeClass('disabled').addClass(canrename ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.delete).parent().removeClass('disabled').addClass(candelete ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.newfile).parent().removeClass('disabled').addClass(cannewfile ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.newdir).parent().removeClass('disabled').addClass(cannewdir ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.download).parent().removeClass('disabled').addClass(candownload ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.properties).parent().removeClass('disabled').addClass(canproperties ? 'temp' : 'disabled').removeClass('temp');
 	}
 
 	/**
