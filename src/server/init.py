@@ -3,9 +3,11 @@
 
 __version__ = 0.1
 __service__ = 'pywebcmd'
-__appname__ = 'python web commander'
-__appweb__ = 'https://github.com/fffilo/pywebcmd'
-__description__ = 'pywebcmd/0.0 SimpleHTTP/0.0 Python/0.0.0'
+__title__ = 'Python web file manager'
+__keywords__ = 'python, web file manager, web commander'
+__description__ = 'Python web file manager'
+__server__ = 'pywebcmd/0.0 SimpleHTTP/0.0 Python/0.0.0'
+__website__ = 'https://github.com/fffilo/pywebcmd'
 __author__ = 'fffilo'
 __email__ = 'fffilo666@gmail.com'
 
@@ -16,12 +18,14 @@ import sys, os, json
 import App
 
 ### metadata
-__description__ = __service__ + '/' + str(__version__) + ' ' + App.Http.NAME
+__server__ = __service__ + '/' + str(__version__) + ' ' + App.Http.NAME
 App.Api.__version__ = __version__
 App.Api.__service__ = __service__
-App.Api.__appname__ = __appname__
-App.Api.__appweb__ = __appweb__
+App.Api.__title__ = __title__
+App.Api.__keywords__ = __keywords__
 App.Api.__description__ = __description__
+App.Api.__server__ = __server__
+App.Api.__website__ = __website__
 App.Api.__author__ = __author__
 App.Api.__email__ = __email__
 

@@ -2,16 +2,27 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="subject" content="{service}" />
+		<meta name="keywords" content="{keywords}" />
+		<meta name="description" content="{description}" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<meta name="robots" content="noindex, nofollow" />
-		<link rel="shortcut icon" href="img/favicon.png" />
+		<meta name="apple-mobile-web-app-title" content="{service}" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" />
+		<link rel="shortcut icon" href="/img/favicon.png" />
+		<link rel="apple-touch-icon" href="/img/touch-icon-iphone-57.png" />
+		<link rel="apple-touch-icon" sizes="/img/72x72" href="touch-icon-ipad-72.png" />
+		<link rel="apple-touch-icon" sizes="/img/114x114" href="touch-icon-iphone-114.png" />
+		<link rel="apple-touch-icon" sizes="/img/144x144" href="touch-icon-ipad-144.png" />
+		<link rel="apple-touch-startup-image" href="/img/startup-320x460.png" />
+		<link rel="apple-touch-startup-image" href="/img/startup-460x320.png" media="screen and (orientation: landscape)" />
 		<title>{service}</title>
 	</head>
 	<body>
 		<div class="wrapper">
 			<header>
-				<h1 title="{appname}">{appname}</h1>
+				<h1 title="{title:lower}">{title:lower}</h1>
 			</header>
 			<main>
 				<section class="lblock">
@@ -106,7 +117,7 @@
 				<div class="log"></div>
 			</div>
 			<footer>
-				<p><a href="{appweb}" target="_blank">{description}</a></p>
+				<p><a href="{website}" target="_blank">{server}</a></p>
 				<p>created by <a href="mailto:{email}">{author}</a></p>
 			</footer>
 		</div>
