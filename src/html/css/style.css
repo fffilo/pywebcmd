@@ -13,6 +13,13 @@
 	font-weight: normal;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'FontAwesome';
+	src: url('/font/fontawesome-webfont.eot');
+	src: url('/font/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('/font/fontawesome-webfont.woff2') format('woff2'), url('/font/fontawesome-webfont.woff') format('woff'), url('/font/fontawesome-webfont.ttf') format('truetype'), url('/font/fontawesome-webfont.svg#fontawesomeregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
 /* reset */
 body, div, pre, ul, li, table, nav, header, main, section, footer, h1, h2, h3, h4, h5, h6 { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; }
@@ -70,7 +77,22 @@ body > div.wrapper > main > section > div > div > table .mtime { text-align: cen
 body > div.wrapper > main > section > div > div > table td { position: relative; cursor: default; }
 body > div.wrapper > main > section > div > div > table tr:hover { background: #eee; }
 body > div.wrapper > main > section.selected > div > div > table tr.highlight { background: #a8c6ec; background: -moz-linear-gradient(top,  #a8c6ec 0%, #97b8e2 50%, #86abd9 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a8c6ec), color-stop(50%,#97b8e2), color-stop(100%,#86abd9)); background: -webkit-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -o-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: -ms-linear-gradient(top,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); background: linear-gradient(to bottom,  #a8c6ec 0%,#97b8e2 50%,#86abd9 100%); filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a8c6ec', endColorstr='#86abd9',GradientType=0 ); }
-body > div.wrapper > main > nav { float: left; width: 64px; height: 100%; }
+body > div.wrapper > main > nav { float: left; position: relative; width: 64px; height: 100%; overflow: hidden; }
+body > div.wrapper > main > nav > ul { position: absolute; display: block; bottom: 0; width: calc(100% - 16px); margin: 0 8px; list-style-type: none; overflow: hidden; }
+body > div.wrapper > main > nav > ul > li { position: relative; display: block; margin: 2px 0; overflow: hidden; }
+body > div.wrapper > main > nav > ul > li.separator { height: 4px; text-indent: -999px; }
+body > div.wrapper > main > nav > ul > li > a { display: block; width: 100%; height: 48px; line-height: 48px; font-size: 24px; text-indent: -999px; overflow: hidden; color: #666; }
+body > div.wrapper > main > nav > ul > li > a:hover { color: #444; }
+body > div.wrapper > main > nav > ul > li > a::after { position: absolute; display: block; font-family: 'FontAwesome'; left: 0; top: 0; right: 0; bottom: 0; text-indent: 0; text-align: center; }
+body > div.wrapper > main > nav > ul > li.disabled > a { opacity: 0.4; color: #666; pointer-events: none; }
+body > div.wrapper > main > nav > ul > li.copy > a::after { content: "\f0ea"; }
+body > div.wrapper > main > nav > ul > li.move > a::after { content: "\f047"; }
+body > div.wrapper > main > nav > ul > li.rename > a::after { content: "\f040"; }
+body > div.wrapper > main > nav > ul > li.delete > a::after { content: "\f1f8"; }
+body > div.wrapper > main > nav > ul > li.newfile > a::after { content: "\f15b"; }
+body > div.wrapper > main > nav > ul > li.newdir > a::after { content: "\f07b"; }
+body > div.wrapper > main > nav > ul > li.download > a::after { content: "\f019"; }
+body > div.wrapper > main > nav > ul > li.properties > a::after { content: "\f05a"; }
 body > div.wrapper > div { display: block; margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
 body > div.wrapper > div > div { height: 112px; overflow: hidden; }
 body > div.wrapper > div > div > p { margin: 0; line-height: 1.4; font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
@@ -140,4 +162,29 @@ body > div.wrapper > footer > p a { color: #aaa; text-decoration: none; }
 }
 @media screen and (max-width: 480px) and (max-height: 400px) {
 	body > div.wrapper > main { height: calc(100vh - 74px); }
+}
+
+/* responsive navigation */
+@media screen and (max-height: 740px) {
+	body > div.wrapper > main > nav > ul > li > a { height: 42px; line-height: 42px; font-size: 20px; }
+}
+@media screen and (max-height: 680px) {
+	body > div.wrapper > main > nav > ul > li > a { height: 36px; line-height: 36px; font-size: 18px; }
+}
+@media screen and (max-height: 600px) {
+	body > div.wrapper > main > nav > ul > li > a { height: 32px; line-height: 32px; font-size: 16px; }
+}
+@media screen and (max-height: 530px) {
+	body > div.wrapper > main > section { width: calc(50% - 24px); }
+	body > div.wrapper > main > nav { width: 48px; }
+	body > div.wrapper > main > nav > ul > li > a { height: 28px; line-height: 28px; font-size: 14px; }
+}
+@media screen and (max-height: 500px) {
+	body > div.wrapper > main > nav > ul > li > a { height: 22px; line-height: 22px; font-size: 13px; }
+}
+@media screen and (max-height: 440px) {
+	body > div.wrapper > main > nav > ul > li > a { height: 20px; line-height: 20px; font-size: 12px; }
+}
+@media screen and (max-height: 320px) {
+	body > div.wrapper > main > nav > ul > li > a { height: 18px; line-height: 18px; font-size: 11px; }
 }

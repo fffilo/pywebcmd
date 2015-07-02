@@ -124,3 +124,83 @@ def do_POST_ls(RequestHandler):
 		result['message'] = str(e)
 
 	response(RequestHandler, result)
+
+def do_POST_cp(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)
+
+def do_POST_mv(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)
+
+def do_POST_rm(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)
+
+def do_POST_nf(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)
+
+def do_POST_nd(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)
+
+def do_POST_dl(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)
+
+def do_POST_pr(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)
+
+def do_POST_st(RequestHandler):
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Work in progress',
+		'data': None
+	}
+	response(RequestHandler, result)

@@ -45,7 +45,14 @@
 		*/
 	}
 
-	window.pywebcmd.api.cp = function() {
+	window.pywebcmd.api.cp = function(source, destination, callback) {
+		var data = {
+			source      : source      || undefined,
+			destination : destination || undefined
+		}
+
+		_ajax('/cp', data, callback);
+
 		/*
 			// copy file/directory
 			send = {
@@ -58,7 +65,14 @@
 		*/
 	}
 
-	window.pywebcmd.api.mv = function() {
+	window.pywebcmd.api.mv = function(source, destination, callback) {
+		var data = {
+			source      : source      || undefined,
+			destination : destination || undefined
+		}
+
+		_ajax('/mv', data, callback);
+
 		/*
 			// move/rename file/directory
 			send = {
@@ -71,7 +85,14 @@
 		*/
 	}
 
-	window.pywebcmd.api.rm = function() {
+	window.pywebcmd.api.rm = function(source, callback) {
+		var data = {
+			source      : source || undefined,
+			destination : undefined
+		}
+
+		_ajax('/rm', data, callback);
+
 		/*
 			// delete file/directory
 			send = {
@@ -84,20 +105,41 @@
 		*/
 	}
 
-	window.pywebcmd.api.st = function() {
-		/*
-			// copy/move/delete status
-			send = {
-				source      : %path%,
-				destination : undefined
-			}
-			receive = {
-				???
-			}
-		*/
+	window.pywebcmd.api.nf = function(source, callback) {
+		var data = {
+			source      : source || undefined,
+			destination : undefined
+		}
+
+		_ajax('/nf', data, callback);
 	}
 
-	window.pywebcmd.api.pr = function() {
+	window.pywebcmd.api.nd = function(source, callback) {
+		var data = {
+			source      : source || undefined,
+			destination : undefined
+		}
+
+		_ajax('/nd', data, callback);
+	}
+
+	window.pywebcmd.api.dl = function(source, callback) {
+		var data = {
+			source      : source || undefined,
+			destination : undefined
+		}
+
+		_ajax('/dl', data, callback);
+	}
+
+	window.pywebcmd.api.pr = function(source, callback) {
+		var data = {
+			source      : source || undefined,
+			destination : undefined
+		}
+
+		_ajax('/pr', data, callback);
+
 		/*
 			send = {
 				source      : %path%,
@@ -125,20 +167,15 @@
 		*/
 	}
 
-	window.pywebcmd.api.sr = function() {
+	window.pywebcmd.api.st = function() {
 		/*
-			// server properties
-			send = {}
+			// copy/move/delete status
+			send = {
+				source      : %path%,
+				destination : undefined
+			}
 			receive = {
-				source      : undefined,
-				destination : undefined,
-				data        : {
-					init: %timestamp,
-					timestamp: %timestamp,
-					name: 'pywebcmd',
-					fullname: 'pywebcmd/0.1 SimpleHTTP/0.6 Python/2.7.6',
-					desc: 'created by fffilo',
-				}
+				???
 			}
 		*/
 	}

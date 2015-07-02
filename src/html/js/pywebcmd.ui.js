@@ -15,6 +15,7 @@
 	// init all UI elements
 	$(document).ready(function(event) {
 		window.pywebcmd.ui.log    = $('.log');
+		window.pywebcmd.ui.nav    = $('.nav');
 		window.pywebcmd.ui.lblock = $('.lblock');
 		window.pywebcmd.ui.lpath  = $('.lpath');
 		window.pywebcmd.ui.lhead  = $('.lhead');
