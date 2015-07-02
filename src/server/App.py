@@ -149,23 +149,15 @@ class HttpRequestHandler(Http.RequestHandler):
 			html = f.read()
 
 			for meta in ['version', 'service', 'title', 'keywords', 'description', 'server', 'website', 'author', 'email']:
-				html = html.replace('{' + meta + '}', str(getattr(Api, '__' + meta + '__')))
-				html = html.replace('{' + meta + ':lower}', str(getattr(Api, '__' + meta + '__')).lower())
-				html = html.replace('{' + meta + ':upper}', str(getattr(Api, '__' + meta + '__')).upper())
-				html = html.replace('{' + meta + ':title}', str(getattr(Api, '__' + meta + '__')).title())
-				html = html.replace('{' + meta + ':capitalize}', str(getattr(Api, '__' + meta + '__')).capitalize())
+				value = str(getattr(Api, '__' + meta + '__'))
+				if meta == 'email':
+					value = value.replace('@', 'AT')
 
-			'''
-			html = html.replace('{version}', str(Api.__version__))
-			html = html.replace('{service}', str(Api.__service__))
-			html = html.replace('{title}', str(Api.__title__))
-			html = html.replace('{keywords}', str(Api.__keywords__))
-			html = html.replace('{description}', str(Api.__description__))
-			html = html.replace('{server}', str(Api.__server__))
-			html = html.replace('{website}', str(Api.__website__))
-			html = html.replace('{author}', str(Api.__author__))
-			html = html.replace('{email}', str(Api.__email__).replace('@', 'AT'))
-			'''
+				html = html.replace('{' + meta + '}', value)
+				html = html.replace('{' + meta + ':lower}', value.lower())
+				html = html.replace('{' + meta + ':upper}', value.upper())
+				html = html.replace('{' + meta + ':title}', value.title())
+				html = html.replace('{' + meta + ':capitalize}', value.capitalize())
 
 			self.send_response(200)
 			self.send_header('Content-type', ctype)
@@ -173,6 +165,7 @@ class HttpRequestHandler(Http.RequestHandler):
 			self.send_header('Last-Modified', self.date_time_string(fs.st_mtime))
 			self.end_headers()
 			self.wfile.write(html)
+
 			f.close()
 		elif hasattr(Api, 'do_GET_' + controller):
 			getattr(Api, 'do_GET_' + controller)(self)
