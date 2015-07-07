@@ -1,4 +1,4 @@
-(function($) {
+;(function($) {
 
 	window.pywebcmd     = window.pywebcmd     || {};
 	window.pywebcmd.api = window.pywebcmd.api || {};

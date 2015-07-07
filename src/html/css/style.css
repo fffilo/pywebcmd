@@ -22,7 +22,7 @@
 }
 
 /* reset */
-body, div, pre, ul, li, table, nav, header, main, section, footer, h1, h2, h3, h4, h5, h6 { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; }
+body, div, pre, ul, li, dl, dt, dd, table, nav, header, main, section, footer, h1, h2, h3, h4, h5, h6 { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; }
 img, a { outline: 0 none; border: 0 none; }
 h1 { font-size: 28px; }
 h2 { font-size: 24px; }
@@ -42,18 +42,18 @@ th,td { padding: 0; font-weight: normal; overflow: hidden; white-space: nowrap; 
 /* layout */
 body { color: #666; background: #fafafa; font-family: 'UbuntuRegular'; box-sizing: border-box; }
 body > div.wrapper { position: relative; margin: 24px; height: 100%; }
-body > div.wrapper > header { margin: 0 0 24px 0; padding: 2px 24px 4px 24px; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > header { margin: 0 0 24px 0; padding: 2px 24px 4px 24px; background: #fff; border: 1px solid #cecece; -webkit-border-radius: 4px; border-radius: 4px; }
 body > div.wrapper > header > h1 { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 body > div.wrapper > main { position: relative; height: calc(100vh - 322px); margin: 0 0 24px 0; }
 body > div.wrapper > main::after { display: block; height: 0; visibility: hidden; font-size: 0; content: " "; clear: both; }
 body > div.wrapper > main > section { float: left; width: calc(50% - 32px); height: 100%; overflow: hidden; }
-body > div.wrapper > main > section > header { position: relative; margin: 0 0 6px 0; background: #fff no-repeat right center; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > main > section > header { position: relative; margin: 0 0 6px 0; background: #fff no-repeat right center; border: 1px solid #cecece; -webkit-border-radius: 4px; border-radius: 4px; }
 body > div.wrapper > main > section > header > h3 { display: none; }
 body > div.wrapper > main > section > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: transparent; border: 0 none; }
 body > div.wrapper > main > section > header > img { position: absolute; display: none; right: 0; top: 50%; transform: translate(-6px, -50%); }
 body > div.wrapper > main > section.loading > header > input { width: calc(100% - 36px); }
 body > div.wrapper > main > section.loading > header > img { display: inline-block; }
-body > div.wrapper > main > section > div { display: block; height: calc(100% - 46px); background: #fff; overflow: hidden; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > main > section > div { display: block; height: calc(100% - 46px); background: #fff; overflow: hidden; border: 1px solid #cecece; -webkit-border-radius: 4px; border-radius: 4px; }
 body > div.wrapper > main > section > div table { font-weight: normal; text-align: left; color: #333; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 body > div.wrapper > main > section > div table .icon { width: 24px; }
 body > div.wrapper > main > section > div table .type { width: 132px; }
@@ -93,7 +93,7 @@ body > div.wrapper > main > nav > ul > li.newfile > a::after { content: "\f15b";
 body > div.wrapper > main > nav > ul > li.newdir > a::after { content: "\f07b"; }
 body > div.wrapper > main > nav > ul > li.download > a::after { content: "\f019"; }
 body > div.wrapper > main > nav > ul > li.properties > a::after { content: "\f05a"; }
-body > div.wrapper > div { display: block; margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; border-radius: 4px; }
+body > div.wrapper > div { display: block; margin: 0 0 24px 0; padding: 4px; font-family: 'UbuntuMonoRegular'; background: #fff; border: 1px solid #cecece; -webkit-border-radius: 4px; border-radius: 4px; }
 body > div.wrapper > div > div { height: 112px; overflow: hidden; }
 body > div.wrapper > div > div > p { margin: 0; line-height: 1.4; font-size: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 body > div.wrapper > div > div > p.command { color: #200080; }
@@ -102,6 +102,40 @@ body > div.wrapper > div > div > p.error { color: #ff2020; }
 body > div.wrapper > footer { text-align: center; color: #aaa; }
 body > div.wrapper > footer > p { margin: 0; font-size: 10px; }
 body > div.wrapper > footer > p a { color: #aaa; text-decoration: none; }
+
+/* dialog */
+body > div.dialog { position: fixed; visibility: hidden; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0, 0, 0, 0.2); opacity: 0; transition: all 0.3s ease 0s; }
+body > div.dialog > div { position: absolute; display: block; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+body > div.dialog > div > div { display: none; width: 480px; padding: 24px; background: #fff; -webkit-border-radius: 8px; border-radius: 8px; transform: scale(0.7); transition: all 0.3s ease 0s; -webkit-box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); }
+body > div.dialog > div > div > a { position: absolute; display: block; right: 12px; top: 12px; width: 24px; height: 24px; line-height: 24px; text-align: center; text-decoration: none; color: #666; }
+body > div.dialog > div > div > h3 { margin-bottom: 24px; }
+body > div.dialog > div > div > img { position: absolute; }
+body > div.dialog > div > div > div { background: none center 40% no-repeat; }
+body > div.dialog > div > div.fileinfo > div > dl { margin: 0; }
+body > div.dialog > div > div.fileinfo > div > dl > dt { width: 148px; margin: 0; line-height: 24px; font-size: 13px; font-weight: bold; text-align: right; }
+body > div.dialog > div > div.fileinfo > div > dl > dd { margin: -24px 0 0 162px; line-height: 24px; font-size: 13px; }
+body > div.dialog > div > div.progress > div > div { position: relative; height: 16px; padding: 8px; background: rgba(0, 0, 0, 0.1); box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3); -webkit-border-radius: 16px; border-radius: 16px; }
+body > div.dialog > div > div.progress > div > div > div { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 16px; border-radius: 16px; }
+body > div.dialog > div > div.progress > div > div > div > div.meter { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 4px; border-radius: 4px; background-color: rgba(43,83,194,0.6); background-image: linear-gradient(center bottom, rgba(43,83,194,0.6) 37%, rgb(84,84,240) 69%); box-shadow: inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4); transition: width 0.5s ease-in-out; }
+body > div.dialog > div > div.progress > div > div > div > div.meter::after { display: none; }
+body > div.dialog > div > div.progress > div > div > div > div.meter::after,
+body > div.dialog > div > div.progress > div > div > div > div.meter > span { content: ""; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 1; overflow: hidden; background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent); background-size: 50px 50px; }
+body > div.dialog.loading > div > div > img { display: none; }
+body > div.dialog.loading > div > div > div { background-image: url("/img/loadinfo.gif"); }
+body > div.dialog.loading > div > div > div * { visibility: hidden; }
+body > div.dialog.fileinfo, body > div.dialog.progress, body > div.dialog.error { visibility: visible; opacity: 1; }
+body > div.dialog.fileinfo > div > div.fileinfo, body > div.dialog.progress > div > div.progress, body > div.dialog.error > div > div.error { display: block; transform: scale(1); }
+
+/* progress bar animation */
+body > div.dialog > div > div.progress > div > div > div > div.meter > span { animation: move 2s linear infinite; }
+@-webkit-keyframes move {
+	0% { background-position: 0 0; }
+	100% { background-position: 50px 50px; }
+}
+@-moz-keyframes move {
+	0% { background-position: 0 0; }
+	100% { background-position: 50px 50px; }
+}
 
 /* responsive table columns */
 @media screen and (max-width: 1280px) {

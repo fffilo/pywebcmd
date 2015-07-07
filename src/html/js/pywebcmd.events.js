@@ -45,8 +45,20 @@
 				.on('blur', _pathBlur);
 
 		// navigation
-		$(window.pywebcmd.ui.nav)
+		$(window.pywebcmd.ui.nav.parent)
 			.on('click', 'a', _navclick);
+
+		// dialog
+		$(window.pywebcmd.ui.dialog.parent)
+			.find('a.close')
+				.on('click', function() {
+					$(window.pywebcmd.ui.dialog.parent)
+						.removeClass('fileinfo')
+						.removeClass('progress')
+						.removeClass('error');
+
+					return false;
+				});
 
 		// document keypress
 		$(document)
@@ -214,15 +226,27 @@
 	 * @return {Void}
 	 */
 	var _error = function(jqXHR) {
+		var message = 'Unknown error';
 		if (jqXHR.status == 0) {
-			window.pywebcmd.log('error', 'Server not responding');
+			message = 'Server not responding';
 		}
 		else if (jqXHR.status == 500) {
-			window.pywebcmd.log('error', jqXHR.responseJSON.message);
+			message = jqXHR.responseJSON.message;
 		}
-		else {
-			window.pywebcmd.log('error', 'Unknown error');
-		}
+
+		window.pywebcmd.log('error', message);
+
+		if ($(window.pywebcmd.ui.dialog.error.title).data('pywebcmd-html')) $(window.pywebcmd.ui.dialog.error.title).text($(window.pywebcmd.ui.dialog.error.title).data('pywebcmd-html').replace('{message}', message));
+		if ($(window.pywebcmd.ui.dialog.error.title).data('pywebcmd-title')) $(window.pywebcmd.ui.dialog.error.title).attr('title', $(window.pywebcmd.ui.dialog.error.title).data('pywebcmd-html').replace('{message}', message));
+		if ($(window.pywebcmd.ui.dialog.error.message).data('pywebcmd-html')) $(window.pywebcmd.ui.dialog.error.message).text($(window.pywebcmd.ui.dialog.error.message).data('pywebcmd-html').replace('{message}', message));
+		if ($(window.pywebcmd.ui.dialog.error.message).data('pywebcmd-title')) $(window.pywebcmd.ui.dialog.error.message).attr('title', $(window.pywebcmd.ui.dialog.error.title).data('pywebcmd-message').replace('{message}', message));
+
+		$(window.pywebcmd.ui.dialog.parent)
+			.removeClass('loading')
+			.removeClass('fileinfo')
+			.removeClass('progress')
+			.removeClass('error')
+			.addClass('error');
 	}
 
 	/**
@@ -393,14 +417,14 @@
 	 */
 	var _navclick = function(event) {
 		if ( ! $(this).parent().hasClass('disabled')) {
-			if ($(this).is(window.pywebcmd.ui.copy))       _cp('', '');
-			if ($(this).is(window.pywebcmd.ui.move))       _mv('', '');
-			if ($(this).is(window.pywebcmd.ui.rename))     _mv('', '');
-			if ($(this).is(window.pywebcmd.ui.delete))     _rm('');
-			if ($(this).is(window.pywebcmd.ui.newfile))    _nf('', '');
-			if ($(this).is(window.pywebcmd.ui.newdir))     _nd('', '');
-			if ($(this).is(window.pywebcmd.ui.download))   _dl('');
-			if ($(this).is(window.pywebcmd.ui.properties)) _pr('');
+			if ($(this).is(window.pywebcmd.ui.nav.copy))       _cp('', '');
+			if ($(this).is(window.pywebcmd.ui.nav.move))       _mv('', '');
+			if ($(this).is(window.pywebcmd.ui.nav.rename))     _mv('', '');
+			if ($(this).is(window.pywebcmd.ui.nav.delete))     _rm('');
+			if ($(this).is(window.pywebcmd.ui.nav.newfile))    _nf('', '');
+			if ($(this).is(window.pywebcmd.ui.nav.newdir))     _nd('', '');
+			if ($(this).is(window.pywebcmd.ui.nav.download))   _dl('');
+			if ($(this).is(window.pywebcmd.ui.nav.properties)) _pr('');
 		}
 
 		return false;
@@ -440,14 +464,14 @@
 		var canproperties = candownload
 			|| ($(rows).length == 1 && $(rows).first().find('td.basename').text() == '..');
 
-		$(window.pywebcmd.ui.copy).parent().removeClass('disabled').addClass(cancopy ? 'temp' : 'disabled').removeClass('temp');
-		$(window.pywebcmd.ui.move).parent().removeClass('disabled').addClass(canmove ? 'temp' : 'disabled').removeClass('temp');
-		$(window.pywebcmd.ui.rename).parent().removeClass('disabled').addClass(canrename ? 'temp' : 'disabled').removeClass('temp');
-		$(window.pywebcmd.ui.delete).parent().removeClass('disabled').addClass(candelete ? 'temp' : 'disabled').removeClass('temp');
-		$(window.pywebcmd.ui.newfile).parent().removeClass('disabled').addClass(cannewfile ? 'temp' : 'disabled').removeClass('temp');
-		$(window.pywebcmd.ui.newdir).parent().removeClass('disabled').addClass(cannewdir ? 'temp' : 'disabled').removeClass('temp');
-		$(window.pywebcmd.ui.download).parent().removeClass('disabled').addClass(candownload ? 'temp' : 'disabled').removeClass('temp');
-		$(window.pywebcmd.ui.properties).parent().removeClass('disabled').addClass(canproperties ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.copy).parent().removeClass('disabled').addClass(cancopy ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.move).parent().removeClass('disabled').addClass(canmove ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.rename).parent().removeClass('disabled').addClass(canrename ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.delete).parent().removeClass('disabled').addClass(candelete ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.newfile).parent().removeClass('disabled').addClass(cannewfile ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.newdir).parent().removeClass('disabled').addClass(cannewdir ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.download).parent().removeClass('disabled').addClass(candownload ? 'temp' : 'disabled').removeClass('temp');
+		$(window.pywebcmd.ui.nav.properties).parent().removeClass('disabled').addClass(canproperties ? 'temp' : 'disabled').removeClass('temp');
 	}
 
 	/**
@@ -667,6 +691,14 @@
 	 * @return {Void}
 	 */
 	var _pr = function(source) {
+		$(window.pywebcmd.ui.dialog.parent)
+			.removeClass('loading')
+			.removeClass('fileinfo')
+			.removeClass('progress')
+			.removeClass('error')
+			.addClass('loading')
+			.addClass('fileinfo');
+
 		var block = $(false);
 		if ($(window.pywebcmd.ui.lblock).hasClass('selected')) block = window.pywebcmd.ui.lblock;
 		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;

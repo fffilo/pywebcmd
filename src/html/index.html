@@ -121,6 +121,74 @@
 				<p>created by <a href="mailto:{email}">{author}</a></p>
 			</footer>
 		</div>
+		<div class="dialog">
+			<div>
+				<div class="fileinfo">
+					<a class="close" href="#">&#x2716;</a>
+					<h3 class="title">{count} file(s) selected</h3>
+					<img class="icon size-64" src="/ico/64/text-plain" alt="" />
+					<div>
+						<dl class="basename">
+							<dt class="key" title="{basename}">Name</dt>
+							<dd class="value" title="{basename}">{basename}</dd>
+						</dl>
+						<dl class="dirname">
+							<dt class="key" title="{dirname}">Location</dt>
+							<dd class="value" title="{dirname}">{dirname}</dd>
+						</dl>
+						<dl class="type mime">
+							<dt class="key" title="{type} ({mime})">Type</dt>
+							<dd class="value" title="{type} ({mime})">{type} ({mime})</dd>
+						</dl>
+						<dl class="owner group">
+							<dt class="key" title="{owner}:{group}">Owner</dt>
+							<dd class="value" title="{owner}:{group}">{owner}:{group}</dd>
+						</dl>
+						<dl class="permission">
+							<dt class="key" title="{permission}">Permission</dt>
+							<dd class="value" title="{permission}">{permission}</dd>
+						</dl>
+						<dl class="size">
+							<dt class="key" title="{size}">Size</dt>
+							<dd class="value" title="{size}B">{size}B</dd>
+						</dl>
+						<dl class="ctime">
+							<dt class="key" title="{ctime}">Created</dt>
+							<dd class="value" title="{ctime}">{ctime}</dd>
+						</dl>
+						<dl class="mtime">
+							<dt class="key" title="{mtime}">Modified</dt>
+							<dd class="value" title="{mtime}">{mtime}</dd>
+						</dl>
+						<dl class="atime">
+							<dt class="key" title="{atime}">Accessed</dt>
+							<dd class="value" title="{atime}">{atime}</dd>
+						</dl>
+					</div>
+				</div>
+				<div class="progress">
+					<a class="close" href="#">&#x2716;</a>
+					<h3 class="title">{action}...</h3>
+					<div>
+						<p class="label" title="{action} from {source} to {destination}">from {source} to {destination}</p>
+						<div>
+							<div>
+								<div class="meter" style="width: 25%;">
+									<span></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="error">
+					<a class="close" href="#">&#x2716;</a>
+					<h3 class="title">Error...</h3>
+					<div>
+						<p class="message">{message}</p>
+					</div>
+				</div>
+			</div>
+		</div>
 		<script src="js/jquery-1.11.3.min.js"></script>
 		<script src="js/pywebcmd.log.js"></script>
 		<script src="js/pywebcmd.api.js"></script>
