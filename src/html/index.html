@@ -123,52 +123,77 @@
 		</div>
 		<div class="dialog">
 			<div>
+				<div class="login">
+					<header>
+						<h3 class="title">Login</h3>
+					</header>
+					<div>
+						<fieldset>
+							<label for="username">Username</label>
+							<input id="username" placeholder="username" type="text" />
+						</fieldset>
+						<fieldset>
+							<label for="password">Password</label>
+							<input id="password" placeholder="password" type="password" />
+						</fieldset>
+					</div>
+					<footer>
+						<a class="ok" href="#">Ok</a>
+						<a class="cancel disabled" href="#">Cancel</a>
+					</footer>
+				</div>
 				<div class="fileinfo">
-					<a class="close" href="#">&#x2716;</a>
-					<h3 class="title">{count} file(s) selected</h3>
+					<header>
+						<h3 class="title">{count} file(s) selected</h3>
+					</header>
 					<img class="icon size-64" src="/ico/64/text-plain" alt="" />
 					<div>
-						<dl class="basename">
-							<dt class="key" title="{basename}">Name</dt>
-							<dd class="value" title="{basename}">{basename}</dd>
+						<dl class="basename" title="{basename}">
+							<dt class="key">Name</dt>
+							<dd class="value">{basename}</dd>
 						</dl>
-						<dl class="dirname">
-							<dt class="key" title="{dirname}">Location</dt>
-							<dd class="value" title="{dirname}">{dirname}</dd>
+						<dl class="dirname" title="{dirname}">
+							<dt class="key">Location</dt>
+							<dd class="value">{dirname}</dd>
 						</dl>
-						<dl class="type mime">
-							<dt class="key" title="{type} ({mime})">Type</dt>
-							<dd class="value" title="{type} ({mime})">{type} ({mime})</dd>
+						<dl class="type mime" title="{type} ({mime})">
+							<dt class="key"({mime})">Type</dt>
+							<dd class="value">{type} ({mime})</dd>
 						</dl>
-						<dl class="owner group">
-							<dt class="key" title="{owner}:{group}">Owner</dt>
-							<dd class="value" title="{owner}:{group}">{owner}:{group}</dd>
+						<dl class="owner" title="{owner}:{group}">
+							<dt class="key"{group}">Owner</dt>
+							<dd class="value">{owner}:{group}</dd>
 						</dl>
-						<dl class="permission">
-							<dt class="key" title="{permission}">Permission</dt>
-							<dd class="value" title="{permission}">{permission}</dd>
+						<dl class="permission title="{permission}">
+							<dt class="key">Permission</dt>
+							<dd class="value" >{permission}</dd>
 						</dl>
-						<dl class="size">
-							<dt class="key" title="{size}">Size</dt>
-							<dd class="value" title="{size}B">{size}B</dd>
+						<dl class="size" title="{size}B">
+							<dt class="key">Size</dt>
+							<dd class="value" ">{size}B</dd>
 						</dl>
-						<dl class="ctime">
-							<dt class="key" title="{ctime}">Created</dt>
-							<dd class="value" title="{ctime}">{ctime}</dd>
+						<dl class="ctime" title="{ctime}">
+							<dt class="key">Created</dt>
+							<dd class="value" >{ctime}</dd>
 						</dl>
-						<dl class="mtime">
-							<dt class="key" title="{mtime}">Modified</dt>
-							<dd class="value" title="{mtime}">{mtime}</dd>
+						<dl class="mtime" title="{mtime}">
+							<dt class="key">Modified</dt>
+							<dd class="value" >{mtime}</dd>
 						</dl>
-						<dl class="atime">
-							<dt class="key" title="{atime}">Accessed</dt>
-							<dd class="value" title="{atime}">{atime}</dd>
+						<dl class="atime" title="{atime}">
+							<dt class="key">Accessed</dt>
+							<dd class="value" >{atime}</dd>
 						</dl>
 					</div>
+					<footer>
+						<a class="ok" href="#">Ok</a>
+						<a class="cancel disabled" href="#">Cancel</a>
+					</footer>
 				</div>
 				<div class="progress">
-					<a class="close" href="#">&#x2716;</a>
-					<h3 class="title">{action}...</h3>
+					<header>
+						<h3 class="title">{action}...</h3>
+					</header>
 					<div>
 						<p class="label" title="{action} from {source} to {destination}">from {source} to {destination}</p>
 						<div>
@@ -179,17 +204,27 @@
 							</div>
 						</div>
 					</div>
+					<footer>
+						<a class="ok disabled" href="#">Ok</a>
+						<a class="cancel" href="#">Cancel</a>
+					</footer>
 				</div>
 				<div class="error">
-					<a class="close" href="#">&#x2716;</a>
-					<h3 class="title">Error...</h3>
+					<header>
+						<h3 class="title">Error...</h3>
+					</header>
 					<div>
 						<p class="message">{message}</p>
 					</div>
+					<footer>
+						<a class="ok" href="#">Ok</a>
+						<a class="cancel disabled" href="#">Cancel</a>
+					</footer>
 				</div>
 			</div>
 		</div>
 		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="js/sha512.js"></script>
 		<script src="js/pywebcmd.log.js"></script>
 		<script src="js/pywebcmd.api.js"></script>
 		<script src="js/pywebcmd.file.js"></script>

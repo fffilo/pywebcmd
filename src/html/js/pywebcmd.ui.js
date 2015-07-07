@@ -41,8 +41,15 @@
 
 	var _dialog = function() {
 		window.pywebcmd.ui.dialog = {};
-
 		window.pywebcmd.ui.dialog.parent = $('.dialog');
+
+		window.pywebcmd.ui.dialog.login = {};
+		window.pywebcmd.ui.dialog.login.parent = $(window.pywebcmd.ui.dialog.parent).find('.login');
+		window.pywebcmd.ui.dialog.login.username = $(window.pywebcmd.ui.dialog.login.parent).find('#username');
+		window.pywebcmd.ui.dialog.login.password = $(window.pywebcmd.ui.dialog.login.parent).find('#password');
+		window.pywebcmd.ui.dialog.login.ok = $(window.pywebcmd.ui.dialog.login.parent).find('.ok').first();
+		window.pywebcmd.ui.dialog.login.cancel = $(window.pywebcmd.ui.dialog.login.parent).find('.cancel').first();
+
 		window.pywebcmd.ui.dialog.fileinfo = {};
 		window.pywebcmd.ui.dialog.fileinfo.parent = $(window.pywebcmd.ui.dialog.parent).find('.fileinfo');
 		window.pywebcmd.ui.dialog.fileinfo.title = $(window.pywebcmd.ui.dialog.fileinfo.parent).find('.title').first();
@@ -61,6 +68,8 @@
 			$(window.pywebcmd.ui.dialog.fileinfo[value].value).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.fileinfo[value].value).text());
 			$(window.pywebcmd.ui.dialog.fileinfo[value].value).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.fileinfo[value].value).attr('title'));
 		});
+		window.pywebcmd.ui.dialog.fileinfo.ok = $(window.pywebcmd.ui.dialog.fileinfo.parent).find('.ok').first();
+		window.pywebcmd.ui.dialog.fileinfo.cancel = $(window.pywebcmd.ui.dialog.fileinfo.parent).find('.cancel').first();
 
 		window.pywebcmd.ui.dialog.progress = {};
 		window.pywebcmd.ui.dialog.progress.parent = $(window.pywebcmd.ui.dialog.parent).find('.progress');
@@ -71,6 +80,8 @@
 		$(window.pywebcmd.ui.dialog.progress.label).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.progress.label).text());
 		$(window.pywebcmd.ui.dialog.progress.label).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.progress.label).attr('title'));
 		window.pywebcmd.ui.dialog.progress.meter = $(window.pywebcmd.ui.dialog.progress.parent).find('.meter').first();
+		window.pywebcmd.ui.dialog.progress.ok = $(window.pywebcmd.ui.dialog.progress.parent).find('.ok').first();
+		window.pywebcmd.ui.dialog.progress.cancel = $(window.pywebcmd.ui.dialog.progress.parent).find('.cancel').first();
 
 		window.pywebcmd.ui.dialog.error = {};
 		window.pywebcmd.ui.dialog.error.parent = $(window.pywebcmd.ui.dialog.parent).find('.error');
@@ -80,6 +91,8 @@
 		window.pywebcmd.ui.dialog.error.message = $(window.pywebcmd.ui.dialog.error.parent).find('.message').first();
 		window.pywebcmd.ui.dialog.error.message.data('pywebcmd-html', $(window.pywebcmd.ui.dialog.error.message).text());
 		window.pywebcmd.ui.dialog.error.message.data('pywebcmd-title', $(window.pywebcmd.ui.dialog.error.message).attr('title'));
+		window.pywebcmd.ui.dialog.error.ok = $(window.pywebcmd.ui.dialog.error.parent).find('.ok').first();
+		window.pywebcmd.ui.dialog.error.cancel = $(window.pywebcmd.ui.dialog.error.parent).find('.cancel').first();
 
 		var match = $(window.pywebcmd.ui.dialog.fileinfo.icon).attr('class').toString().match(/(^|\s)size\-([0-9]+)(\s|$)/);
 		if (match && ! isNaN(match[2] * 1)) {

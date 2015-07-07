@@ -22,7 +22,7 @@
 }
 
 /* reset */
-body, div, pre, ul, li, dl, dt, dd, table, nav, header, main, section, footer, h1, h2, h3, h4, h5, h6 { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; }
+body, div, pre, ul, li, dl, dt, dd, fieldset, table, nav, header, main, section, footer, h1, h2, h3, h4, h5, h6 { display: block; margin: 0; padding: 0; line-height: 1.5; font-weight: normal; border: 0 none; }
 img, a { outline: 0 none; border: 0 none; }
 h1 { font-size: 28px; }
 h2 { font-size: 24px; }
@@ -107,10 +107,15 @@ body > div.wrapper > footer > p a { color: #aaa; text-decoration: none; }
 body > div.dialog { position: fixed; visibility: hidden; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0, 0, 0, 0.2); opacity: 0; transition: all 0.3s ease 0s; }
 body > div.dialog > div { position: absolute; display: block; left: 50%; top: 50%; transform: translate(-50%, -50%); }
 body > div.dialog > div > div { display: none; width: 480px; padding: 24px; background: #fff; -webkit-border-radius: 8px; border-radius: 8px; transform: scale(0.7); transition: all 0.3s ease 0s; -webkit-box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); }
-body > div.dialog > div > div > a { position: absolute; display: block; right: 12px; top: 12px; width: 24px; height: 24px; line-height: 24px; text-align: center; text-decoration: none; color: #666; }
-body > div.dialog > div > div > h3 { margin-bottom: 24px; }
-body > div.dialog > div > div > img { position: absolute; }
+body > div.dialog > div > div > header { margin: 0 0 12px 0; padding: 0 0 12px 0; border-bottom: 1px solid #ccc; }
+body > div.dialog > div > div > img { position: absolute; margin: 12px; }
 body > div.dialog > div > div > div { background: none center 40% no-repeat; }
+body > div.dialog > div > div > footer { margin: 12px 0 0 0; padding: 24px 0 0 0; border-top: 1px solid #ccc; text-align: right; }
+body > div.dialog > div > div > footer > a { display: inline-block; margin: 0 0 0 4px; padding: 4px 12px; font-size: 13px; font-weight: normal; cursor: pointer; text-align: center; text-decoration: none; vertical-align: middle; background: #fafafa; border: 1px solid #ccc; color: #666; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; -moz-user-select: -moz-none; border-radius: 6px; -webkit-border-radius: 6px; -moz-user-select: none; }
+body > div.dialog > div > div > footer > a:hover { background-color: #f0f0f0; border-color: #bababa; color: #666; }
+body > div.dialog > div > div > footer > a.disabled { opacity: 0.4; background-color: #fafafa; border-color: 1px solid #ccc; color: #666; pointer-events: none; }
+body > div.dialog > div > div.login > div > fieldset > label { cursor: pointer; }
+body > div.dialog > div > div.login > div > fieldset > input {}
 body > div.dialog > div > div.fileinfo > div > dl { margin: 0; }
 body > div.dialog > div > div.fileinfo > div > dl > dt { width: 148px; margin: 0; line-height: 24px; font-size: 13px; font-weight: bold; text-align: right; }
 body > div.dialog > div > div.fileinfo > div > dl > dd { margin: -24px 0 0 162px; line-height: 24px; font-size: 13px; }
@@ -123,8 +128,22 @@ body > div.dialog > div > div.progress > div > div > div > div.meter > span { co
 body > div.dialog.loading > div > div > img { display: none; }
 body > div.dialog.loading > div > div > div { background-image: url("/img/loadinfo.gif"); }
 body > div.dialog.loading > div > div > div * { visibility: hidden; }
-body > div.dialog.fileinfo, body > div.dialog.progress, body > div.dialog.error { visibility: visible; opacity: 1; }
-body > div.dialog.fileinfo > div > div.fileinfo, body > div.dialog.progress > div > div.progress, body > div.dialog.error > div > div.error { display: block; transform: scale(1); }
+body > div.dialog.login,
+body > div.dialog.fileinfo,
+body > div.dialog.progress,
+body > div.dialog.error { visibility: visible; opacity: 1; }
+body > div.dialog.login > div > div.login,
+body > div.dialog.fileinfo > div > div.fileinfo,
+body > div.dialog.progress > div > div.progress,
+body > div.dialog.error > div > div.error { display: block; transform: scale(1); }
+
+/* login error animation */
+body > div.dialog.loginerror > div > div { animation: loginerror 0.5s linear; }
+@keyframes loginerror {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+    20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
 
 /* progress bar animation */
 body > div.dialog > div > div.progress > div > div > div > div.meter > span { animation: move 2s linear infinite; }

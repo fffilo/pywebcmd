@@ -135,12 +135,6 @@ class HttpRequestHandler(Http.RequestHandler):
 		if self.path == '/index.html':
 			self.send_error(404)
 		elif self.path == '/':
-			self.session.start()
-			# to do: implement login
-			self.session.set('path', '/home')
-			self.session.set('username', 'guest')
-			self.session.set('permission', [])
-
 			path = self.translate_path(self.path)
 			ctype = self.guess_type(path)
 

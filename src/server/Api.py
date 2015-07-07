@@ -8,7 +8,6 @@ __service__ = None
 __appname__ = None
 __description__ = None
 
-ICONSIZE = 16
 
 
 def response(RequestHandler, data):
@@ -25,7 +24,7 @@ def response(RequestHandler, data):
 
 def do_GET_ico(RequestHandler):
 	date = None
-	size = ICONSIZE
+	size = 16
 	iname = 'empty'
 	arr = RequestHandler.path.split('/')
 
@@ -43,9 +42,6 @@ def do_GET_ico(RequestHandler):
 		iname = str(arr[3])
 	except Exception, e:
 		pass
-
-	# import email.utils, time
-	# time.mktime(email.utils.parsedate('Mon, 29 Jun 2015 16:52:52 GMT'))
 
 	result = ffile.icon(iname, size)
 	if result is None:
@@ -73,6 +69,47 @@ def do_POST_status(RequestHandler):
 
 	response(RequestHandler, result)
 
+def do_POST_login(RequestHandler):
+	RequestHandler.session.destroy()
+	RequestHandler.session.start()
+
+	data = RequestHandler.data()
+	result = {
+		'source': None,
+		'destination': None,
+		'status': 500,
+		'message': 'Wrong username/password',
+		'data': None
+	}
+
+	if not 'username' in data:
+		result['message'] = 'Username not provided'
+	elif not 'password' in data:
+		result['message'] = 'Password not provided'
+	else:
+		for user in CREDENTIALS:
+			if 'username' in user and 'password' in user:
+				if user['username'] == data['username'] and user['password'] == data['password']:
+					RequestHandler.session.set('username', user['username'])
+					RequestHandler.session.set('path', '/')
+					if 'path' in user:
+						RequestHandler.session.set('path', user['path'])
+					RequestHandler.session.set('permission', [])
+					if 'permission' in user:
+						RequestHandler.session.set('permission', user['permission'])
+
+					result['status'] = 200
+					result['message'] = 'OK'
+					if 'path' in user:
+						result['source'] = user['path']
+						result['destination'] = user['path']
+					if 'permission' in user:
+						result['data'] = {
+							'permission': user['permission']
+						}
+
+	response(RequestHandler, result)
+
 def do_POST_ls(RequestHandler):
 	RequestHandler.session.start()
 
@@ -85,15 +122,15 @@ def do_POST_ls(RequestHandler):
 		'data': None
 	}
 
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
 	if 'source' in data:
 		result['source'] = data['source']
 	if not 'source' in data and not RequestHandler.session.get('path') is None:
 		result['source'] = RequestHandler.session.get('path')
-	if not RequestHandler.session.get('username'):
-		result['status'] = 500
-		result['message'] = 'Not logged in.'
-		response(RequestHandler, result)
-		return
 	if result['source'] is None:
 		result['status'] = 500
 		result['message'] = 'Source not provided.'
@@ -133,6 +170,13 @@ def do_POST_cp(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)
 
 def do_POST_mv(RequestHandler):
@@ -143,6 +187,13 @@ def do_POST_mv(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)
 
 def do_POST_rm(RequestHandler):
@@ -153,6 +204,13 @@ def do_POST_rm(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)
 
 def do_POST_nf(RequestHandler):
@@ -163,6 +221,13 @@ def do_POST_nf(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)
 
 def do_POST_nd(RequestHandler):
@@ -173,6 +238,13 @@ def do_POST_nd(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)
 
 def do_POST_dl(RequestHandler):
@@ -183,6 +255,13 @@ def do_POST_dl(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)
 
 def do_POST_pr(RequestHandler):
@@ -193,6 +272,13 @@ def do_POST_pr(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)
 
 def do_POST_st(RequestHandler):
@@ -203,4 +289,11 @@ def do_POST_st(RequestHandler):
 		'message': 'Work in progress',
 		'data': None
 	}
+
+	if not RequestHandler.session.get('username'):
+		result['status'] = 401
+		result['message'] = 'Not logged in.'
+		response(RequestHandler, result)
+		return
+
 	response(RequestHandler, result)

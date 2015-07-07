@@ -93,23 +93,21 @@ def help():
 if __name__ == '__main__':
 
 	# arguments (default)
-	App.Api.ICONSIZE = 16
 	App.Http.ADDRESS = '0.0.0.0'
 	App.Http.PORT = 8008
-	App.CREDENTIALS = None
+	App.Api.CREDENTIALS = None
 
 	# config
 	try:
 		config = json.load(open('config.json'))
-		if 'credentials' in config: App.CREDENTIALS = config['credentials']
+		if 'credentials' in config: App.Api.CREDENTIALS = config['credentials']
 		if 'listen' in config and 'address' in config['listen']: App.Http.ADDRESS = str(config['listen']['address'])
 		if 'listen' in config and 'port' in config['listen']: App.Http.PORT = int(config['listen']['port'])
-		if 'icon' in config and 'size' in config['icon']: App.Api.ICONSIZE = int(config['icon']['size'])
 	except Exception, e:
 		pass
 
 	# check credentials
-	if App.CREDENTIALS is None or not type(App.CREDENTIALS) is list or len(App.CREDENTIALS) == 0:
+	if App.Api.CREDENTIALS is None or not type(App.Api.CREDENTIALS) is list or len(App.Api.CREDENTIALS) == 0:
 		print 'E:', 'Credentials not defined. Check config file.'
 		exit(1)
 

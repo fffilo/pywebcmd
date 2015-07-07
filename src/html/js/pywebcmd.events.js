@@ -6,7 +6,7 @@
 		_preloader(window.pywebcmd.ui.lblock, true);
 		_preloader(window.pywebcmd.ui.rblock, true);
 		window.pywebcmd.log('command', 'Initial directory list')
-		window.pywebcmd.api.ls('/home/fffilo', _initList);
+		window.pywebcmd.api.ls(undefined, _initList);
 
 		// sort table
 		$(false)
@@ -49,13 +49,45 @@
 			.on('click', 'a', _navclick);
 
 		// dialog
-		$(window.pywebcmd.ui.dialog.parent)
-			.find('a.close')
+		$(false)
+			.add(window.pywebcmd.ui.dialog.login.ok)
+			.add(window.pywebcmd.ui.dialog.login.cancel)
 				.on('click', function() {
-					$(window.pywebcmd.ui.dialog.parent)
-						.removeClass('fileinfo')
-						.removeClass('progress')
-						.removeClass('error');
+					window.pywebcmd.log('command', 'Login request');
+
+					window.pywebcmd.api.login($(window.pywebcmd.ui.dialog.login.username).val(), CryptoJS.SHA512($(window.pywebcmd.ui.dialog.login.password).val().toString()).toString(), function(jqXHR) {
+						if (jqXHR.status == 200) {
+							window.pywebcmd.log('success', jqXHR.responseJSON.message);
+
+							$(window.pywebcmd.ui.dialog.parent)
+								.removeClass('loading')
+								.removeClass('login')
+								.removeClass('fileinfo')
+								.removeClass('progress')
+								.removeClass('error');
+
+							_preloader(window.pywebcmd.ui.lblock, true);
+							_preloader(window.pywebcmd.ui.rblock, true);
+							window.pywebcmd.log('command', 'Initial directory list')
+							window.pywebcmd.api.ls(undefined, _initList);
+						}
+						else {
+							var message = 'Unknown error';
+							if (jqXHR && jqXHR.responseJSON && jqXHR.responseJSON.message) {
+								message = jqXHR.responseJSON.message;
+							}
+							else if (jqXHR.status == 0) {
+								message = 'Server not responding';
+							}
+
+							window.pywebcmd.log('error', message);
+
+							$(window.pywebcmd.ui.dialog.parent).addClass('loginerror');
+							setTimeout(function() {
+								$(window.pywebcmd.ui.dialog.parent).removeClass('loginerror');
+							}, 500);
+						}
+					});
 
 					return false;
 				});
@@ -227,11 +259,11 @@
 	 */
 	var _error = function(jqXHR) {
 		var message = 'Unknown error';
-		if (jqXHR.status == 0) {
-			message = 'Server not responding';
-		}
-		else if (jqXHR.status == 500) {
+		if (jqXHR && jqXHR.responseJSON && jqXHR.responseJSON.message) {
 			message = jqXHR.responseJSON.message;
+		}
+		else if (jqXHR.status == 0) {
+			message = 'Server not responding';
 		}
 
 		window.pywebcmd.log('error', message);
@@ -243,10 +275,19 @@
 
 		$(window.pywebcmd.ui.dialog.parent)
 			.removeClass('loading')
+			.removeClass('login')
 			.removeClass('fileinfo')
 			.removeClass('progress')
 			.removeClass('error')
-			.addClass('error');
+
+		if (jqXHR.status == 401) {
+			$(window.pywebcmd.ui.dialog.parent)
+				.addClass('login');
+		}
+		else {
+			$(window.pywebcmd.ui.dialog.parent)
+				.addClass('error');
+		}
 	}
 
 	/**

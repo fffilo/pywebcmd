@@ -18,6 +18,15 @@
 		});
 	}
 
+	window.pywebcmd.api.login = function(username, password, callback) {
+		var data = {
+			username : username,
+			password : password
+		}
+
+		_ajax('/login', data, callback);
+	}
+
 	window.pywebcmd.api.ls = function(source, callback) {
 		var data = {
 			source      : source || undefined,
