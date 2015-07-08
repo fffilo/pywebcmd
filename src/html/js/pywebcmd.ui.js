@@ -103,4 +103,5 @@
 	var _log = function() {
 		window.pywebcmd.ui.log = $('.log');
 	}
+
 })(jQuery);

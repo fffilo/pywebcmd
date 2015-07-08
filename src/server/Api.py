@@ -77,7 +77,7 @@ def do_POST_login(RequestHandler):
 	result = {
 		'source': None,
 		'destination': None,
-		'status': 500,
+		'status': 401,
 		'message': 'Wrong username/password',
 		'data': None
 	}
@@ -163,6 +163,8 @@ def do_POST_ls(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_cp(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
@@ -180,6 +182,8 @@ def do_POST_cp(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_mv(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
@@ -197,6 +201,8 @@ def do_POST_mv(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_rm(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
@@ -214,6 +220,8 @@ def do_POST_rm(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_nf(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
@@ -231,6 +239,8 @@ def do_POST_nf(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_nd(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
@@ -248,6 +258,8 @@ def do_POST_nd(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_dl(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
@@ -265,6 +277,8 @@ def do_POST_dl(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_pr(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
@@ -282,6 +296,8 @@ def do_POST_pr(RequestHandler):
 	response(RequestHandler, result)
 
 def do_POST_st(RequestHandler):
+	RequestHandler.session.start()
+
 	result = {
 		'source': None,
 		'destination': None,
