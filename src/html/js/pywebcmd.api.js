@@ -3,38 +3,38 @@
 	window.pywebcmd     = window.pywebcmd     || {};
 	window.pywebcmd.api = window.pywebcmd.api || {};
 
-	var _ajax = function(url, data, callback) {
+	var _ajax = function(method, data) {
 		$.ajax({
-			url: url,
+			url: '/' + method,
 			method: 'post',
 			contentType: 'application/json',
 			dataType: 'json',
 			data: JSON.stringify(data),
 			complete: function(jqXHR, textStatus) {
-				if (typeof(callback) === 'function') {
-					callback.call(this, jqXHR, textStatus);
+				if (window.pywebcmd.callback && typeof(window.pywebcmd.callback[method] == 'function')) {
+					window.pywebcmd.callback[method].call(this, jqXHR, textStatus);
 				}
 			}
 		});
 	}
 
-	window.pywebcmd.api.login = function(username, password, callback) {
+	window.pywebcmd.api.login = function(username, password) {
 		var data = {
 			username : username,
 			password : password
 		}
 
-		_ajax('/login', data, callback);
+		_ajax('login', data);
 	}
 
-	window.pywebcmd.api.ls = function(source, callback) {
+	window.pywebcmd.api.ls = function(source) {
 		var data = {
 			source      : source || undefined,
 			destination : undefined,
 			properties  : '' //[ icon, basename, dirname, type, mime, owner, group, permission, size, ctime, mtime, atime ]
 		}
 
-		_ajax('/ls', data, callback);
+		_ajax('ls', data);
 
 		/*
 			// list directory
@@ -54,13 +54,13 @@
 		*/
 	}
 
-	window.pywebcmd.api.cp = function(source, destination, callback) {
+	window.pywebcmd.api.cp = function(source, destination) {
 		var data = {
 			source      : source      || undefined,
 			destination : destination || undefined
 		}
 
-		_ajax('/cp', data, callback);
+		_ajax('cp', data);
 
 		/*
 			// copy file/directory
@@ -74,13 +74,13 @@
 		*/
 	}
 
-	window.pywebcmd.api.mv = function(source, destination, callback) {
+	window.pywebcmd.api.mv = function(source, destination) {
 		var data = {
 			source      : source      || undefined,
 			destination : destination || undefined
 		}
 
-		_ajax('/mv', data, callback);
+		_ajax('mv', data);
 
 		/*
 			// move/rename file/directory
@@ -94,13 +94,13 @@
 		*/
 	}
 
-	window.pywebcmd.api.rm = function(source, callback) {
+	window.pywebcmd.api.rm = function(source) {
 		var data = {
 			source      : source || undefined,
 			destination : undefined
 		}
 
-		_ajax('/rm', data, callback);
+		_ajax('rm', data);
 
 		/*
 			// delete file/directory
@@ -114,40 +114,40 @@
 		*/
 	}
 
-	window.pywebcmd.api.nf = function(source, callback) {
+	window.pywebcmd.api.nf = function(source) {
 		var data = {
 			source      : source || undefined,
 			destination : undefined
 		}
 
-		_ajax('/nf', data, callback);
+		_ajax('nf', data);
 	}
 
-	window.pywebcmd.api.nd = function(source, callback) {
+	window.pywebcmd.api.nd = function(source) {
 		var data = {
 			source      : source || undefined,
 			destination : undefined
 		}
 
-		_ajax('/nd', data, callback);
+		_ajax('nd', data);
 	}
 
-	window.pywebcmd.api.dl = function(source, callback) {
+	window.pywebcmd.api.dl = function(source) {
 		var data = {
 			source      : source || undefined,
 			destination : undefined
 		}
 
-		_ajax('/dl', data, callback);
+		_ajax('dl', data);
 	}
 
-	window.pywebcmd.api.pr = function(source, callback) {
+	window.pywebcmd.api.pr = function(source) {
 		var data = {
 			source      : source || undefined,
 			destination : undefined
 		}
 
-		_ajax('/pr', data, callback);
+		_ajax('pr', data);
 
 		/*
 			send = {

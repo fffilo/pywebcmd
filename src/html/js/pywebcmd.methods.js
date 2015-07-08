@@ -242,89 +242,25 @@
 	}
 
 	/**
-	 * Append initial directory list to table(s)
-	 * @param  {Object} jqXHR
-	 * @param  {Object} textStatus
-	 * @return {Void}
-	 */
-	var _lsInit = function() {
-		window.pywebcmd.methods.preloader(window.pywebcmd.ui.lblock, true);
-		window.pywebcmd.methods.preloader(window.pywebcmd.ui.rblock, true);
-
-		_log('command', 'Initial directory list');
-
-		window.pywebcmd.api.ls(undefined, function(jqXHR) {
-			window.pywebcmd.methods.preloader(window.pywebcmd.ui.lblock, false);
-			window.pywebcmd.methods.preloader(window.pywebcmd.ui.rblock, false);
-
-			if (jqXHR.status != 200) {
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
-
-			$(window.pywebcmd.ui.lpath).attr('placeholder', jqXHR.responseJSON.source).val(jqXHR.responseJSON.source);
-			$(window.pywebcmd.ui.rpath).attr('placeholder', jqXHR.responseJSON.source).val(jqXHR.responseJSON.source);
-
-			$(window.pywebcmd.ui.lbody).empty();
-			$(window.pywebcmd.ui.rbody).empty();
-
-			var row = _parse(jqXHR.responseJSON.data);
-			$(row).appendTo(window.pywebcmd.ui.lbody);
-			$(row).clone().appendTo(window.pywebcmd.ui.rbody);
-		});
-	}
-
-	/**
 	 * LS request - append new directory list
-	 * @param  {String} source
+	 * @param  {Mixed} source
 	 * @return {Void}
 	 */
 	var _ls = function(source) {
 		var block = $(false);
-		if ($(window.pywebcmd.ui.lblock).hasClass('selected')) block = window.pywebcmd.ui.lblock;
-		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
+		if (source) {
+			if ($(window.pywebcmd.ui.lblock).hasClass('selected')) block = window.pywebcmd.ui.lblock;
+			if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
+		}
+		else {
+			block = $(block)
+				.add(window.pywebcmd.ui.lblock)
+				.add(window.pywebcmd.ui.rblock);
+		}
 
 		window.pywebcmd.methods.preloader(block, true);
-
-		var head, body, input;
-		if ($(block).is(window.pywebcmd.ui.lblock)) head  = window.pywebcmd.ui.lhead;
-		if ($(block).is(window.pywebcmd.ui.rblock)) head  = window.pywebcmd.ui.rhead;
-		if ($(block).is(window.pywebcmd.ui.lblock)) body  = window.pywebcmd.ui.lbody;
-		if ($(block).is(window.pywebcmd.ui.rblock)) body  = window.pywebcmd.ui.rbody;
-		if ($(block).is(window.pywebcmd.ui.lblock)) input = window.pywebcmd.ui.lpath;
-		if ($(block).is(window.pywebcmd.ui.rblock)) input = window.pywebcmd.ui.rpath;
-
-		_log('command', 'Directory list \'' + source + '\'');
-		window.pywebcmd.api.ls(source, function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				$(input)
-					.val($(input).attr('placeholder'));
-
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Collected ' + jqXHR.responseJSON.data.length + ' item(s) in \'' + jqXHR.responseJSON.source + '\' directory');
-
-			$(input)
-				.attr('placeholder', jqXHR.responseJSON.source)
-				.val(jqXHR.responseJSON.source);
-			$(body)
-				.empty();
-
-			var row = window.pywebcmd.methods.parse(jqXHR.responseJSON.data);
-			$(row).appendTo(body);
-
-			var sort = $(head).find('td,th').filter('.asc,.desc').first();
-			var asc  = !! $(sort).hasClass('asc');
-			$(sort)
-				.removeClass('asc')
-				.removeClass('desc')
-				.addClass(asc ? 'desc' : 'asc')
-				.click();
-		});
+		window.pywebcmd.methods.log('command', source ? 'Directory list \'' + source + '\'' : 'Initial directory list');
+		window.pywebcmd.api.ls(source);
 	}
 
 	/**
@@ -339,17 +275,8 @@
 			.add(window.pywebcmd.ui.rblock);
 
 		window.pywebcmd.methods.preloader(block, true);
-		_log('command', 'Copying \'' + source + '\' to \'' + destination + '\'');
-		window.pywebcmd.api.cp('', '', function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Some success message');
-			// ls?
-		});
+		window.pywebcmd.methods.log('command', 'Copying \'' + source + '\' to \'' + destination + '\'');
+		window.pywebcmd.api.cp(source, destination);
 	}
 
 	/**
@@ -362,25 +289,10 @@
 		var block = $(false)
 			.add(window.pywebcmd.ui.lblock)
 			.add(window.pywebcmd.ui.rblock);
-		var input = $(false)
-			.add(window.pywebcmd.ui.lpath)
-			.add(window.pywebcmd.ui.rpath);
 
 		window.pywebcmd.methods.preloader(block, true);
-		_log('command', 'Moving \'' + source + '\' to \'' + destination + '\'');
-		window.pywebcmd.api.mv('', '', function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				$(input)
-					.val($(input).attr('placeholder'));
-
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Some success message');
-			// ls?
-		});
+		window.pywebcmd.methods.log('command', 'Moving \'' + source + '\' to \'' + destination + '\'');
+		window.pywebcmd.api.mv(source, destination);
 	}
 
 	/**
@@ -394,18 +306,8 @@
 		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
 
 		window.pywebcmd.methods.preloader(block, true);
-
-		_log('command', 'Removing \'' + source + '\'');
-		window.pywebcmd.api.rm('', function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Some success message');
-			// ls?
-		});
+		window.pywebcmd.methods.log('command', 'Removing \'' + source + '\'');
+		window.pywebcmd.api.rm(source);
 	}
 
 	/**
@@ -420,18 +322,8 @@
 		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
 
 		window.pywebcmd.methods.preloader(block, true);
-
-		_log('command', 'Creating file \'' + source + '/' + filename + '\'');
-		window.pywebcmd.api.nf('', function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Some success message');
-			// ls?
-		});
+		window.pywebcmd.methods.log('command', 'Creating file \'' + source + '/' + filename + '\'');
+		window.pywebcmd.api.nf(source + '/' + filename);
 	}
 
 	/**
@@ -446,18 +338,8 @@
 		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
 
 		window.pywebcmd.methods.preloader(block, true);
-
-		_log('command', 'Creating directory \'' + source + '/' + dirname + '\'');
-		window.pywebcmd.api.nd('', function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Some success message');
-			// ls?
-		});
+		window.pywebcmd.methods.log('command', 'Creating directory \'' + source + '/' + dirname + '\'');
+		window.pywebcmd.api.nd(source + '/' + dirname);
 	}
 
 	/**
@@ -471,18 +353,8 @@
 		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
 
 		window.pywebcmd.methods.preloader(block, true);
-
-		_log('command', 'Downloading \'' + source + '\'');
-		window.pywebcmd.api.dl('', function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Some success message');
-			// ls?
-		});
+		window.pywebcmd.methods.log('command', 'Downloading \'' + source + '\'');
+		window.pywebcmd.api.dl(source);
 	}
 
 	/**
@@ -504,18 +376,8 @@
 		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
 
 		window.pywebcmd.methods.preloader(block, true);
-
-		_log('command', 'Properties of \'' + source + '\'');
-		window.pywebcmd.api.pr('', function(jqXHR, textStatus) {
-			window.pywebcmd.methods.preloader(block, false);
-
-			if (jqXHR.status != 200) {
-				return window.pywebcmd.methods.error(jqXHR);
-			}
-
-			_log('success', 'Some success message');
-			// ls?
-		});
+		window.pywebcmd.methods.log('command', 'Properties of \'' + source + '\'');
+		window.pywebcmd.api.pr(source);
 	}
 
 	/**
@@ -525,12 +387,12 @@
 	window.pywebcmd.methods = {
 		preloader : _preloader,
 		error     : _error,
+		log       : _log,
 		selection : _selection,
 		nav       : _nav,
 		time      : _time,
 		size      : _size,
 		parse     : _parse,
-		lsInit    : _lsInit,
 		ls        : _ls,
 		cp        : _cp,
 		mv        : _mv,

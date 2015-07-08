@@ -63,7 +63,7 @@
 				.removeClass('loginerror')
 				.removeClass('login');
 
-			window.pywebcmd.methods.lsInit();
+			window.pywebcmd.methods.ls();
 		}
 		else {
 			window.pywebcmd.methods.error(jqXHR);

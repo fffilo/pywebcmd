@@ -2,7 +2,7 @@
 
 	// bind events on document ready
 	$(document).ready(function(event) {
-		window.pywebcmd.methods.lsInit();
+		window.pywebcmd.methods.ls();
 	});
 
 })(jQuery);
