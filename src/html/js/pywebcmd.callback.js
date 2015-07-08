@@ -203,7 +203,23 @@
 			return window.pywebcmd.methods.error(jqXHR);
 		}
 
-		window.pywebcmd.methods.log('success', 'Some success message');
+		window.pywebcmd.methods.log('success', jqXHR.responseJSON.message);
+
+		var data = $.extend(
+			{},
+			jqXHR.responseJSON.data[0],
+			{
+				size  : parseInt(jqXHR.responseJSON.data[0].size).toLocaleString(),
+				atime : window.pywebcmd.methods.time(jqXHR.responseJSON.data[0].atime),
+				mtime : window.pywebcmd.methods.time(jqXHR.responseJSON.data[0].mtime),
+				ctime : window.pywebcmd.methods.time(jqXHR.responseJSON.data[0].ctime),
+				count : jqXHR.responseJSON.data.length
+			}
+		);
+		window.pywebcmd.methods.html(window.pywebcmd.ui.dialog.fileinfo, data);
+
+		$(window.pywebcmd.ui.dialog.parent)
+			.removeClass('loading');
 	}
 
 })(jQuery);

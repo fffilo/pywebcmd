@@ -53,19 +53,20 @@
 		window.pywebcmd.ui.dialog.fileinfo = {};
 		window.pywebcmd.ui.dialog.fileinfo.parent = $(window.pywebcmd.ui.dialog.parent).find('.fileinfo');
 		window.pywebcmd.ui.dialog.fileinfo.title = $(window.pywebcmd.ui.dialog.fileinfo.parent).find('.title').first();
-		window.pywebcmd.ui.dialog.fileinfo.title.data('pywebcmd-html', $(window.pywebcmd.ui.dialog.fileinfo.title).text());
-		window.pywebcmd.ui.dialog.fileinfo.title.data('pywebcmd-title', $(window.pywebcmd.ui.dialog.fileinfo.title).attr('title'));
+		$(window.pywebcmd.ui.dialog.fileinfo.title).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.fileinfo.title).html());
+		$(window.pywebcmd.ui.dialog.fileinfo.title).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.fileinfo.title).attr('title'));
 		window.pywebcmd.ui.dialog.fileinfo.icon = $(window.pywebcmd.ui.dialog.fileinfo.parent).find('.icon').first();
-		window.pywebcmd.ui.dialog.fileinfo.icon.data('pywebcmd-size', 32);
+		$(window.pywebcmd.ui.dialog.fileinfo.icon).data('pywebcmd-size', 32);
 		$.each(['realpath', 'dirname', 'basename', 'isdir', 'isfile', 'islink', 'type', 'mime', 'encoding', 'owner', 'group', 'permission', 'size', 'ctime', 'mtime', 'atime'], function(key, value) {
 			window.pywebcmd.ui.dialog.fileinfo[value]        = {};
 			window.pywebcmd.ui.dialog.fileinfo[value].parent = $(window.pywebcmd.ui.dialog.fileinfo.parent).find('.' + value);
 			window.pywebcmd.ui.dialog.fileinfo[value].key    = $(window.pywebcmd.ui.dialog.fileinfo[value].parent).find('.key');
 			window.pywebcmd.ui.dialog.fileinfo[value].value  = $(window.pywebcmd.ui.dialog.fileinfo[value].parent).find('.value');
 
-			$(window.pywebcmd.ui.dialog.fileinfo[value].key).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.fileinfo[value].key).text());
+			$(window.pywebcmd.ui.dialog.fileinfo[value].parent).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.fileinfo[value].parent).attr('title'));
+			$(window.pywebcmd.ui.dialog.fileinfo[value].key).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.fileinfo[value].key).html());
 			$(window.pywebcmd.ui.dialog.fileinfo[value].key).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.fileinfo[value].key).attr('title'));
-			$(window.pywebcmd.ui.dialog.fileinfo[value].value).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.fileinfo[value].value).text());
+			$(window.pywebcmd.ui.dialog.fileinfo[value].value).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.fileinfo[value].value).html());
 			$(window.pywebcmd.ui.dialog.fileinfo[value].value).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.fileinfo[value].value).attr('title'));
 		});
 		window.pywebcmd.ui.dialog.fileinfo.ok = $(window.pywebcmd.ui.dialog.fileinfo.parent).find('.ok').first();
@@ -74,10 +75,10 @@
 		window.pywebcmd.ui.dialog.progress = {};
 		window.pywebcmd.ui.dialog.progress.parent = $(window.pywebcmd.ui.dialog.parent).find('.progress');
 		window.pywebcmd.ui.dialog.progress.title = $(window.pywebcmd.ui.dialog.progress.parent).find('.title').first();
-		$(window.pywebcmd.ui.dialog.progress.title).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.progress.title).text());
+		$(window.pywebcmd.ui.dialog.progress.title).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.progress.title).html());
 		$(window.pywebcmd.ui.dialog.progress.title).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.progress.title).attr('title'));
 		window.pywebcmd.ui.dialog.progress.label = $(window.pywebcmd.ui.dialog.progress.parent).find('.label').first();
-		$(window.pywebcmd.ui.dialog.progress.label).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.progress.label).text());
+		$(window.pywebcmd.ui.dialog.progress.label).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.progress.label).html());
 		$(window.pywebcmd.ui.dialog.progress.label).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.progress.label).attr('title'));
 		window.pywebcmd.ui.dialog.progress.meter = $(window.pywebcmd.ui.dialog.progress.parent).find('.meter').first();
 		window.pywebcmd.ui.dialog.progress.ok = $(window.pywebcmd.ui.dialog.progress.parent).find('.ok').first();
@@ -86,17 +87,17 @@
 		window.pywebcmd.ui.dialog.error = {};
 		window.pywebcmd.ui.dialog.error.parent = $(window.pywebcmd.ui.dialog.parent).find('.error');
 		window.pywebcmd.ui.dialog.error.title = $(window.pywebcmd.ui.dialog.error.parent).find('.title').first();
-		window.pywebcmd.ui.dialog.error.title.data('pywebcmd-html', $(window.pywebcmd.ui.dialog.error.title).text());
-		window.pywebcmd.ui.dialog.error.title.data('pywebcmd-title', $(window.pywebcmd.ui.dialog.error.title).attr('title'));
+		$(window.pywebcmd.ui.dialog.error.title).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.error.title).html());
+		$(window.pywebcmd.ui.dialog.error.title).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.error.title).attr('title'));
 		window.pywebcmd.ui.dialog.error.message = $(window.pywebcmd.ui.dialog.error.parent).find('.message').first();
-		window.pywebcmd.ui.dialog.error.message.data('pywebcmd-html', $(window.pywebcmd.ui.dialog.error.message).text());
-		window.pywebcmd.ui.dialog.error.message.data('pywebcmd-title', $(window.pywebcmd.ui.dialog.error.message).attr('title'));
+		$(window.pywebcmd.ui.dialog.error.message).data('pywebcmd-html', $(window.pywebcmd.ui.dialog.error.message).html());
+		$(window.pywebcmd.ui.dialog.error.message).data('pywebcmd-title', $(window.pywebcmd.ui.dialog.error.message).attr('title'));
 		window.pywebcmd.ui.dialog.error.ok = $(window.pywebcmd.ui.dialog.error.parent).find('.ok').first();
 		window.pywebcmd.ui.dialog.error.cancel = $(window.pywebcmd.ui.dialog.error.parent).find('.cancel').first();
 
 		var match = $(window.pywebcmd.ui.dialog.fileinfo.icon).attr('class').toString().match(/(^|\s)size\-([0-9]+)(\s|$)/);
 		if (match && ! isNaN(match[2] * 1)) {
-			window.pywebcmd.ui.dialog.fileinfo.icon.data('pywebcmd-size', match[2] * 1);
+			$(window.pywebcmd.ui.dialog.fileinfo.icon).data('pywebcmd-size', match[2] * 1);
 		}
 	}
 

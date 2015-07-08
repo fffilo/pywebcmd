@@ -119,7 +119,7 @@ body > div.dialog > div.login > div > div > fieldset > label { cursor: pointer; 
 body > div.dialog > div.login > div > div > fieldset > input {}
 body > div.dialog > div.fileinfo > div > div > dl { margin: 0; }
 body > div.dialog > div.fileinfo > div > div > dl > dt { width: 148px; margin: 0; line-height: 24px; font-size: 13px; font-weight: bold; text-align: right; }
-body > div.dialog > div.fileinfo > div > div > dl > dd { margin: -24px 0 0 162px; line-height: 24px; font-size: 13px; }
+body > div.dialog > div.fileinfo > div > div > dl > dd { margin: -24px 0 0 162px; line-height: 24px; font-size: 13px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 body > div.dialog > div.progress > div > div > div { position: relative; height: 16px; padding: 8px; background: rgba(0, 0, 0, 0.1); box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3); -webkit-border-radius: 16px; border-radius: 16px; }
 body > div.dialog > div.progress > div > div > div > div { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 16px; border-radius: 16px; }
 body > div.dialog > div.progress > div > div > div > div > div.meter { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 4px; border-radius: 4px; background-color: rgba(43,83,194,0.6); background-image: linear-gradient(center bottom, rgba(43,83,194,0.6) 37%, rgb(84,84,240) 69%); box-shadow: inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4); transition: width 0.5s ease-in-out; }
@@ -129,6 +129,7 @@ body > div.dialog > div.progress > div > div > div > div > div.meter > span { co
 body > div.dialog.loading > div > div > img { display: none; }
 body > div.dialog.loading > div > div > div { background-image: url("/img/loadinfo.gif"); }
 body > div.dialog.loading > div > div > div * { visibility: hidden; }
+body > div.dialog.count-one > div > div > header > h3 > span { display: none; }
 body > div.dialog.login > div.login > div,
 body > div.dialog.fileinfo > div.fileinfo > div,
 body > div.dialog.progress > div.progress > div,

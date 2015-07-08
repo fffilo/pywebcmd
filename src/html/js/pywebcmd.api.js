@@ -35,23 +35,6 @@
 		}
 
 		_ajax('ls', data);
-
-		/*
-			// list directory
-			send = {
-				source      : %dirname%,
-				destination : undefined,
-				properties  : [ icon, basename, dirname, type, mime, owner, group, permission, size, ctime, mtime, atime ]
-			}
-			receive = {
-				source      : %dirname%,
-				destination : undefined,
-				data        : {
-					icon : [],
-					glob : []
-				}
-			}
-		*/
 	}
 
 	window.pywebcmd.api.cp = function(source, destination) {
@@ -61,17 +44,6 @@
 		}
 
 		_ajax('cp', data);
-
-		/*
-			// copy file/directory
-			send = {
-				source      : %path%,
-				destination : %path%
-			}
-			receive = {
-				???
-			}
-		*/
 	}
 
 	window.pywebcmd.api.mv = function(source, destination) {
@@ -81,17 +53,6 @@
 		}
 
 		_ajax('mv', data);
-
-		/*
-			// move/rename file/directory
-			send = {
-				source      : %path%,
-				destination : %path%
-			}
-			receive = {
-				???
-			}
-		*/
 	}
 
 	window.pywebcmd.api.rm = function(source) {
@@ -101,17 +62,6 @@
 		}
 
 		_ajax('rm', data);
-
-		/*
-			// delete file/directory
-			send = {
-				source      : %path%,
-				destination : %path%
-			}
-			receive = {
-				???
-			}
-		*/
 	}
 
 	window.pywebcmd.api.nf = function(source) {
@@ -148,45 +98,10 @@
 		}
 
 		_ajax('pr', data);
-
-		/*
-			send = {
-				source      : %path%,
-				destination : undefined
-			}
-			// file/directory properties
-			receive = {
-				source      : %filepath%,
-				destination : undefined,
-				data        : {
-					icon: '',
-					basename: '',
-					dirname: '',
-					type: '',
-					mime: '',
-					owner: '',
-					group: '',
-					permission: '',
-					size: '',
-					ctime: '',
-					mtime: '',
-					atime: ''
-				}
-			}
-		*/
 	}
 
 	window.pywebcmd.api.st = function() {
-		/*
-			// copy/move/delete status
-			send = {
-				source      : %path%,
-				destination : undefined
-			}
-			receive = {
-				???
-			}
-		*/
+		// status (ping pid)
 	}
 
 })(jQuery);

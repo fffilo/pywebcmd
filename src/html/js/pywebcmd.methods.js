@@ -55,7 +55,7 @@
 			.removeClass('loginerror')
 			.removeClass('fileinfo')
 			.removeClass('progress')
-			.removeClass('error')
+			.removeClass('error');
 
 		if (jqXHR.status == 401) {
 			$(window.pywebcmd.ui.dialog.parent)
@@ -118,6 +118,11 @@
 		_nav();
 	}
 
+	/**
+	 * Human readable timestamp
+	 * @param  {Number} value
+	 * @return {String}
+	 */
 	var _time = function(value) {
 		value = new Date(value * 1000);
 
@@ -130,6 +135,11 @@
 			+ ':' + ('00' + (value.getSeconds()  + 0)).substr(-2);
 	}
 
+	/**
+	 * Human readable size in bytes
+	 * @param  {Number} value
+	 * @return {String}
+	 */
 	var _size = function(value) {
 		if (value * 1 < 1024) return value * 1 + 'B';
 		else if(value * 1 < 1024 * 1024) return (value * 1 / 1024).toFixed(2) + 'K';
@@ -239,6 +249,40 @@
 		});
 
 		return result;
+	}
+
+	/**
+	 * Replace html/title of element with data
+	 * @param  {Object} obj
+	 * @param  {Object} data
+	 * @return {Void}
+	 */
+	var _html = function(obj, data) {
+		$.each(obj, function() {
+			if ( ! (this instanceof jQuery)) {
+				return _html(this, data);
+			}
+
+			var format = $(this).data('pywebcmd-html')
+			if (format) {
+				var html = format;
+				$.each(data, function(key, value) {
+					html = html.replace('{' + key + '}', value);
+				});
+
+				$(this).html(html);
+			}
+
+			var format = $(this).data('pywebcmd-title')
+			if (format) {
+				var html = format;
+				$.each(data, function(key, value) {
+					html = html.replace('{' + key + '}', value);
+				});
+
+				$(this).attr('title', html);
+			}
+		});
 	}
 
 	/**
@@ -359,15 +403,19 @@
 
 	/**
 	 * PR request - properties/info
-	 * @param  {String} source
+	 * @param  {Array} source
 	 * @return {Void}
 	 */
 	var _pr = function(source) {
 		$(window.pywebcmd.ui.dialog.parent)
+			.removeClass('overlay')
 			.removeClass('loading')
+			.removeClass('loginerror')
+			.removeClass('login')
 			.removeClass('fileinfo')
 			.removeClass('progress')
 			.removeClass('error')
+			.addClass('overlay')
 			.addClass('loading')
 			.addClass('fileinfo');
 
@@ -375,8 +423,10 @@
 		if ($(window.pywebcmd.ui.lblock).hasClass('selected')) block = window.pywebcmd.ui.lblock;
 		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) block = window.pywebcmd.ui.rblock;
 
+		window.pywebcmd.methods.html(window.pywebcmd.ui.dialog.fileinfo, { count: source.length });
+
 		window.pywebcmd.methods.preloader(block, true);
-		window.pywebcmd.methods.log('command', 'Properties of \'' + source + '\'');
+		window.pywebcmd.methods.log('command', 'Properties of \'' + JSON.stringify(source) + '\'');
 		window.pywebcmd.api.pr(source);
 	}
 
@@ -393,6 +443,7 @@
 		time      : _time,
 		size      : _size,
 		parse     : _parse,
+		html      : _html,
 		ls        : _ls,
 		cp        : _cp,
 		mv        : _mv,

@@ -279,11 +279,12 @@ def do_POST_dl(RequestHandler):
 def do_POST_pr(RequestHandler):
 	RequestHandler.session.start()
 
+	data = RequestHandler.data()
 	result = {
 		'source': None,
 		'destination': None,
-		'status': 500,
-		'message': 'Work in progress',
+		'status': 200,
+		'message': 'OK',
 		'data': None
 	}
 
@@ -292,6 +293,22 @@ def do_POST_pr(RequestHandler):
 		result['message'] = 'Not logged in.'
 		response(RequestHandler, result)
 		return
+	if not 'source' in data:
+		result['status'] = 500
+		result['message'] = 'Source not provided.'
+		response(RequestHandler, result)
+		return
+	if not type(data['source'] is list):
+		result['status'] = 500
+		result['message'] = 'Invalid source.'
+		response(RequestHandler, result)
+		return
+
+	result['source'] = data['source']
+	result['data'] = []
+
+	for f in data['source']:
+		result['data'].append(ffile.properties(f))
 
 	response(RequestHandler, result)
 

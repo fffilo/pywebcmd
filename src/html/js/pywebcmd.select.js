@@ -18,6 +18,23 @@
 			.on('keydown', _keydown);
 	});
 
+	var _count = function() {
+		var count;
+		if ($(window.pywebcmd.ui.lblock).hasClass('selected')) count = $(window.pywebcmd.ui.lbody).find('tr.highlight').length;
+		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) count = $(window.pywebcmd.ui.rbody).find('tr.highlight').length;
+
+		$(window.pywebcmd.ui.dialog.parent)
+			.removeClass('count-zero')
+			.removeClass('count-one')
+			.removeClass('count-more');
+
+		if (false) {}
+		else if (count === undefined) {}
+		else if (count == 0)          { $(window.pywebcmd.ui.dialog.parent).addClass('count-zero'); }
+		else if (count == 1)          { $(window.pywebcmd.ui.dialog.parent).addClass('count-one');  }
+		else                          { $(window.pywebcmd.ui.dialog.parent).addClass('count-more'); }
+	}
+
 	/**
 	 * Block click event
 	 * @param  {Object} event
@@ -25,6 +42,7 @@
 	 */
 	var _bclick = function(event) {
 		window.pywebcmd.methods.selection(this);
+		_count();
 	}
 
 	/**
@@ -47,6 +65,8 @@
 			$(this)
 				.addClass('highlight');
 		}
+
+		_count();
 
 		window.pywebcmd.methods.nav();
 	}
@@ -76,6 +96,8 @@
 					$(row)
 						.addClass('highlight');
 				}
+
+				_count();
 
 				window.pywebcmd.methods.nav();
 			}
