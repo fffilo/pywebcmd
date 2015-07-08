@@ -105,8 +105,9 @@ body > div.wrapper > footer > p a { color: #aaa; text-decoration: none; }
 
 /* dialog */
 body > div.dialog { position: fixed; visibility: hidden; top: 0; right: 0; bottom: 0; left: 0; background: rgba(0, 0, 0, 0.2); opacity: 0; transition: all 0.3s ease 0s; }
-body > div.dialog > div { position: absolute; display: block; left: 50%; top: 50%; transform: translate(-50%, -50%); }
-body > div.dialog > div > div { display: none; width: 480px; padding: 24px; background: #fff; -webkit-border-radius: 8px; border-radius: 8px; transform: scale(0.7); transition: all 0.3s ease 0s; -webkit-box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); }
+body > div.dialog.overlay { visibility: visible; opacity: 1; }
+body > div.dialog > div { position: absolute; display: block; left: 50%; top: 50%; visibility: hidden; transform: translate(-50%, -50%); }
+body > div.dialog > div > div { width: 480px; padding: 24px; background: #fff; visibility: hidden; opacity: 0; transform: scale(0.7); -webkit-border-radius: 8px; border-radius: 8px; transition: all 0.3s ease 0s; -webkit-box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); box-shadow: 0 0 8px 8px rgba(0,0,0,0.1); }
 body > div.dialog > div > div > header { margin: 0 0 12px 0; padding: 0 0 12px 0; border-bottom: 1px solid #ccc; }
 body > div.dialog > div > div > img { position: absolute; margin: 12px; }
 body > div.dialog > div > div > div { background: none center 40% no-repeat; }
@@ -114,28 +115,24 @@ body > div.dialog > div > div > footer { margin: 12px 0 0 0; padding: 24px 0 0 0
 body > div.dialog > div > div > footer > a { display: inline-block; margin: 0 0 0 4px; padding: 4px 12px; font-size: 13px; font-weight: normal; cursor: pointer; text-align: center; text-decoration: none; vertical-align: middle; background: #fafafa; border: 1px solid #ccc; color: #666; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; -moz-user-select: -moz-none; border-radius: 6px; -webkit-border-radius: 6px; -moz-user-select: none; }
 body > div.dialog > div > div > footer > a:hover { background-color: #f0f0f0; border-color: #bababa; color: #666; }
 body > div.dialog > div > div > footer > a.disabled { opacity: 0.4; background-color: #fafafa; border-color: 1px solid #ccc; color: #666; pointer-events: none; }
-body > div.dialog > div > div.login > div > fieldset > label { cursor: pointer; }
-body > div.dialog > div > div.login > div > fieldset > input {}
-body > div.dialog > div > div.fileinfo > div > dl { margin: 0; }
-body > div.dialog > div > div.fileinfo > div > dl > dt { width: 148px; margin: 0; line-height: 24px; font-size: 13px; font-weight: bold; text-align: right; }
-body > div.dialog > div > div.fileinfo > div > dl > dd { margin: -24px 0 0 162px; line-height: 24px; font-size: 13px; }
-body > div.dialog > div > div.progress > div > div { position: relative; height: 16px; padding: 8px; background: rgba(0, 0, 0, 0.1); box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3); -webkit-border-radius: 16px; border-radius: 16px; }
-body > div.dialog > div > div.progress > div > div > div { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 16px; border-radius: 16px; }
-body > div.dialog > div > div.progress > div > div > div > div.meter { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 4px; border-radius: 4px; background-color: rgba(43,83,194,0.6); background-image: linear-gradient(center bottom, rgba(43,83,194,0.6) 37%, rgb(84,84,240) 69%); box-shadow: inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4); transition: width 0.5s ease-in-out; }
-body > div.dialog > div > div.progress > div > div > div > div.meter::after { display: none; }
-body > div.dialog > div > div.progress > div > div > div > div.meter::after,
-body > div.dialog > div > div.progress > div > div > div > div.meter > span { content: ""; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 1; overflow: hidden; background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent); background-size: 50px 50px; }
+body > div.dialog > div.login > div > div > fieldset > label { cursor: pointer; }
+body > div.dialog > div.login > div > div > fieldset > input {}
+body > div.dialog > div.fileinfo > div > div > dl { margin: 0; }
+body > div.dialog > div.fileinfo > div > div > dl > dt { width: 148px; margin: 0; line-height: 24px; font-size: 13px; font-weight: bold; text-align: right; }
+body > div.dialog > div.fileinfo > div > div > dl > dd { margin: -24px 0 0 162px; line-height: 24px; font-size: 13px; }
+body > div.dialog > div.progress > div > div > div { position: relative; height: 16px; padding: 8px; background: rgba(0, 0, 0, 0.1); box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3); -webkit-border-radius: 16px; border-radius: 16px; }
+body > div.dialog > div.progress > div > div > div > div { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 16px; border-radius: 16px; }
+body > div.dialog > div.progress > div > div > div > div > div.meter { position: relative; display: block; height: 100%; overflow: hidden; -webkit-border-radius: 4px; border-radius: 4px; background-color: rgba(43,83,194,0.6); background-image: linear-gradient(center bottom, rgba(43,83,194,0.6) 37%, rgb(84,84,240) 69%); box-shadow: inset 0 2px 9px  rgba(255,255,255,0.3), inset 0 -2px 6px rgba(0,0,0,0.4); transition: width 0.5s ease-in-out; }
+body > div.dialog > div.progress > div > div > div > div > div.meter::after { display: none; }
+body > div.dialog > div.progress > div > div > div > div > div.meter::after,
+body > div.dialog > div.progress > div > div > div > div > div.meter > span { content: ""; position: absolute; top: 0; left: 0; bottom: 0; right: 0; z-index: 1; overflow: hidden; background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent); background-size: 50px 50px; }
 body > div.dialog.loading > div > div > img { display: none; }
 body > div.dialog.loading > div > div > div { background-image: url("/img/loadinfo.gif"); }
 body > div.dialog.loading > div > div > div * { visibility: hidden; }
-body > div.dialog.login,
-body > div.dialog.fileinfo,
-body > div.dialog.progress,
-body > div.dialog.error { visibility: visible; opacity: 1; }
-body > div.dialog.login > div > div.login,
-body > div.dialog.fileinfo > div > div.fileinfo,
-body > div.dialog.progress > div > div.progress,
-body > div.dialog.error > div > div.error { display: block; transform: scale(1); }
+body > div.dialog.login > div.login > div,
+body > div.dialog.fileinfo > div.fileinfo > div,
+body > div.dialog.progress > div.progress > div,
+body > div.dialog.error > div.error > div { visibility: visible; opacity: 1; transform: scale(1); }
 
 /* login error animation */
 body > div.dialog.loginerror > div > div { animation: loginerror 0.5s linear; }
@@ -146,7 +143,7 @@ body > div.dialog.loginerror > div > div { animation: loginerror 0.5s linear; }
 }
 
 /* progress bar animation */
-body > div.dialog > div > div.progress > div > div > div > div.meter > span { animation: move 2s linear infinite; }
+body > div.dialog > div.progress > div > div > div > div > div.meter > span { animation: move 2s linear infinite; }
 @-webkit-keyframes move {
 	0% { background-position: 0 0; }
 	100% { background-position: 50px 50px; }

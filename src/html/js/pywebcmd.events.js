@@ -55,16 +55,23 @@
 				.on('click', function() {
 					window.pywebcmd.log('command', 'Login request');
 
+					$(window.pywebcmd.ui.dialog.parent)
+						.removeClass('loading')
+						.removeClass('loginerror')
+						.removeClass('fileinfo')
+						.removeClass('progress')
+						.removeClass('error')
+						.addClass('loading');
+
 					window.pywebcmd.api.login($(window.pywebcmd.ui.dialog.login.username).val(), CryptoJS.SHA512($(window.pywebcmd.ui.dialog.login.password).val().toString()).toString(), function(jqXHR) {
 						if (jqXHR.status == 200) {
 							window.pywebcmd.log('success', jqXHR.responseJSON.message);
 
 							$(window.pywebcmd.ui.dialog.parent)
+								.removeClass('overlay')
 								.removeClass('loading')
-								.removeClass('login')
-								.removeClass('fileinfo')
-								.removeClass('progress')
-								.removeClass('error');
+								.removeClass('loginerror')
+								.removeClass('login');
 
 							_preloader(window.pywebcmd.ui.lblock, true);
 							_preloader(window.pywebcmd.ui.rblock, true);
@@ -82,10 +89,9 @@
 
 							window.pywebcmd.log('error', message);
 
-							$(window.pywebcmd.ui.dialog.parent).addClass('loginerror');
-							setTimeout(function() {
-								$(window.pywebcmd.ui.dialog.parent).removeClass('loginerror');
-							}, 500);
+							$(window.pywebcmd.ui.dialog.parent)
+								.removeClass('loading')
+								.addClass('loginerror');
 						}
 					});
 
@@ -282,10 +288,12 @@
 
 		if (jqXHR.status == 401) {
 			$(window.pywebcmd.ui.dialog.parent)
+				.addClass('overlay')
 				.addClass('login');
 		}
 		else {
 			$(window.pywebcmd.ui.dialog.parent)
+				.addClass('overlay')
 				.addClass('error');
 		}
 	}
