@@ -65,6 +65,11 @@ class Session():
 			if self.name in cookie:
 				sessid = cookie[self.name].value
 
+		# no session file
+		if not sessid is None:
+			if not os.path.isfile(self.path + '/' + self.file_prefix + sessid):
+				sessid = None
+
 		# create random session id
 		if sessid is None:
 			while (sessid is None) or (os.path.exists(self.path + '/' + self.file_prefix + sessid)):
