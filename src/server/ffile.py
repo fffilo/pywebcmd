@@ -126,7 +126,7 @@ def properties(path):
 		result = fileinfo(path[0])
 		result['dirname'] = os.path.dirname(result['realpath'])
 		result['basename'] = os.path.basename(result['realpath']) or result['dirname']
-		result['size'] += size(path[0])
+		result['size'] = size(path[0])
 	elif len(path) > 1:
 		result['realpath'] = []
 		result['dirname'] = []
