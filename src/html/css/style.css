@@ -49,7 +49,7 @@ body > div.wrapper > main::after { display: block; height: 0; visibility: hidden
 body > div.wrapper > main > section { float: left; width: calc(50% - 32px); height: 100%; overflow: hidden; }
 body > div.wrapper > main > section > header { position: relative; margin: 0 0 6px 0; background: #fff no-repeat right center; border: 1px solid #cecece; -webkit-border-radius: 4px; border-radius: 4px; }
 body > div.wrapper > main > section > header > h3 { display: none; }
-body > div.wrapper > main > section > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: transparent; border: 0 none; }
+body > div.wrapper > main > section > header > input { display: block; width: calc(100% - 18px); height: 18px; margin: 8px; color: #666; background: transparent; border: 0 none; outline: 0 none; }
 body > div.wrapper > main > section > header > img { position: absolute; display: none; right: 0; top: 50%; transform: translate(-6px, -50%); }
 body > div.wrapper > main > section.loading > header > input { width: calc(100% - 36px); }
 body > div.wrapper > main > section.loading > header > img { display: inline-block; }

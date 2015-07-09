@@ -10,6 +10,9 @@
 			.add(window.pywebcmd.ui.dialog.error.ok)
 			.add(window.pywebcmd.ui.dialog.error.cancel)
 				.on('click', _click);
+
+		$(document)
+			.on('keydown', _keydown);
 	});
 
 	/**
@@ -27,7 +30,25 @@
 			.removeClass('progress')
 			.removeClass('error');
 
+		$(':focus')
+			.blur();
+
 		return false;
+	}
+
+	/**
+	 * Document keypress event
+	 * @param  {Object}  event
+	 * @return {Void}
+	 */
+	var _keydown = function(event) {
+		if (event.which != 27) {
+			return;
+		}
+
+		if ($(window.pywebcmd.ui.dialog.parent).hasClass('error'))    $(window.pywebcmd.ui.dialog.error.cancel).click();
+		if ($(window.pywebcmd.ui.dialog.parent).hasClass('fileinfo')) $(window.pywebcmd.ui.dialog.fileinfo.cancel).click();
+		if ($(window.pywebcmd.ui.dialog.parent).hasClass('progress')) $(window.pywebcmd.ui.dialog.progress.cancel).click();
 	}
 
 })(jQuery);

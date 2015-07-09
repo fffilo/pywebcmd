@@ -88,6 +88,9 @@
 		if ($(':focus').length != 0) {
 			return;
 		}
+		if ($(window.pywebcmd.ui.dialog.parent).hasClass('overlay')) {
+			return;
+		}
 
 		// to do: move selction with arrows
 
@@ -102,6 +105,7 @@
 
 				if (event.which != 27 && ! event.shiftKey) {
 					$(row)
+						.not(':lt(2)')
 						.addClass('highlight');
 				}
 
