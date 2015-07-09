@@ -110,15 +110,12 @@ class Session():
 
 	### destroy session
 	def destroy(self):
-		self.start()
-
-		self._RequestHandlerClass.headers['Cookie'] = self._RequestHandlerClass.headers['Cookie'].replace(self.name + '=' + self._object['session_id'] + '; ', '').replace(self.name + '=' + self._object['session_id'], '')
-
-		if os.path.isfile(self.path + '/' + self.file_prefix + self._object['session_id']):
-			try:
-				os.remove(self.path + '/' + self.file_prefix + self._object['session_id'])
-			except Exception, e:
-				pass
+		if not self._object is None:
+			if os.path.isfile(self.path + '/' + self.file_prefix + self._object['session_id']):
+				try:
+					os.remove(self.path + '/' + self.file_prefix + self._object['session_id'])
+				except Exception, e:
+					pass
 
 		self._object = None
 		self._header = {'key': 'Set-Cookie', 'value': self.name + '=' + 'deleted' + '; expires=Thu, 01 Jan 1970 00:00:00 GMT;'}

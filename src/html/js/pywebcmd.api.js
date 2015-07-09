@@ -11,7 +11,7 @@
 			dataType: 'json',
 			data: JSON.stringify(data),
 			complete: function(jqXHR, textStatus) {
-				if (window.pywebcmd.callback && typeof(window.pywebcmd.callback[method] == 'function')) {
+				if (window.pywebcmd.callback && typeof(window.pywebcmd.callback[method]) == 'function') {
 					window.pywebcmd.callback[method].call(this, jqXHR, textStatus);
 				}
 			}

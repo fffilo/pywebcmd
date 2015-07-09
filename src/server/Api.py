@@ -155,7 +155,7 @@ def do_POST_ls(RequestHandler):
 
 		result['data'] = []
 		for f in glob:
-			result['data'].append(ffile.properties(result['source'] + '/' + f))
+			result['data'].append(ffile.fileinfo(result['source'] + '/' + f))
 	except Exception, e:
 		result['status'] = 500
 		result['message'] = str(e)
@@ -216,6 +216,8 @@ def do_POST_rm(RequestHandler):
 		result['message'] = 'Not logged in.'
 		response(RequestHandler, result)
 		return
+
+	# trash?
 
 	response(RequestHandler, result)
 
@@ -305,10 +307,7 @@ def do_POST_pr(RequestHandler):
 		return
 
 	result['source'] = data['source']
-	result['data'] = []
-
-	for f in data['source']:
-		result['data'].append(ffile.properties(f))
+	result['data'] = ffile.properties(data['source'])
 
 	response(RequestHandler, result)
 

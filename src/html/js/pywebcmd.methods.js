@@ -141,7 +141,7 @@
 	 * @return {String}
 	 */
 	var _size = function(value) {
-		if (value * 1 < 1024) return value * 1 + 'B';
+		if (value * 1 < 1024) return (value * 1).toFixed(2) + 'B';
 		else if(value * 1 < 1024 * 1024) return (value * 1 / 1024).toFixed(2) + 'K';
 		else if(value * 1 < 1024 * 1024 * 1024) return (value * 1 / (1024 * 1024)).toFixed(2) + 'M';
 		else if(value * 1 < 1024 * 1024 * 1024 * 1024) return (value * 1 / (1024 * 1024 * 1024)).toFixed(2) + 'G';

@@ -146,7 +146,7 @@
 			<div class="fileinfo">
 				<div>
 					<header>
-						<h3 class="title">{count} file<span>s</span> selected</h3>
+						<h3 class="title">{count} item<span>s</span> selected</h3>
 					</header>
 					<img class="icon size-64" src="/ico/64/text-plain" alt="" />
 					<div>
@@ -158,21 +158,25 @@
 							<dt class="key">Location</dt>
 							<dd class="value">{dirname}</dd>
 						</dl>
+						<dl class="realpath" title="{realpath}">
+							<dt class="key">Target</dt>
+							<dd class="value">{realpath}</dd>
+						</dl>
 						<dl class="type mime" title="{type} ({mime})">
-							<dt class="key"({mime})">Type</dt>
+							<dt class="key">Type</dt>
 							<dd class="value">{type} ({mime})</dd>
 						</dl>
 						<dl class="owner" title="{owner}:{group}">
-							<dt class="key"{group}">Owner</dt>
+							<dt class="key">Owner</dt>
 							<dd class="value">{owner}:{group}</dd>
 						</dl>
-						<dl class="permission title="{permission}">
+						<dl class="permission" title="{permission}">
 							<dt class="key">Permission</dt>
 							<dd class="value" >{permission}</dd>
 						</dl>
-						<dl class="size" title="{size}B">
+						<dl class="size" title="{size}">
 							<dt class="key">Size</dt>
-							<dd class="value" ">{size}B</dd>
+							<dd class="value" ">{size}</dd>
 						</dl>
 						<dl class="ctime" title="{ctime}">
 							<dt class="key">Created</dt>

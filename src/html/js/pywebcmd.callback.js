@@ -4,6 +4,32 @@
 	window.pywebcmd.callback = window.pywebcmd.callback || {};
 
 	/**
+	 * LOGIN request callback
+	 * @param  {Object} jqXHR
+	 * @param  {String} textStatus
+	 * @return {Void}
+	 */
+	window.pywebcmd.callback.login = function(jqXHR, textStatus) {
+		if (jqXHR.status == 200) {
+			window.pywebcmd.methods.log('success', jqXHR.responseJSON.message);
+
+			$(window.pywebcmd.ui.dialog.parent)
+				.removeClass('overlay')
+				.removeClass('loading')
+				.removeClass('loginerror')
+				.removeClass('login');
+
+			window.pywebcmd.methods.ls();
+		}
+		else {
+			window.pywebcmd.methods.error(jqXHR);
+
+			$(window.pywebcmd.ui.dialog.parent)
+				.addClass('loginerror');
+		}
+	}
+
+	/**
 	 * LS request callback
 	 * @param  {Object} jqXHR
 	 * @param  {String} textStatus
@@ -203,19 +229,13 @@
 			return window.pywebcmd.methods.error(jqXHR);
 		}
 
-		window.pywebcmd.methods.log('success', jqXHR.responseJSON.message);
+		var data = $.extend({}, jqXHR.responseJSON.data, { count: jqXHR.responseJSON.source.length });
+		data.size  = window.pywebcmd.methods.size(data.size);
+		data.atime = window.pywebcmd.methods.time(data.atime);
+		data.ctime = window.pywebcmd.methods.time(data.ctime);
+		data.mtime = window.pywebcmd.methods.time(data.mtime);
 
-		var data = $.extend(
-			{},
-			jqXHR.responseJSON.data[0],
-			{
-				size  : parseInt(jqXHR.responseJSON.data[0].size).toLocaleString(),
-				atime : window.pywebcmd.methods.time(jqXHR.responseJSON.data[0].atime),
-				mtime : window.pywebcmd.methods.time(jqXHR.responseJSON.data[0].mtime),
-				ctime : window.pywebcmd.methods.time(jqXHR.responseJSON.data[0].ctime),
-				count : jqXHR.responseJSON.data.length
-			}
-		);
+		window.pywebcmd.methods.log('success', jqXHR.responseJSON.message);
 		window.pywebcmd.methods.html(window.pywebcmd.ui.dialog.fileinfo, data);
 
 		$(window.pywebcmd.ui.dialog.parent)

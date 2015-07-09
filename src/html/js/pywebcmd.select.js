@@ -19,20 +19,28 @@
 	});
 
 	var _count = function() {
-		var count;
-		if ($(window.pywebcmd.ui.lblock).hasClass('selected')) count = $(window.pywebcmd.ui.lbody).find('tr.highlight').length;
-		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) count = $(window.pywebcmd.ui.rbody).find('tr.highlight').length;
+		var rows = $(false);
+		if ($(window.pywebcmd.ui.lblock).hasClass('selected')) rows = $(window.pywebcmd.ui.lbody).find('tr.highlight');
+		if ($(window.pywebcmd.ui.rblock).hasClass('selected')) rows = $(window.pywebcmd.ui.rbody).find('tr.highlight');
 
 		$(window.pywebcmd.ui.dialog.parent)
-			.removeClass('count-zero')
-			.removeClass('count-one')
-			.removeClass('count-more');
+			.removeClass('select-none')
+			.removeClass('select-file')
+			.removeClass('select-dir')
+			.removeClass('select-link')
+			.removeClass('select-multiple');
 
-		if (false) {}
-		else if (count === undefined) {}
-		else if (count == 0)          { $(window.pywebcmd.ui.dialog.parent).addClass('count-zero'); }
-		else if (count == 1)          { $(window.pywebcmd.ui.dialog.parent).addClass('count-one');  }
-		else                          { $(window.pywebcmd.ui.dialog.parent).addClass('count-more'); }
+		if (rows.length == 0) {
+			$(window.pywebcmd.ui.dialog.parent).addClass('select-none');
+		}
+		else if (rows.length == 1) {
+			if ($(rows).hasClass('file')) $(window.pywebcmd.ui.dialog.parent).addClass('select-file');
+			if ($(rows).hasClass('dir'))  $(window.pywebcmd.ui.dialog.parent).addClass('select-dir');
+			if ($(rows).hasClass('link')) $(window.pywebcmd.ui.dialog.parent).addClass('select-link');
+		}
+		else {
+			$(window.pywebcmd.ui.dialog.parent).addClass('select-multiple');
+		}
 	}
 
 	/**
